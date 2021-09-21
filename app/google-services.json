@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "354747464321",
+    "project_id": "medicalchat-e3338",
+    "storage_bucket": "medicalchat-e3338.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354747464321:android:653a92b03153695b452b80",
+        "android_client_info": {
+          "package_name": "com.example.medicalchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354747464321-o5vsb25bpen42m4ld0nc4juih3h4h83s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPXCsYtJ7JLHMe4P0igSXGffyeNztKbRQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354747464321-o5vsb25bpen42m4ld0nc4juih3h4h83s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
