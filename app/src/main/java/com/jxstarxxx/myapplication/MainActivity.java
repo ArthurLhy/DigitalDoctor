@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         loginActivity_firebaseAuth.signInWithEmailAndPassword(userid, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                Toast.makeText(MainActivity.this, "logged in", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, chatDashboardActivity.class));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
