@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "354747464321",
-    "project_id": "medicalchat-e3338",
-    "storage_bucket": "medicalchat-e3338.appspot.com"
+    "project_number": "1053402463221",
+    "project_id": "mobile-chat-demo-cacdf",
+    "storage_bucket": "mobile-chat-demo-cacdf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:354747464321:android:653a92b03153695b452b80",
+        "mobilesdk_app_id": "1:1053402463221:android:ac0f21f44d8d12b7e5bebc",
         "android_client_info": {
-          "package_name": "com.example.medicalchat"
+          "package_name": "com.jxstarxxx.myapplication"
         }
       },
       "oauth_client": [
         {
-          "client_id": "354747464321-o5vsb25bpen42m4ld0nc4juih3h4h83s.apps.googleusercontent.com",
+          "client_id": "1053402463221-nnsse6ueh2kn0bn0lncf7o597me4s6ks.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAPXCsYtJ7JLHMe4P0igSXGffyeNztKbRQ"
+          "current_key": "AIzaSyAQ58J6rXToYQosBrKnIbm3wyhwyoQ1ZIQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "354747464321-o5vsb25bpen42m4ld0nc4juih3h4h83s.apps.googleusercontent.com",
+              "client_id": "1053402463221-nnsse6ueh2kn0bn0lncf7o597me4s6ks.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
