@@ -57,6 +57,46 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp" />
 
+        <TextView
+            android:id="@+id/register_firstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="First Name"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/register_fn_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/register_lastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Last Name"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/register_ln_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/register_dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date of Birth"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/register_select_dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select a Date"
+            android:layout_marginTop="10dp"/>
+
         <Button
             android:id="@+id/register_button"
             android:layout_width="wrap_content"
@@ -69,7 +109,7 @@
             android:id="@+id/register_back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back"/>
+            android:text="Login in"/>
 
 
 

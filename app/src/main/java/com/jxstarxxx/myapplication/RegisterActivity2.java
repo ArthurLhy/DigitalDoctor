@@ -3,9 +3,13 @@ package com.jxstarxxx.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,11 +26,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.util.Calendar;
+
 public class RegisterActivity2 extends AppCompatActivity {
 
     private EditText registerActivity_emailID, registerActivity_password;
     private Button registerActivity_registered, registerActivity_registerButton;
     private ImageView registerActivity_profilePic;
+    private TextView registerActivity_dob;
+    private DatePickerDialog.OnDateSetListener dobSetListener;
 
     private FirebaseAuth registerActivity_firebaseAuth;
     private FirebaseDatabase registerActivity_firebaseDatabase;
@@ -45,6 +53,30 @@ public class RegisterActivity2 extends AppCompatActivity {
 
         CastComponents();
 //        References();
+
+        registerActivity_dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(RegisterActivity2.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, dobSetListener, year, month, day);
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
+                datePickerDialog.show();
+            }
+        });
+
+        dobSetListener = new DatePickerDialog.OnDateSetListener(){
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                String dob = day + "/" + month + "/" +year;
+                registerActivity_dob.setText(dob);
+            }
+        };
+
 
         profilePicStatus = "nothing";
 
@@ -123,6 +155,7 @@ public class RegisterActivity2 extends AppCompatActivity {
         registerActivity_profilePic = (ImageView) findViewById(R.id.register_profilepic);
         registerActivity_registered = (Button) findViewById(R.id.register_back_button);
         registerActivity_registerButton = (Button) findViewById(R.id.register_button);
+        registerActivity_dob = (TextView) findViewById(R.id.register_select_dob);
 
         registerActivity_firebaseAuth = FirebaseAuth.getInstance();
         registerActivity_firebaseDatabase = FirebaseDatabase.getInstance();
