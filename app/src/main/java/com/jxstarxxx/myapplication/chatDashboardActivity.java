@@ -1,6 +1,9 @@
 package com.jxstarxxx.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -15,6 +18,7 @@ import com.jxstarxxx.myapplication.databinding.ActivityChatDashboardBinding;
 public class chatDashboardActivity extends AppCompatActivity {
 
     private ActivityChatDashboardBinding binding;
+    private Button dashboardActivity_chatWithDoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,25 @@ public class chatDashboardActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_chat_dashboard);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        CastComponents();
+
+        dashboardActivity_chatWithDoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(chatDashboardActivity.this, DoctorListActivity.class));
+            }
+        });
+
+
+
     }
+
+    private void CastComponents(){
+        dashboardActivity_chatWithDoc = (Button) findViewById(R.id.dashboard_chat);
+    }
+
+
+
 
 }
