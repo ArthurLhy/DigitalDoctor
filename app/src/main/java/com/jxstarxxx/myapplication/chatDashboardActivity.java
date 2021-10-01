@@ -37,21 +37,6 @@ public class chatDashboardActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        CastComponents();
-
-        dashboardActivity_chatWithDoc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(chatDashboardActivity.this, DoctorListActivity.class));
-            }
-        });
-
-
-
-    }
-
-    private void CastComponents(){
-        dashboardActivity_chatWithDoc = (Button) findViewById(R.id.dashboard_chat);
     }
 
 
