@@ -13,29 +13,37 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.jxstarxxx.myapplication.DoctorListActivity;
 import com.jxstarxxx.myapplication.R;
-import com.jxstarxxx.myapplication.chatDashboardActivity;
+import com.jxstarxxx.myapplication.VaccineFinderActivity;
 import com.jxstarxxx.myapplication.databinding.FragmentDashboardBinding;
 
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
     private FragmentDashboardBinding binding;
-    private Button chat_with_doc;
+    private Button chatWithDoc;
+    private Button vaccineFinder;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        chat_with_doc = (Button) root.findViewById(R.id.dashboard_chat);
+        // button define
+        chatWithDoc = (Button) root.findViewById(R.id.dashboard_chat);
+        vaccineFinder = (Button) root.findViewById(R.id.dashboard_vaccine_finder);
 
-        chat_with_doc.setOnClickListener(new View.OnClickListener() {
+        // click listener
+        chatWithDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), DoctorListActivity.class));
+            }
+        });
+
+        vaccineFinder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), VaccineFinderActivity.class));
             }
         });
 

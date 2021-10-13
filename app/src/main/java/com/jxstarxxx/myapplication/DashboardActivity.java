@@ -13,18 +13,18 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.jxstarxxx.myapplication.databinding.ActivityChatDashboardBinding;
+import com.jxstarxxx.myapplication.databinding.ActivityDashboardBinding;
 
-public class chatDashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity {
 
-    private ActivityChatDashboardBinding binding;
+    private ActivityDashboardBinding binding;
     private Button dashboardActivity_chatWithDoc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityChatDashboardBinding.inflate(getLayoutInflater());
+        binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);

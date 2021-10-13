@@ -28,7 +28,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.Calendar;
 
-public class RegisterActivity2 extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     private EditText registerActivity_emailID, registerActivity_password;
     private Button registerActivity_registered, registerActivity_registerButton;
@@ -47,7 +47,7 @@ public class RegisterActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register2);
+        setContentView(R.layout.activity_register);
 
         getSupportActionBar().hide();
 
@@ -62,7 +62,7 @@ public class RegisterActivity2 extends AppCompatActivity {
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(RegisterActivity2.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, dobSetListener, year, month, day);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(RegisterActivity.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth, dobSetListener, year, month, day);
                 datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable((Color.TRANSPARENT)));
                 datePickerDialog.show();
             }
@@ -89,7 +89,7 @@ public class RegisterActivity2 extends AppCompatActivity {
                     String emailid = registerActivity_emailID.getText().toString().trim();
                     SignupUserMethod(emailid, pass);
                 }else{
-                    Toast.makeText(RegisterActivity2.this, "something wrong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "something wrong", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -100,7 +100,7 @@ public class RegisterActivity2 extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(RegisterActivity2.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
                     SignInMethod();
                 }
             }
@@ -123,7 +123,7 @@ public class RegisterActivity2 extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegisterActivity2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -136,14 +136,14 @@ public class RegisterActivity2 extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(RegisterActivity2.this, "Success", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Success", Toast.LENGTH_SHORT).show();
                 }
 
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegisterActivity2.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

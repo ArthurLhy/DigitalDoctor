@@ -6,33 +6,27 @@ import android.os.Bundle;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.jxstarxxx.myapplication.databinding.ActivityMainBinding;
+//import com.jxstarxxx.myapplication.databinding.ActivityMainBinding;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+    //private ActivityMainBinding binding;
 
     private EditText loginActivity_emailID, loginActivity_password;
     private Button loginActivity_loginBun;
@@ -43,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 //        getSupportActionBar().hide();
 
         CastComponents();
@@ -51,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         loginActivity_newUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, RegisterActivity2.class));
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
 
@@ -62,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 String password = loginActivity_password.getText().toString();
 
                 if(emailID.equals("") && password.equals("")){
-                    Toast.makeText(MainActivity.this, "Email ID or password cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Email ID or password cannot be empty", Toast.LENGTH_SHORT).show();
                 }else{
                     loginUserMethod(emailID, password);
                 }
@@ -76,22 +70,22 @@ public class MainActivity extends AppCompatActivity {
         loginActivity_firebaseAuth.signInWithEmailAndPassword(userid, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                startActivity(new Intent(MainActivity.this, chatDashboardActivity.class));
+                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
     private void CastComponents(){
-        loginActivity_emailID = (EditText) findViewById(R.id.text_email);
-        loginActivity_password= (EditText) findViewById(R.id.text_password);
-        loginActivity_loginBun = (Button) findViewById(R.id.button_first);
-        loginActivity_newUser = (TextView) findViewById(R.id.textview_third);
+        loginActivity_emailID = (EditText) findViewById(R.id.account_edit);
+        loginActivity_password= (EditText) findViewById(R.id.psd_edit);
+        loginActivity_loginBun = (Button) findViewById(R.id.btn_login);
+        loginActivity_newUser = (TextView) findViewById(R.id.btn_register);
         loginActivity_firebaseAuth = FirebaseAuth.getInstance();
     }
 
