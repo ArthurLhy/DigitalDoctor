@@ -18,8 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_placeholder"
-        />
+        android:translationY="-18dp"
+        android:src="@drawable/ic_placeholder"/>
 
     <com.mancj.materialsearchbar.MaterialSearchBar
         android:id="@+id/searchBar"
@@ -36,6 +36,7 @@
         app:mt_speechMode="false" />
 
     <Button
+        android:id="@+id/btn_find"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
