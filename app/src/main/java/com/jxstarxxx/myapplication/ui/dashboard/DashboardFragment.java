@@ -1,6 +1,9 @@
 package com.jxstarxxx.myapplication.ui.dashboard;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,13 +11,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.jxstarxxx.myapplication.DoctorListActivity;
+import com.jxstarxxx.myapplication.PermissionActivity;
 import com.jxstarxxx.myapplication.R;
 import com.jxstarxxx.myapplication.VaccineFinderActivity;
 import com.jxstarxxx.myapplication.databinding.FragmentDashboardBinding;
+
+import java.util.Objects;
 
 public class DashboardFragment extends Fragment {
 
@@ -43,7 +50,7 @@ public class DashboardFragment extends Fragment {
         vaccineFinder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), VaccineFinderActivity.class));
+                startActivity(new Intent(getActivity(), PermissionActivity.class));
             }
         });
 
