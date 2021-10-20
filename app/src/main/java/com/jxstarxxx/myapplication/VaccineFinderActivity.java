@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -54,6 +55,12 @@ import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 import com.skyfishjy.library.RippleBackground;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -92,7 +99,7 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
         mapView = mapFragment.getView();
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(VaccineFinderActivity.this);
-        Places.initialize(VaccineFinderActivity.this, "AIzaSyA4q6eKx4ot228F-7VKLeJ35R-ga_rltGw");
+        Places.initialize(VaccineFinderActivity.this, getResources().getString(R.string.map_key));
         placesClient = Places.createClient(this);
         AutocompleteSessionToken token = AutocompleteSessionToken.newInstance();
 
@@ -196,6 +203,7 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
                     Place place = response.getPlace();
                     Log.i("Google Map Place API", "Place found:" + place.getName());
                     LatLng latLngOfPlace = place.getLatLng();
+                    Log.i("map find place", "latitude: " + latLngOfPlace.latitude + " longitude" + latLngOfPlace.longitude);
                     if (latLngOfPlace != null) {
                         mapAPI.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngOfPlace, MAP_ZOOM));
                     }
@@ -218,6 +226,7 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
             @Override
             public void onClick(View v) {
                 LatLng currentLocation = mapAPI.getCameraPosition().target;
+                Log.i("map current place", "latitude: " + currentLocation.latitude + " longitude" + currentLocation.longitude);
                 rippleBg.startRippleAnimation();
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -343,5 +352,54 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
        });
     }
 
+    private class retrievePlacesTask extends AsyncTask<String, Integer, String> {
+
+        private double latitude, longitude;
+
+        public retrievePlacesTask(double latitude, double longitude) {
+            this.latitude = latitude;
+            this.longitude = longitude;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            StringBuilder strBuilder = new StringBuilder()
+                    .append("https://maps.googleapis.com/maps/api/place/nearbysearch/json?rankby=distance&type=hospital&radius=3000&location=")
+                    .append(latitude).append(",").append(longitude)
+                    .append("&key=").append(getResources().getString(R.string.map_key));
+            String result = null;
+
+            try {
+                result = downloadUrl(strBuilder.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            //new ParserTask().excute(s);
+        }
+
+        private String downloadUrl(String string) throws IOException {
+            URL url = new URL(string);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.connect();
+            InputStream streamIn = connection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(streamIn));
+            StringBuilder builder = new StringBuilder();
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+
+            reader.close();
+            Log.i("Retrieve data with size",":" + builder.length());
+            return builder.toString();
+        }
+    }
 
 }
