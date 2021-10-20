@@ -36,6 +36,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -51,6 +52,8 @@ import com.google.android.libraries.places.api.net.FetchPlaceResponse;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.jxstarxxx.myapplication.DTO.HospitalsDTO;
+import com.jxstarxxx.myapplication.myUtils.MapDataParser;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 import com.skyfishjy.library.RippleBackground;
@@ -68,7 +71,8 @@ import java.util.List;
 public class VaccineFinderActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final Integer REQUEST_CODE = 44;
-    private static final float MAP_ZOOM = 15;
+    private static final float MAP_ZOOM = 12;
+
 
     // Initialize variable
     private SupportMapFragment mapFragment;
@@ -143,7 +147,6 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
                         .setLocationBias(bounds)
                         .setOrigin(new LatLng(-33.8749937, 151.2041382))
                         .setCountries("AU", "NZ")
-                        .setTypeFilter(TypeFilter.ADDRESS)
                         .setSessionToken(token)
                         .setQuery(s.toString())
                         .build();
@@ -228,6 +231,7 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
                 LatLng currentLocation = mapAPI.getCameraPosition().target;
                 Log.i("map current place", "latitude: " + currentLocation.latitude + " longitude" + currentLocation.longitude);
                 rippleBg.startRippleAnimation();
+                new retrievePlacesTask(currentLocation.latitude, currentLocation.longitude).execute();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -364,7 +368,7 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
         @Override
         protected String doInBackground(String... strings) {
             StringBuilder strBuilder = new StringBuilder()
-                    .append("https://maps.googleapis.com/maps/api/place/nearbysearch/json?rankby=distance&type=hospital&radius=3000&location=")
+                    .append("https://maps.googleapis.com/maps/api/place/nearbysearch/json?rankby=distance&type=hospital&location=")
                     .append(latitude).append(",").append(longitude)
                     .append("&key=").append(getResources().getString(R.string.map_key));
             String result = null;
@@ -375,16 +379,17 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
                 e.printStackTrace();
             }
 
+            Log.i("Find nearby hospitals", result);
             return result;
         }
 
         @Override
         protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            //new ParserTask().excute(s);
+            new ParserTask().execute(s);
         }
 
         private String downloadUrl(String string) throws IOException {
+            Log.i("Find hospitals request", string);
             URL url = new URL(string);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.connect();
@@ -399,6 +404,29 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
             reader.close();
             Log.i("Retrieve data with size",":" + builder.length());
             return builder.toString();
+        }
+    }
+
+    private class ParserTask extends AsyncTask<String, Integer, List<HospitalsDTO>> {
+
+        @Override
+        protected List<HospitalsDTO> doInBackground(String... strings) {
+            MapDataParser mapDataParser = new MapDataParser();
+            List<HospitalsDTO> result = new ArrayList<>(mapDataParser.parse(strings[0]));
+            Log.i("Hospital information", result.toString());
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(List<HospitalsDTO> hospitalsDTOS) {
+            mapAPI.clear();
+            for (HospitalsDTO hospital : hospitalsDTOS) {
+                LatLng latLng = new LatLng(hospital.getLatitude(), hospital.getLongitude());
+                MarkerOptions options = new MarkerOptions();
+                options.position(latLng);
+                options.title(hospital.getHospitalName());
+                mapAPI.addMarker(options);
+            }
         }
     }
 

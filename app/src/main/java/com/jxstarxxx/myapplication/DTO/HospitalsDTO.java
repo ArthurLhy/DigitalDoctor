@@ -2,7 +2,7 @@ package com.jxstarxxx.myapplication.DTO;
 
 import java.util.List;
 
-public class Hospitals {
+public class HospitalsDTO {
     private String hospitalName;
 
     private String rating;
@@ -11,7 +11,9 @@ public class Hospitals {
 
     private String address;
 
-    private List<Double> geometry;
+    private Double latitude;
+
+    private Double longitude;
 
     public String getHospitalName() {
         return hospitalName;
@@ -23,6 +25,22 @@ public class Hospitals {
 
     public String getRating() {
         return rating;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
     public void setRating(String rating) {
@@ -45,22 +63,18 @@ public class Hospitals {
         this.address = address;
     }
 
-    public List<Double> getGeometry() {
-        return geometry;
-    }
-
-    public void setGeometry(List<Double> geometry) {
-        this.geometry = geometry;
-    }
-
     @Override
     public String toString() {
-        return "Hospitals{" +
+        return "HospitalsDTO{" +
                 "hospitalName='" + hospitalName + '\'' +
                 ", rating='" + rating + '\'' +
                 ", openingHours='" + openingHours + '\'' +
                 ", address='" + address + '\'' +
-                ", geometry=" + geometry +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
                 '}';
     }
+
+
+
 }
