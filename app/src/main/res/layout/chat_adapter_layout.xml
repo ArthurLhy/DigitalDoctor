@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/receiver_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="50dp"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/receiver_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/receive_chat_box"
+                android:text="The message from receiver"
+                android:textSize="20sp"
+                android:textColor="#424248"
+                android:paddingRight="10dp"
+                android:paddingBottom="9dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="20dp"/>
+
+            <TextView
+                android:id="@+id/receiver_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:layout_marginTop="2dp"
+                android:textSize="13sp"
+                android:text="11-01-2021 12:23:33"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sender_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginEnd="22dp"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/sender_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sender_chat_box"
+                android:text="The message from sender"
+                android:textSize="20sp"
+                android:textColor="#424248"
+                android:paddingRight="10dp"
+                android:paddingBottom="9dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="20dp"/>
+
+            <TextView
+                android:id="@+id/sender_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:paddingEnd="10dp"
+                android:layout_marginTop="2dp"
+                android:textSize="13sp"
+                android:text="11-01-2021 12:23:33"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

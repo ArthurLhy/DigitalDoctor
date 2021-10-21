@@ -1,19 +1,15 @@
 package com.jxstarxxx.myapplication.Chat;
 
-public class Messages {
+public class Message {
 
     private String message;
     private String senderID;
-    private String name;
     private String time;
-    private String date;
 
-    public Messages(String message, String senderID, String name, String time, String date) {
+    public Message(String message, String senderID, String time) {
         this.message = message;
         this.senderID = senderID;
-        this.name = name;
         this.time = time;
-        this.date = date;
     }
 
     public String getMessage() {
@@ -24,15 +20,7 @@ public class Messages {
         return senderID;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String getTime() {
         return time;
-    }
-
-    public String getDate() {
-        return date;
     }
 }

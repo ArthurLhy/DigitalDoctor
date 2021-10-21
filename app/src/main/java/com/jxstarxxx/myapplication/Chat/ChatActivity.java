@@ -24,13 +24,20 @@ import com.google.firebase.database.ValueEventListener;
 import com.jxstarxxx.myapplication.R;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 public class ChatActivity extends AppCompatActivity {
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
     private String chatID;
+    private final List<Message> messageList = new ArrayList<>();
     private RecyclerView recyclerChat;
+    private ChatAdapter chatAdapter;
 
     private CardView message_card_view;
     private androidx.appcompat.widget.Toolbar toolbar_of_chat;
@@ -56,10 +63,11 @@ public class ChatActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
 
+        chatAdapter = new ChatAdapter(messageList, ChatActivity.this);
         recyclerChat = findViewById(R.id.recycle_of_chat);
         recyclerChat.setHasFixedSize(true);
         recyclerChat.setLayoutManager(new LinearLayoutManager(ChatActivity.this));
-
+        recyclerChat.setAdapter(chatAdapter);
 
         final ImageButton back = findViewById(R.id.chat_back_button);
         final ImageButton send_message = findViewById(R.id.send_button);
@@ -78,22 +86,42 @@ public class ChatActivity extends AppCompatActivity {
 
 
         user_name.setText(Name);
-        if(chatID.isEmpty()) {
 
-            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.hasChild("chat")) {
-                        chatID = String.valueOf (((int) snapshot.child("chat").getChildrenCount()) + 1);
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (chatID.isEmpty()) {
+                    if (snapshot.hasChild("chat")) {
+                        chatID = String.valueOf(((int) snapshot.child("chat").getChildrenCount()) + 1);
                     }
                 }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                if (snapshot.hasChild("chat" ) && snapshot.child("chat").child(chatID).hasChild("messages")){
+                    for (DataSnapshot messages_in_snapshot: snapshot.child("chat").child(chatID).child("messages").getChildren()) {
+                        if(messages_in_snapshot.hasChild("message") && messages_in_snapshot.hasChild("user")) {
+                            final String timestamp = messages_in_snapshot.getKey();
+                            Timestamp timeStamp = new Timestamp(Long.parseLong(timestamp));
+                            Date time = new Date(timeStamp.getTime());
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+                            final String userID = messages_in_snapshot.child("user").getValue(String.class);
+                            final String theMessage = messages_in_snapshot.child("message").getValue(String.class);
 
+
+                            Message message1 = new Message(theMessage, userID, simpleDateFormat.format(time));
+                            messageList.add(message1);
+                            chatAdapter.update(messageList);
+                        }
+                    }
                 }
-            });
-        }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +135,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String message_send_done = message.getText().toString();
-                final String timeStamp = String.valueOf(new Timestamp(System.currentTimeMillis()));
+                final String timeStamp = String.valueOf(System.currentTimeMillis());
 
                 databaseReference.child("chat").child(chatID).child("first_user").setValue(senderID);
                 databaseReference.child("chat").child(chatID).child("second_user").setValue(receiverID);
