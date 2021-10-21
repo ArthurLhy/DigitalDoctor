@@ -15,9 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".ChatActivity"
-            android:exported="true" />
-        <!-- meta data -->
+            android:name=".Chat.ChatActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" /> <!-- meta data -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" /> <!-- Activity -->
