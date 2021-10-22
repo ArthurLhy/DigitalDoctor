@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context=".ui.dashboard.DashboardFragment"
+    android:padding="15dp">
 
 
     <Button
@@ -12,24 +13,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginEnd="168dp"
         android:text="Chat with a Doctor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.336" />
+        app:layout_constraintVertical_bias="0.336"
+
+        />
 
     <Button
         android:id="@+id/dashboard_vaccine_finder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginEnd="168dp"
         android:text="Vaccine Finder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.446" />
+        app:layout_constraintVertical_bias="0.456"
+        />
+
+    <Button
+        android:id="@+id/dashboard_tracker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="COVID-19 cases Tracker"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.578"
+        tools:layout_editor_absoluteX="13dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
