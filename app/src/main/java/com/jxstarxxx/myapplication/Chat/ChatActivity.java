@@ -39,12 +39,6 @@ public class ChatActivity extends AppCompatActivity {
     private RecyclerView recyclerChat;
     private ChatAdapter chatAdapter;
 
-    private CardView message_card_view;
-    private androidx.appcompat.widget.Toolbar toolbar_of_chat;
-
-
-    private String message_will_be_send;
-    Intent intent;
 
     private String sender_channel, receiver_channel;
 
@@ -56,9 +50,6 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-
-        message_card_view = findViewById(R.id.card_view_of_send);
-        toolbar_of_chat = findViewById(R.id.toolbar_for_chat);
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
@@ -143,12 +134,6 @@ public class ChatActivity extends AppCompatActivity {
                 databaseReference.child("chat").child(chatID).child("messages").child(timeStamp).child("user").setValue(senderID);
 
                 message.setText("");
-            }
-        });
-        toolbar_of_chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "click toolbar", Toast.LENGTH_SHORT).show();;
             }
         });
 
