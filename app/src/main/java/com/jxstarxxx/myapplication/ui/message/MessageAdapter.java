@@ -11,28 +11,42 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jxstarxxx.myapplication.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MessageListView extends RecyclerView.Adapter<MessageListView.MessageView> {
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageView> {
 
     private final List<MessageList> messageLists;
     private final Context content;
 
-    public MessageListView(List<MessageList> messageLists, Context content) {
+    public MessageAdapter(List<MessageList> messageLists, Context content) {
         this.messageLists = messageLists;
         this.content = content;
     }
 
     @NonNull
     @Override
-    public MessageListView.MessageView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MessageAdapter.MessageView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MessageView(LayoutInflater.from(parent.getContext()).inflate(R.layout.message_card_view, null));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MessageListView.MessageView holder, int position) {
+    public void onBindViewHolder(@NonNull MessageAdapter.MessageView holder, int position) {
+        MessageList message_list = messageLists.get(position);
 
+        if(!message_list.getUserImage().isEmpty()){
+            Picasso.get().load(message_list.getUserImage()).into(holder.userImage);
+        }
+        holder.userName.setText(message_list.getUsername());
+        holder.lastMessage.setText(message_list.getLastMessage());
+
+        if(message_list.getMessageUnseen() == 0) {
+            holder.messageNumber.setVisibility(View.GONE);
+        }
+        else{
+            holder.messageNumber.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
