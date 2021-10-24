@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 //        getSupportActionBar().hide();
 
-        CastComponents();
+        castComponents();
 
         loginActivity_newUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +70,9 @@ public class LoginActivity extends AppCompatActivity {
         loginActivity_firebaseAuth.signInWithEmailAndPassword(userid, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                if (task.isSuccessful()) {
+                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -81,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void CastComponents(){
+    private void castComponents(){
         loginActivity_emailID = (EditText) findViewById(R.id.account_edit);
         loginActivity_password= (EditText) findViewById(R.id.psd_edit);
         loginActivity_loginBun = (Button) findViewById(R.id.btn_login);
