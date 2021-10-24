@@ -1,5 +1,6 @@
 package com.jxstarxxx.myapplication.ui.message;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,8 +33,10 @@ public class MessageFragment extends Fragment {
     private final List<MessageList> messageLists = new ArrayList<>();
     private MessageViewModel homeViewModel;
     private RecyclerView message_cyc_view;
+    private MessageAdapter adapter;
     private long newest_timestamp;
     private String last_message = "";
+    private String chatID = "";
 
     private FirebaseUser auth = FirebaseAuth.getInstance().getCurrentUser();
     private FragmentMessageBinding binding;
@@ -49,7 +52,15 @@ public class MessageFragment extends Fragment {
         View root = binding.getRoot();
         message_cyc_view = binding.messageRecycler;
         message_cyc_view.setHasFixedSize(true);
-        message_cyc_view.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        message_cyc_view.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        adapter = new MessageAdapter(messageLists, this.getActivity());
+        message_cyc_view.setAdapter(adapter);
+
+        ProgressDialog progressDialog = new ProgressDialog(this.getActivity());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("the message list is loading");
+        progressDialog.show();
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -69,6 +80,7 @@ public class MessageFragment extends Fragment {
                                 long chat_count = snapshot.getChildrenCount();
                                 if (chat_count > 0) {
                                     for (DataSnapshot dataSnapshot1: snapshot.getChildren()) {
+                                        chatID = dataSnapshot1.getKey();
                                         final String user1 = dataSnapshot1.child("user_1").getValue(String.class);
                                         final String user2 = dataSnapshot1.child("user_2").getValue(String.class);
                                         if ((user1.equals(user_id) && user2.equals(this_user_id)) || (user1.equals(this_user_id) && user2.equals(user_id))) {
@@ -84,25 +96,25 @@ public class MessageFragment extends Fragment {
                                         }
                                     }
                                 }
+                                MessageList messageList = new MessageList(chatID, user_name, user_id, user_image,last_message,message_unseen);
+                                messageLists.add(messageList);
+                                adapter.updateList(messageLists);
                             }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
-
+                                progressDialog.dismiss();
                             }
                         });
-                        System.out.println(last_message);
-                        MessageList messageList = new MessageList(user_name, user_id, user_image,last_message,message_unseen);
-                        messageLists.add(messageList);
                     }
                 }
-                message_cyc_view.setAdapter(new MessageAdapter(messageLists, MessageFragment.this.getContext()));
+                progressDialog.dismiss();
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                progressDialog.dismiss();
             }
         });
 

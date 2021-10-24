@@ -16,12 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jxstarxxx.myapplication.R;
+import com.squareup.picasso.Picasso;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -42,7 +44,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private String sender_channel, receiver_channel;
 
-    private FirebaseAuth auth;
+    private FirebaseUser auth;
     private FirebaseDatabase database;
 
     @Override
@@ -50,7 +52,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance();
 
 
@@ -69,10 +71,12 @@ public class ChatActivity extends AppCompatActivity {
 
         // To do here
         final String senderID = auth.getUid();
-        final String Name = getIntent().getStringExtra("Name");
+        final String Name = getIntent().getStringExtra("username");
         final String userImage = getIntent().getStringExtra("userImage");
+        Picasso.get().load(userImage).into(user_image);
         chatID = getIntent().getStringExtra("chatID");
         final String receiverID = getIntent().getStringExtra("userID");
+
 
 
 
@@ -128,8 +132,8 @@ public class ChatActivity extends AppCompatActivity {
                 final String message_send_done = message.getText().toString();
                 final String timeStamp = String.valueOf(System.currentTimeMillis());
 
-                databaseReference.child("chat").child(chatID).child("first_user").setValue(senderID);
-                databaseReference.child("chat").child(chatID).child("second_user").setValue(receiverID);
+                databaseReference.child("chat").child(chatID).child("user_1").setValue(senderID);
+                databaseReference.child("chat").child(chatID).child("user_2").setValue(receiverID);
                 databaseReference.child("chat").child(chatID).child("messages").child(timeStamp).child("message").setValue(message_send_done);
                 databaseReference.child("chat").child(chatID).child("messages").child(timeStamp).child("user").setValue(senderID);
 

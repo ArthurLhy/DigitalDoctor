@@ -1,16 +1,19 @@
 package com.jxstarxxx.myapplication.ui.message;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jxstarxxx.myapplication.Chat.ChatActivity;
 import com.jxstarxxx.myapplication.R;
 import com.squareup.picasso.Picasso;
 
@@ -18,7 +21,7 @@ import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageView> {
 
-    private final List<MessageList> messageLists;
+    private List<MessageList> messageLists;
     private final Context content;
 
     public MessageAdapter(List<MessageList> messageLists, Context content) {
@@ -48,8 +51,26 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         }
         else{
             holder.messageNumber.setVisibility(View.VISIBLE);
+            holder.messageNumber.setText(message_list.getMessageUnseen());
             holder.lastMessage.setTextColor(Color.parseColor("#009688"));
         }
+
+        holder.root.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(content, ChatActivity.class);
+                intent.putExtra("username", message_list.getUsername());
+                intent.putExtra("userImage", message_list.getUserImage());
+                intent.putExtra("userID", message_list.getUserid());
+                intent.putExtra("chatID", message_list.getChatID());
+                content.startActivity(intent);
+            }
+        });
+    }
+
+    public void updateList(List<MessageList> messageLists) {
+        this.messageLists = messageLists;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -63,6 +84,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         private TextView userName;
         private TextView lastMessage;
         private TextView messageNumber;
+        private LinearLayout root;
 
         public MessageView(@NonNull View itemView) {
             super(itemView);
@@ -71,6 +93,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             userName = itemView.findViewById(R.id.message_username);
             lastMessage = itemView.findViewById(R.id.last_message);
             messageNumber = itemView.findViewById(R.id.message_number);
+            root =itemView.findViewById(R.id.root);
 
         }
     }
