@@ -1,5 +1,7 @@
 package com.jxstarxxx.myapplication;
 
+import java.util.List;
+
 public class User {
     public String username;
     public String email;
