@@ -32,6 +32,8 @@ public class MessageFragment extends Fragment {
     private final List<MessageList> messageLists = new ArrayList<>();
     private MessageViewModel homeViewModel;
     private RecyclerView message_cyc_view;
+    private long newest_timestamp;
+    private String last_message = "";
 
     private FirebaseUser auth = FirebaseAuth.getInstance().getCurrentUser();
     private FragmentMessageBinding binding;
@@ -59,8 +61,38 @@ public class MessageFragment extends Fragment {
                     if (!user_id.equals(this_user_id)) {
                         final String user_name = dataSnapshot.child("username").getValue(String.class);
                         final String user_image = dataSnapshot.child("photoUrl").getValue(String.class);
+                        last_message = "";
+                        int message_unseen = 0;
+                        databaseReference.child("chat").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                long chat_count = snapshot.getChildrenCount();
+                                if (chat_count > 0) {
+                                    for (DataSnapshot dataSnapshot1: snapshot.getChildren()) {
+                                        final String user1 = dataSnapshot1.child("user_1").getValue(String.class);
+                                        final String user2 = dataSnapshot1.child("user_2").getValue(String.class);
+                                        if ((user1.equals(user_id) && user2.equals(this_user_id)) || (user1.equals(this_user_id) && user2.equals(user_id))) {
+                                            newest_timestamp = 0;
+                                            for (DataSnapshot dataSnapshot2: dataSnapshot1.child("messages").getChildren()) {
+                                                final long Timestamp =  Long.parseLong(dataSnapshot2.getKey());
 
-                        MessageList messageList = new MessageList(user_name, user_id, user_image,"",0);
+                                                if (Timestamp > newest_timestamp && dataSnapshot2.child("user").getValue(String.class).equals(user_id)) {
+                                                    newest_timestamp = Timestamp;
+                                                }
+                                            }
+                                            last_message = dataSnapshot1.child("messages").child(String.valueOf(newest_timestamp)).child("message").getValue(String.class);
+                                        }
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                        System.out.println(last_message);
+                        MessageList messageList = new MessageList(user_name, user_id, user_image,last_message,message_unseen);
                         messageLists.add(messageList);
                     }
                 }

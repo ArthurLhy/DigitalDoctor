@@ -1,6 +1,7 @@
 package com.jxstarxxx.myapplication.ui.message;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,9 +44,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
         if(message_list.getMessageUnseen() == 0) {
             holder.messageNumber.setVisibility(View.GONE);
+            holder.lastMessage.setTextColor(Color.parseColor("#019688"));
         }
         else{
             holder.messageNumber.setVisibility(View.VISIBLE);
+            holder.lastMessage.setTextColor(Color.parseColor("#009688"));
         }
     }
 
@@ -63,6 +66,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
         public MessageView(@NonNull View itemView) {
             super(itemView);
+
             userImage = itemView.findViewById(R.id.message_user_image);
             userName = itemView.findViewById(R.id.message_username);
             lastMessage = itemView.findViewById(R.id.last_message);
