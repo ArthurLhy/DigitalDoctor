@@ -22,6 +22,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/receive_chat_box"
                 android:text="The message from receiver"
+                android:layout_gravity="start"
                 android:textSize="20sp"
                 android:textColor="#424248"
                 android:paddingRight="10dp"
