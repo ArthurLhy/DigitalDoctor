@@ -3,6 +3,7 @@ package com.jxstarxxx.myapplication.ui.message;
 import android.app.Application;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,12 +37,13 @@ public class MessageFragment extends Fragment {
     private long newest_timestamp;
     private String last_message = "";
     private int message_unseen = 0;
-    private String chatID = "";
+    private String chatID = "0";
     private boolean gotdata = false;
+    private boolean done = false;
 
     private FirebaseUser auth = FirebaseAuth.getInstance().getCurrentUser();
     private FragmentMessageBinding binding;
-    private String this_user_id = auth.getUid();
+    private final String this_user_id = auth.getUid();
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -66,16 +68,19 @@ public class MessageFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 messageLists.clear();
+                List<String> have_find = new ArrayList<>();
 
                 for (DataSnapshot dataSnapshot: snapshot.child("user").getChildren()) {
                     final String our_user_id = dataSnapshot.getKey();
+                    Log.i("Message List", "finding user: " + our_user_id);
 
                     if (our_user_id.equals(this_user_id)) {
                         for (DataSnapshot dataSnapshot0: dataSnapshot.child("doctorList").getChildren()) {
                             final String user_id = dataSnapshot0.getKey();
-                            System.out.println(user_id);
 
                             if (!user_id.equals(this_user_id)) {
+                                Log.i("Message List", "finding friend:  " + user_id);
+
                                 final String user_name = dataSnapshot0.child("username").getValue(String.class);
                                 final String user_image = dataSnapshot0.child("photoUrl").getValue(String.class);
                                 last_message = "";
@@ -84,16 +89,20 @@ public class MessageFragment extends Fragment {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         long chat_count = snapshot.getChildrenCount();
+
                                         if (chat_count > 0) {
                                             for (DataSnapshot dataSnapshot1: snapshot.getChildren()) {
 
                                                 if (dataSnapshot1.hasChild("user_1") && dataSnapshot1.hasChild("user_2") && dataSnapshot1.hasChild("messages")){
                                                     final String user1 = dataSnapshot1.child("user_1").getValue(String.class);
                                                     final String user2 = dataSnapshot1.child("user_2").getValue(String.class);
+
                                                     if ((user1.equals(user_id) && user2.equals(this_user_id)) || (user1.equals(this_user_id) && user2.equals(user_id))) {
                                                         chatID = dataSnapshot1.getKey();
                                                         gotdata = true;
                                                         newest_timestamp = 0;
+
+                                                        Log.i("Message List", "find the chat" + chatID);
                                                         for (DataSnapshot dataSnapshot2: dataSnapshot1.child("messages").getChildren()) {
                                                             final long Timestamp =  Long.parseLong(dataSnapshot2.getKey());
                                                             if (MessageFragment.this.getActivity() != null) {
@@ -109,16 +118,31 @@ public class MessageFragment extends Fragment {
                                                         last_message = dataSnapshot1.child("messages").child(String.valueOf(newest_timestamp)).child("message").getValue(String.class);
                                                     }
                                                 }
-                                                if (gotdata) {
-                                                    System.out.println(user_name);
-                                                    MessageList messageList = new MessageList(chatID, user_name, user_id, user_image,last_message,message_unseen);
-                                                    messageLists.add(messageList);
-                                                    adapter.updateList(messageLists);
-                                                    gotdata = false;
-                                                }
                                             }
                                         }
+                                        if (gotdata) {
+                                            MessageList messageList = new MessageList(chatID, user_name, user_id, user_image,last_message,message_unseen);
 
+                                            if (messageLists.isEmpty()) {
+                                                Log.i("Message List", "add the chat to the list: " + chatID + user_name);
+                                                messageLists.add(messageList);
+                                                adapter.updateList(messageLists);
+                                                gotdata = false;
+                                            }
+
+                                            for (MessageList i:messageLists) {
+                                                if (i.getChatID().equals(messageList.getChatID())) {
+                                                    gotdata = false;
+                                                    break;
+                                                }
+                                            }
+                                            if (gotdata) {
+                                                Log.i("Message List", "add the chat to the list: " + chatID + user_name);
+                                                messageLists.add(messageList);
+                                                adapter.updateList(messageLists);
+                                            }
+                                            gotdata = false;
+                                        }
                                     }
 
                                     @Override
@@ -131,7 +155,6 @@ public class MessageFragment extends Fragment {
                     }
                 }
                 progressDialog.dismiss();
-
             }
 
             @Override

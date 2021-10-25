@@ -3,6 +3,7 @@ package com.jxstarxxx.myapplication.ui.message;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +64,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 intent.putExtra("userImage", message_list.getUserImage());
                 intent.putExtra("userID", message_list.getUserid());
                 intent.putExtra("chatID", message_list.getChatID());
-                System.out.println(message_list.getChatID());
+                Log.i("open the chat of:", message_list.getChatID());
                 content.startActivity(intent);
             }
         });
