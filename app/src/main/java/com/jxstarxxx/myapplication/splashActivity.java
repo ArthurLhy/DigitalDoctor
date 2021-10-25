@@ -13,6 +13,7 @@ public class splashActivity extends AppCompatActivity {
 
     private ImageView appName, background;
     private LottieAnimationView lottieAnimationView;
+    private float v = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,10 @@ public class splashActivity extends AppCompatActivity {
         appName = findViewById(R.id.splash_title);
         lottieAnimationView = findViewById(R.id.lottie_splash);
         background = findViewById(R.id.back_ground_splash);
+
+        appName.setAlpha(v);
+        appName.animate().alpha(1).setDuration(1000).setStartDelay(400).start();
+
         appName.animate().translationY(-2000).setDuration(1000).setStartDelay(5000);
         lottieAnimationView.animate().translationY(2000).setDuration(1000).setStartDelay(5000);
 
