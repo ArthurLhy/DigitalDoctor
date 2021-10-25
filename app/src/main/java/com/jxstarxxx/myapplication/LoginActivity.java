@@ -86,6 +86,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void castComponents(){
+        float v = 0;
+
         loginActivity_emailID = (EditText) findViewById(R.id.account_edit);
         loginActivity_password= (EditText) findViewById(R.id.psd_edit);
         loginActivity_loginBun = (Button) findViewById(R.id.btn_login);
@@ -93,6 +95,21 @@ public class LoginActivity extends AppCompatActivity {
         loginActivity_firebaseAuth = FirebaseAuth.getInstance();
         loginActivity_emailID_del = (ImageView) findViewById(R.id.account_edit_del);
         loginActivity_password_del = (ImageView) findViewById(R.id.psd_edit_del);
+
+        loginActivity_emailID.setTranslationX(1500);
+        loginActivity_password.setTranslationX(1500);
+        loginActivity_loginBun.setTranslationX(1500);
+        loginActivity_newUser.setTranslationX(1500);
+
+        loginActivity_emailID.setAlpha(v);
+        loginActivity_password.setAlpha(v);
+        loginActivity_loginBun.setAlpha(v);
+        loginActivity_newUser.setAlpha(v);
+
+        loginActivity_emailID.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
+        loginActivity_password.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+        loginActivity_loginBun.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
+        loginActivity_newUser.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(900).start();
 
         TextClear.addClearListener(loginActivity_emailID,loginActivity_emailID_del);
         TextClear.addClearListener(loginActivity_password,loginActivity_password_del);
