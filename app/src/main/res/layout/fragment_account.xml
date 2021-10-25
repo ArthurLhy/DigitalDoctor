@@ -15,9 +15,8 @@
             android:id="@+id/profile_pic"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="80dp"
             android:layout_gravity="center"
-            android:src="@drawable/avatar" />
+            android:scaleType="fitCenter"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -40,7 +39,7 @@
                 android:text="First Name"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="20dp"/>
 
             <TextView
                 android:id="@+id/first_name"
@@ -48,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="viewEnd"
                 android:textSize="20sp"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginRight="20dp" />
             
         </LinearLayout>
 
@@ -63,7 +62,7 @@
                 android:text="Last Name"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="20dp"/>
 
             <TextView
                 android:id="@+id/last_name"
@@ -71,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="viewEnd"
                 android:textSize="20sp"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginRight="20dp" />
 
         </LinearLayout>
 
@@ -86,7 +85,7 @@
                 android:text="Gender"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="20dp"/>
 
             <TextView
                 android:id="@+id/gender"
@@ -94,10 +93,15 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="viewEnd"
                 android:textSize="20sp"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginRight="20dp" />
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/logout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout" />
 
 
     </LinearLayout>
