@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginActivity_loginBun;
     private TextView loginActivity_newUser;
     private FirebaseAuth loginActivity_firebaseAuth;
+    private ImageView loginActivity_emailID_del, loginActivity_password_del;
 
 
     @Override
@@ -56,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = loginActivity_password.getText().toString();
 
                 if(emailID.equals("") && password.equals("")){
-                    Toast.makeText(LoginActivity.this, "Email ID or password cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Account or password cannot be empty", Toast.LENGTH_SHORT).show();
                 }else{
                     loginUserMethod(emailID, password);
                 }
@@ -89,6 +91,10 @@ public class LoginActivity extends AppCompatActivity {
         loginActivity_loginBun = (Button) findViewById(R.id.btn_login);
         loginActivity_newUser = (TextView) findViewById(R.id.btn_register);
         loginActivity_firebaseAuth = FirebaseAuth.getInstance();
-    }
+        loginActivity_emailID_del = (ImageView) findViewById(R.id.account_edit_del);
+        loginActivity_password_del = (ImageView) findViewById(R.id.psd_edit_del);
 
+        TextClear.addClearListener(loginActivity_emailID,loginActivity_emailID_del);
+        TextClear.addClearListener(loginActivity_password,loginActivity_password_del);
+    }
 }
