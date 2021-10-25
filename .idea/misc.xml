@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/drawable/ic_account.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_dashboard.xml" value="0.4" />
         <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_login.xml" value="0.1296875" />
         <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_main.xml" value="0.2259963768115942" />
         <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_register2.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/content_vaccine_finder.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/fragment_account.xml" value="0.264" />
+        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/fragment_chats.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/fragment_message.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14583333333333334" />
         <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14583333333333334" />
       </map>

@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference myUserRef;
     private StorageReference myUserStorageRef;
 
+    private long gender = 0;
     private String photoUrl = "";
 
     @Override
@@ -192,6 +194,7 @@ public class RegisterActivity extends AppCompatActivity {
         user.setUsername(registerActivity_username.getText().toString().trim());
         user.setIsDoctor(false);
         user.setPhotoUrl(photoUrl);
+        user.setGender(gender);
 
         myUserRef.child(uid).setValue(user);
         registerActivity_firebaseAuth.signOut();
@@ -239,6 +242,24 @@ public class RegisterActivity extends AppCompatActivity {
                     registerActivity_profilePic.setImageURI(selectImageUri);
                 }
             }
+        }
+    }
+
+    public void onRadioButtonClicked(View view) {
+        RadioButton radioButton = (RadioButton) view;
+        Boolean isChecked = radioButton.isChecked();
+        switch (radioButton.getId()) {
+            case R.id.radio_btn1:
+                if (isChecked) {
+                    gender = 1;
+                }
+                break;
+            case R.id.radio_btn2:
+                if (isChecked) {
+                    gender = 2;
+                }
+                break;
+            default:break;
         }
     }
 
