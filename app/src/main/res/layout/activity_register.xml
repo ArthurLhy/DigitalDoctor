@@ -26,16 +26,22 @@
             android:id="@+id/register_profilepic"
             android:layout_width="100dp"
             android:layout_height="100dp"
-
             android:layout_gravity="center"
             android:layout_marginTop="80dp"
-            android:src="@drawable/ic_baseline_person_24" />
+            android:src="@drawable/avatar" />
+
+        <Button
+            android:id="@+id/upload_photo_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Upload" />
 
         <TextView
             android:id="@+id/register_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="User id"
+            android:text="Email"
             android:layout_marginTop="30sp" />
 
         <EditText
@@ -53,6 +59,19 @@
 
         <EditText
             android:id="@+id/register_pass_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:id="@+id/register_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/register_un_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp" />
@@ -84,6 +103,35 @@
             android:layout_marginTop="10dp" />
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender"
+            android:layout_marginTop="10dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <RadioButton
+                android:id="@+id/radio_btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="male" />
+
+            <RadioButton
+                android:id="@+id/radio_btn2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onRadioButtonClicked"
+                android:text="female" />
+
+
+        </RadioGroup>
+
+        <TextView
             android:id="@+id/register_dob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,21 +145,15 @@
             android:text="Select a Date"
             android:layout_marginTop="10dp"/>
 
+
         <Button
             android:id="@+id/register_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
             android:layout_marginTop="20dp"
-            android:layout_gravity="center"/>
-
-        <Button
-            android:id="@+id/register_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login in"/>
-
-
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"/>
 
 
 

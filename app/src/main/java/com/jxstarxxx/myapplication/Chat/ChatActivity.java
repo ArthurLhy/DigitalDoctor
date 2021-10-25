@@ -16,12 +16,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jxstarxxx.myapplication.R;
+import com.jxstarxxx.myapplication.ui.message.LocalData;
+import com.squareup.picasso.Picasso;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -32,17 +35,18 @@ import java.util.Locale;
 
 public class ChatActivity extends AppCompatActivity {
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/");
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
 
     private String chatID;
     private final List<Message> messageList = new ArrayList<>();
     private RecyclerView recyclerChat;
     private ChatAdapter chatAdapter;
+    private boolean first = true;
 
 
     private String sender_channel, receiver_channel;
 
-    private FirebaseAuth auth;
+    private FirebaseUser auth;
     private FirebaseDatabase database;
 
     @Override
@@ -50,7 +54,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance();
 
 
@@ -69,26 +73,27 @@ public class ChatActivity extends AppCompatActivity {
 
         // To do here
         final String senderID = auth.getUid();
-        final String Name = getIntent().getStringExtra("Name");
+        final String Name = getIntent().getStringExtra("username");
         final String userImage = getIntent().getStringExtra("userImage");
+        Picasso.get().load(userImage).into(user_image);
         chatID = getIntent().getStringExtra("chatID");
         final String receiverID = getIntent().getStringExtra("userID");
-
-
-
         user_name.setText(Name);
 
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (chatID.isEmpty()) {
+                    chatID = "1";
                     if (snapshot.hasChild("chat")) {
                         chatID = String.valueOf(((int) snapshot.child("chat").getChildrenCount()) + 1);
                     }
                 }
 
                 if (snapshot.hasChild("chat" ) && snapshot.child("chat").child(chatID).hasChild("messages")){
+                    messageList.clear();
                     for (DataSnapshot messages_in_snapshot: snapshot.child("chat").child(chatID).child("messages").getChildren()) {
                         if(messages_in_snapshot.hasChild("message") && messages_in_snapshot.hasChild("user")) {
                             final String timestamp = messages_in_snapshot.getKey();
@@ -97,11 +102,14 @@ public class ChatActivity extends AppCompatActivity {
                             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
                             final String userID = messages_in_snapshot.child("user").getValue(String.class);
                             final String theMessage = messages_in_snapshot.child("message").getValue(String.class);
-
-
                             Message message1 = new Message(theMessage, userID, simpleDateFormat.format(time));
                             messageList.add(message1);
-                            chatAdapter.update(messageList);
+                            if (first || Long.parseLong(timestamp) > Long.parseLong(LocalData.getLastMessage(chatID, ChatActivity.this))) {
+                                LocalData.saveLastMessage(timestamp, chatID, ChatActivity.this);
+                                chatAdapter.update(messageList);
+                                first = false;
+                            }
+                            recyclerChat.scrollToPosition(messageList.size()-1);
                         }
                     }
                 }
@@ -118,7 +126,7 @@ public class ChatActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
             }
         });
 
@@ -128,11 +136,11 @@ public class ChatActivity extends AppCompatActivity {
                 final String message_send_done = message.getText().toString();
                 final String timeStamp = String.valueOf(System.currentTimeMillis());
 
-                databaseReference.child("chat").child(chatID).child("first_user").setValue(senderID);
-                databaseReference.child("chat").child(chatID).child("second_user").setValue(receiverID);
+                databaseReference.child("chat").child(chatID).child("user_1").setValue(senderID);
+                databaseReference.child("chat").child(chatID).child("user_2").setValue(receiverID);
                 databaseReference.child("chat").child(chatID).child("messages").child(timeStamp).child("message").setValue(message_send_done);
                 databaseReference.child("chat").child(chatID).child("messages").child(timeStamp).child("user").setValue(senderID);
-
+                LocalData.saveLastMessage(chatID, timeStamp, ChatActivity.this);
                 message.setText("");
             }
         });

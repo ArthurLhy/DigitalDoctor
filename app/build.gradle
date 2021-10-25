@@ -56,4 +56,5 @@ dependencies {
     implementation 'com.karumi:dexter:6.2.3'
     implementation 'com.github.mancj:MaterialSearchBar:0.8.1'
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

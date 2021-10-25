@@ -2,9 +2,13 @@ package com.jxstarxxx.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -17,6 +21,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,14 +41,16 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText registerActivity_emailID, registerActivity_password;
-    private Button registerActivity_registered, registerActivity_registerButton;
+    private Button registerActivity_uploadPhoto, registerActivity_registerButton;
     private ImageView registerActivity_profilePic;
+    private EditText registerActivity_username;
     private EditText registerActivity_firstName;
     private EditText registerActivity_lastName;
     private TextView registerActivity_dob;
@@ -56,7 +63,8 @@ public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference myUserRef;
     private StorageReference myUserStorageRef;
 
-    private String photoUrl;
+    private long gender = 0;
+    private String photoUrl = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +89,17 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        registerActivity_uploadPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_PICK);
+                intent.setType("image/*");
+
+                startActivityForResult(intent, 200);
+            }
+        });
+
         dobSetListener = new DatePickerDialog.OnDateSetListener(){
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -89,9 +108,6 @@ public class RegisterActivity extends AppCompatActivity {
                 registerActivity_dob.setText(dob);
             }
         };
-
-
-        photoUrl = "";
 
 
         registerActivity_registerButton.setOnClickListener(new View.OnClickListener() {
@@ -175,8 +191,10 @@ public class RegisterActivity extends AppCompatActivity {
         user.setFirstName(registerActivity_firstName.getText().toString().trim());
         user.setLastName(registerActivity_lastName.getText().toString().trim());
         user.setDob(registerActivity_dob.getText().toString());
+        user.setUsername(registerActivity_username.getText().toString().trim());
         user.setIsDoctor(false);
         user.setPhotoUrl(photoUrl);
+        user.setGender(gender);
 
         myUserRef.child(uid).setValue(user);
         registerActivity_firebaseAuth.signOut();
@@ -190,10 +208,11 @@ public class RegisterActivity extends AppCompatActivity {
         registerActivity_emailID = (EditText) findViewById(R.id.register_user_box);
         registerActivity_password = (EditText) findViewById(R.id.register_pass_box);
         registerActivity_profilePic = (ImageView) findViewById(R.id.register_profilepic);
+        registerActivity_username = (EditText) findViewById(R.id.register_un_box);
         registerActivity_firstName = (EditText) findViewById(R.id.register_fn_box);
         registerActivity_lastName = (EditText) findViewById(R.id.register_ln_box);
-        registerActivity_registered = (Button) findViewById(R.id.register_back_button);
         registerActivity_registerButton = (Button) findViewById(R.id.register_button);
+        registerActivity_uploadPhoto = (Button) findViewById(R.id.upload_photo_btn);
         registerActivity_dob = (TextView) findViewById(R.id.register_select_dob);
 
         registerActivity_firebaseAuth = FirebaseAuth.getInstance();
@@ -210,6 +229,38 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean checkPassword(String password){
         return !password.equals("") && password.length() >= 8;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            if (requestCode == 200) {
+                Uri selectImageUri = data.getData();
+                if (null != selectImageUri) {
+                    registerActivity_profilePic.setImageURI(selectImageUri);
+                }
+            }
+        }
+    }
+
+    public void onRadioButtonClicked(View view) {
+        RadioButton radioButton = (RadioButton) view;
+        Boolean isChecked = radioButton.isChecked();
+        switch (radioButton.getId()) {
+            case R.id.radio_btn1:
+                if (isChecked) {
+                    gender = 1;
+                }
+                break;
+            case R.id.radio_btn2:
+                if (isChecked) {
+                    gender = 2;
+                }
+                break;
+            default:break;
+        }
     }
 
 }

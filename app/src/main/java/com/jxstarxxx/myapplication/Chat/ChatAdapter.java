@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.jxstarxxx.myapplication.R;
 
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.thisViewHolder> {
 
     private List<Message> messageList;
-    private FirebaseAuth auth;
+    private FirebaseUser auth = FirebaseAuth.getInstance().getCurrentUser();
     private final Context context;
     private String id;
 

@@ -1,5 +1,7 @@
 package com.jxstarxxx.myapplication;
 
+import java.util.List;
+
 public class User {
     public String username;
     public String email;
@@ -8,6 +10,7 @@ public class User {
     public String dob;
     public String photoUrl;
     public Boolean isDoctor;
+    public long gender;
 
     public String getUsername() {
         return username;
@@ -63,5 +66,13 @@ public class User {
 
     public void setIsDoctor(Boolean isDoctor) {
         this.isDoctor = isDoctor;
+    }
+
+    public long getGender() {
+        return gender;
+    }
+
+    public void setGender(long gender) {
+        this.gender = gender;
     }
 }
