@@ -63,6 +63,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 intent.putExtra("userImage", message_list.getUserImage());
                 intent.putExtra("userID", message_list.getUserid());
                 intent.putExtra("chatID", message_list.getChatID());
+                System.out.println(message_list.getChatID());
                 content.startActivity(intent);
             }
         });

@@ -73,6 +73,7 @@ public class MessageFragment extends Fragment {
                     if (our_user_id.equals(this_user_id)) {
                         for (DataSnapshot dataSnapshot0: dataSnapshot.child("doctorList").getChildren()) {
                             final String user_id = dataSnapshot0.getKey();
+                            System.out.println(user_id);
 
                             if (!user_id.equals(this_user_id)) {
                                 final String user_name = dataSnapshot0.child("username").getValue(String.class);
@@ -85,12 +86,13 @@ public class MessageFragment extends Fragment {
                                         long chat_count = snapshot.getChildrenCount();
                                         if (chat_count > 0) {
                                             for (DataSnapshot dataSnapshot1: snapshot.getChildren()) {
-                                                chatID = dataSnapshot1.getKey();
 
                                                 if (dataSnapshot1.hasChild("user_1") && dataSnapshot1.hasChild("user_2") && dataSnapshot1.hasChild("messages")){
                                                     final String user1 = dataSnapshot1.child("user_1").getValue(String.class);
                                                     final String user2 = dataSnapshot1.child("user_2").getValue(String.class);
                                                     if ((user1.equals(user_id) && user2.equals(this_user_id)) || (user1.equals(this_user_id) && user2.equals(user_id))) {
+                                                        chatID = dataSnapshot1.getKey();
+                                                        gotdata = true;
                                                         newest_timestamp = 0;
                                                         for (DataSnapshot dataSnapshot2: dataSnapshot1.child("messages").getChildren()) {
                                                             final long Timestamp =  Long.parseLong(dataSnapshot2.getKey());
@@ -107,15 +109,16 @@ public class MessageFragment extends Fragment {
                                                         last_message = dataSnapshot1.child("messages").child(String.valueOf(newest_timestamp)).child("message").getValue(String.class);
                                                     }
                                                 }
+                                                if (gotdata) {
+                                                    System.out.println(user_name);
+                                                    MessageList messageList = new MessageList(chatID, user_name, user_id, user_image,last_message,message_unseen);
+                                                    messageLists.add(messageList);
+                                                    adapter.updateList(messageLists);
+                                                    gotdata = false;
+                                                }
                                             }
                                         }
 
-                                        if (!gotdata) {
-                                            MessageList messageList = new MessageList(chatID, user_name, user_id, user_image,last_message,message_unseen);
-                                            messageLists.add(messageList);
-                                            adapter.updateList(messageLists);
-                                            gotdata = true;
-                                        }
                                     }
 
                                     @Override
