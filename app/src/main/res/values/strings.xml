@@ -13,7 +13,7 @@
     <!-- String used for Login    -->
     <string name="digital_doctor">Digital Doctor</string>
     <string name="password">Password</string>
-    <string name="user_account_or_email_address">User account or email address</string>
+    <string name="email_address">Email address</string>
     <string name="login">Log In</string>
     <string name="register">Register</string>
 

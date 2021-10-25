@@ -54,7 +54,7 @@
                 android:layout_marginRight="10dp"
                 android:drawableLeft="@drawable/icon_user"
                 android:drawablePadding="5dp"
-                android:hint="@string/user_account_or_email_address"
+                android:hint="@string/email_address"
                 android:maxLines="1"
                 android:paddingLeft="10dp"
                 android:paddingRight="40dp"
