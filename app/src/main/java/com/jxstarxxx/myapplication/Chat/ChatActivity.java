@@ -6,6 +6,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -66,6 +69,7 @@ public class ChatActivity extends AppCompatActivity {
 
         final ImageButton back = findViewById(R.id.chat_back_button);
         final ImageButton send_message = findViewById(R.id.send_button);
+        final LottieAnimationView send_lottie = findViewById(R.id.send_lottie);
 
         final ImageView user_image = findViewById(R.id.chat_user_image);
         final TextView user_name = findViewById(R.id.name_of_chat_user);
@@ -81,6 +85,14 @@ public class ChatActivity extends AppCompatActivity {
         user_name.setText(Name);
 
 
+        send_lottie.addAnimatorListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                send_lottie.setFrame(0);
+                super.onAnimationEnd(animation);
+
+            }
+        });
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -133,6 +145,9 @@ public class ChatActivity extends AppCompatActivity {
         send_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                send_lottie.setSpeed(0.8f);
+                send_lottie.playAnimation();
+
                 final String message_send_done = message.getText().toString();
                 final String timeStamp = String.valueOf(System.currentTimeMillis());
 
