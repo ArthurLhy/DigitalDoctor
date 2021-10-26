@@ -16,7 +16,7 @@ import com.jxstarxxx.myapplication.R;
 
 import java.util.List;
 
-public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.thisViewHolder> {
+public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ThisViewHolder> {
 
     private List<Message> messageList;
     private FirebaseUser auth = FirebaseAuth.getInstance().getCurrentUser();
@@ -31,12 +31,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.thisViewHolder
 
     @NonNull
     @Override
-    public ChatAdapter.thisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new thisViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_adapter_layout, null));
+    public ThisViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ThisViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_adapter_layout, null));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChatAdapter.thisViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ThisViewHolder holder, int position) {
         Message message = messageList.get(position);
 
         if (message.getSenderID().equals(id)) {
@@ -62,13 +62,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.thisViewHolder
         this.messageList = messageList;
     }
 
-    static class thisViewHolder extends RecyclerView.ViewHolder {
+    static class ThisViewHolder extends RecyclerView.ViewHolder {
 
         private LinearLayout receiverLayout, senderLayout;
         private TextView receiverMessage, senderMessage;
         private TextView receiverTime, senderTime;
 
-        public thisViewHolder(@NonNull View itemView) {
+        public ThisViewHolder(@NonNull View itemView) {
             super(itemView);
 
             receiverLayout = itemView.findViewById(R.id.receiver_layout);
