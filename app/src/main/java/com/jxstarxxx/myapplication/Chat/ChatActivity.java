@@ -88,7 +88,10 @@ public class ChatActivity extends AppCompatActivity {
         send_lottie.addAnimatorListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                send_lottie.setFrame(0);
+                if (!(send_lottie.getSpeed() == -1f)) {
+                    send_lottie.setSpeed(-1f);
+                    send_lottie.playAnimation();
+                }
                 super.onAnimationEnd(animation);
 
             }
@@ -145,7 +148,7 @@ public class ChatActivity extends AppCompatActivity {
         send_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                send_lottie.setSpeed(0.8f);
+                send_lottie.setSpeed(1f);
                 send_lottie.playAnimation();
 
                 final String message_send_done = message.getText().toString();
