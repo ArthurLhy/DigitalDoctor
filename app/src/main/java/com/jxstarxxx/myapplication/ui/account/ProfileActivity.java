@@ -1,5 +1,6 @@
 package com.jxstarxxx.myapplication.ui.account;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -52,10 +53,21 @@ public class ProfileActivity extends AppCompatActivity {
 
     private String uid;
 
+    private ProgressDialog progressDialog1, progressDialog2;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        progressDialog1 = new ProgressDialog(ProfileActivity.this);
+        progressDialog1.setCancelable(false);
+        progressDialog1.setMessage("Loading...");
+        progressDialog1.show();
+
+        progressDialog2 = new ProgressDialog(ProfileActivity.this);
+        progressDialog2.setCancelable(false);
+        progressDialog2.setMessage("Uploading...");
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/");
@@ -76,6 +88,7 @@ public class ProfileActivity extends AppCompatActivity {
         ll_gender = findViewById(R.id.gender_ll);
         tv_username = findViewById(R.id.user_name);
         tv_gender = findViewById(R.id.gender);
+
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -103,6 +116,7 @@ public class ProfileActivity extends AppCompatActivity {
                 } else {
                     tv_gender.setText("Unknown");
                 }
+                progressDialog1.dismiss();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -147,6 +161,7 @@ public class ProfileActivity extends AppCompatActivity {
             if (requestCode == 200) {
                 Uri selectImageUri = data.getData();
                 if (null != selectImageUri) {
+                    progressDialog2.show();
                     profilePic.setImageURI(selectImageUri);
                     uploadProfilePhoto(uid);
                 }
@@ -168,6 +183,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception exception) {
                 exception.printStackTrace();
                 Toast.makeText(ProfileActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+                progressDialog2.dismiss();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -184,12 +200,14 @@ public class ProfileActivity extends AppCompatActivity {
             public void onSuccess(Uri uri) {
                 databaseRef.child("user").child(uid).child("photoUrl").setValue(uri.toString());
                 Toast.makeText(ProfileActivity.this, "Successfully change profile photo", Toast.LENGTH_SHORT).show();
+                progressDialog2.dismiss();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 e.printStackTrace();
                 Toast.makeText(ProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                progressDialog2.dismiss();
             }
         });
     }
