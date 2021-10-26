@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,9 +53,7 @@ public class AccountFragment extends Fragment {
     private StorageReference storageRef;
 
     private ImageView profilePic;
-    private TextView firstName;
-    private TextView lastName;
-    private TextView gender;
+    private LinearLayout profile, aboutUs;
     private Button logout_btn;
 
     private String uid;
@@ -75,9 +74,8 @@ public class AccountFragment extends Fragment {
         storageRef = firebaseStorage.getReference();
 
         profilePic = root.findViewById(R.id.profile_pic);
-        firstName = root.findViewById(R.id.first_name);
-        lastName = root.findViewById(R.id.last_name);
-        gender = root.findViewById(R.id.gender);
+        profile = root.findViewById(R.id.profile);
+        aboutUs = root.findViewById(R.id.about_us);
         logout_btn = root.findViewById(R.id.logout_btn);
 
 
@@ -100,36 +98,19 @@ public class AccountFragment extends Fragment {
             }
         });
 
-        databaseRef.child("user").child(uid).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+
+
+        profile.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                firstName.setText(user.getFirstName());
-                lastName.setText(user.getLastName());
-                if (user.getGender() == 1) {
-                    gender.setText("Male");
-                } else if (user.getGender() == 2) {
-                    gender.setText("Female");
-                } else {
-                    gender.setText("Unknown");
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                e.printStackTrace();
-                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ProfileActivity.class));
             }
         });
 
-        profilePic.setOnClickListener(new View.OnClickListener() {
+        aboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_PICK);
-                intent.setType("image/*");
 
-                startActivityForResult(intent, 200);
             }
         });
 

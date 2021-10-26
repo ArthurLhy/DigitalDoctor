@@ -15,6 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".ui.account.SetUsernameActivity"
+            android:exported="true" />
+        <activity
+            android:name=".splashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".CovidCasesTeacker"
             android:exported="true" />
         <activity
@@ -39,13 +52,10 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
+        <activity
+            android:name=".ui.account.ProfileActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:layout_marginTop="0dp"
-        android:background="#075344"
+        android:background="@color/blue_700"
         android:id="@+id/toolbar_for_chat">
 
         <RelativeLayout
@@ -44,6 +44,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_account"
+                    android:scaleType="centerCrop"
                     android:id="@+id/chat_user_image">
                 </ImageView>
 
@@ -101,15 +102,23 @@
         android:backgroundTint="#82B584"
         app:cardCornerRadius="20dp">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/send_lottie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_rawRes="@raw/send_completely"
+            app:lottie_autoPlay="false"/>
+
         <ImageButton
             android:id="@+id/send_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_baseline_call_made_24"
             app:tint="@color/black">
         </ImageButton>
+
+
     </androidx.cardview.widget.CardView>
 
 

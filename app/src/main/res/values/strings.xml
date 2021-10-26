@@ -13,13 +13,18 @@
     <!-- String used for Login    -->
     <string name="digital_doctor">Digital Doctor</string>
     <string name="password">Password</string>
-    <string name="user_account_or_email_address">User account or email address</string>
+    <string name="email_address">Email address</string>
     <string name="login">Log In</string>
     <string name="register">Register</string>
 
     <!-- String used for Register    -->
+    <string name="upload">Upload</string>
+    <string name="user_name">User Name</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
     <string name="date_of_birth">Date of Birth</string>
     <string name="select_a_date">Select a Date</string>
     <string name="already_have_an_account">Already have an account?</string>
