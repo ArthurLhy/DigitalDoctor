@@ -47,13 +47,13 @@ import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText registerActivity_emailID, registerActivity_password;
-    private Button registerActivity_uploadPhoto, registerActivity_registerButton;
-    private ImageView registerActivity_profilePic;
-    private EditText registerActivity_username;
-    private EditText registerActivity_firstName;
-    private EditText registerActivity_lastName;
-    private TextView registerActivity_dob;
+    private EditText registerActivity_emailID, registerActivity_password, registerActivity_userName,
+            registerActivity_firstName, registerActivity_lastName;
+    private Button registerActivity_uploadPhoto, registerActivity_registerButton, registerActivity_registered;
+    private ImageView registerActivity_profilePic, registerActivity_emailID_del,registerActivity_password_del,
+            registerActivity_userName_del, registerActivity_firstName_del, registerActivity_lastName_del;
+    private TextView registerActivity_dob, registerActivity_reg_user, registerActivity_reg_password,
+            registerActivity_reg_firstName, registerActivity_reg_userName, registerActivity_reg_lastName;
     private DatePickerDialog.OnDateSetListener dobSetListener;
 
     private FirebaseAuth registerActivity_firebaseAuth;
@@ -121,6 +121,14 @@ public class RegisterActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(RegisterActivity.this, "something wrong", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        registerActivity_registered.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -191,7 +199,7 @@ public class RegisterActivity extends AppCompatActivity {
         user.setFirstName(registerActivity_firstName.getText().toString().trim());
         user.setLastName(registerActivity_lastName.getText().toString().trim());
         user.setDob(registerActivity_dob.getText().toString());
-        user.setUsername(registerActivity_username.getText().toString().trim());
+        user.setUsername(registerActivity_userName.getText().toString().trim());
         user.setIsDoctor(false);
         user.setPhotoUrl(photoUrl);
         user.setGender(gender);
@@ -208,16 +216,36 @@ public class RegisterActivity extends AppCompatActivity {
         registerActivity_emailID = (EditText) findViewById(R.id.register_user_box);
         registerActivity_password = (EditText) findViewById(R.id.register_pass_box);
         registerActivity_profilePic = (ImageView) findViewById(R.id.register_profilepic);
-        registerActivity_username = (EditText) findViewById(R.id.register_un_box);
+        registerActivity_userName = (EditText) findViewById(R.id.register_un_box);
         registerActivity_firstName = (EditText) findViewById(R.id.register_fn_box);
         registerActivity_lastName = (EditText) findViewById(R.id.register_ln_box);
         registerActivity_registerButton = (Button) findViewById(R.id.register_button);
+        registerActivity_registered = (Button) findViewById(R.id.register_back_button);
         registerActivity_uploadPhoto = (Button) findViewById(R.id.upload_photo_btn);
         registerActivity_dob = (TextView) findViewById(R.id.register_select_dob);
+
+        registerActivity_emailID_del = (ImageView) findViewById(R.id.register_user_box_del);
+        registerActivity_password_del = (ImageView) findViewById(R.id.register_pass_box_del);
+        registerActivity_userName_del = (ImageView) findViewById(R.id.register_un_box_del);
+        registerActivity_firstName_del = (ImageView) findViewById(R.id.register_fn_box_del);
+        registerActivity_lastName_del = (ImageView) findViewById(R.id.register_ln_box_del);
+
+        registerActivity_reg_user = (TextView) findViewById(R.id.register_user);
+        registerActivity_reg_password = (TextView) findViewById(R.id.register_password);
+        registerActivity_reg_userName = (TextView) findViewById(R.id.register_userName);
+        registerActivity_reg_firstName = (TextView) findViewById(R.id.register_firstName);
+        registerActivity_reg_lastName = (TextView) findViewById(R.id.register_lastName);
+
 
         registerActivity_firebaseAuth = FirebaseAuth.getInstance();
         registerActivity_firebaseDatabase = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/");
         registerActivity_firebaseStorage = FirebaseStorage.getInstance("gs://mobile-chat-demo-cacdf.appspot.com/");
+
+        TextClearTwo.addClearListener(registerActivity_emailID, registerActivity_emailID_del, registerActivity_reg_user);
+        TextClearTwo.addClearListener(registerActivity_password, registerActivity_password_del, registerActivity_reg_password);
+        TextClearTwo.addClearListener(registerActivity_userName, registerActivity_userName_del, registerActivity_reg_userName);
+        TextClearTwo.addClearListener(registerActivity_firstName, registerActivity_firstName_del, registerActivity_reg_firstName);
+        TextClearTwo.addClearListener(registerActivity_lastName, registerActivity_lastName_del, registerActivity_reg_lastName);
 
     }
 
