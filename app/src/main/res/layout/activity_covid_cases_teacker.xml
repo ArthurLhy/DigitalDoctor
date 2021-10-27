@@ -10,28 +10,204 @@
    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="320dp"
-       android:background="#673AB7">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/white">
-
-        </TextView>
+       android:background="#100235">
 
 
+       <ImageView
+           android:layout_width="100dp"
+           android:layout_height="100dp"
+           android:layout_alignParentBottom="true"
+           android:layout_marginLeft="-30dp" />
 
-    </LinearLayout>
+       <ImageView
+           android:id="@+id/vaccine_1"
+           android:layout_width="100dp"
+           android:layout_height="100dp"
+           android:layout_alignParentEnd="true" />
+
+       <ImageView
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:layout_toStartOf="@id/vaccine_1"
+           android:layout_marginTop="50dp"
+           android:layout_marginRight="10dp"
+           android:layout_alignParentTop="true" />
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="20dp"
+           android:layout_marginStart="20dp"
+           android:layout_alignParentStart="true"
+           android:orientation="vertical">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="20sp"
+               android:text="Covid Tracker"
+               android:textColor="@color/white"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:fontFamily="serif"
+               android:layout_marginTop="7dp"
+               android:text="Australia"
+               android:textColor="@color/white"
+               android:drawableRight="@drawable/ic_dropdown"
+               android:textSize="40sp" />
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="5dp"
+               android:fontFamily="sans-serif-condensed-light"
+               android:text="Updated at May 02, 2021"
+               android:textColor="@color/white"
+               android:textSize="15sp" />
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_marginBottom="12dp"
+           android:layout_marginEnd="12dp"
+           android:layout_alignParentBottom="true"
+           android:layout_alignParentEnd="true">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="horizontal">
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:gravity="center_vertical"
+                   android:layout_marginEnd="5dp"
+                   android:orientation="vertical">
+
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:gravity="center_vertical"
+                       android:orientation="horizontal">
+
+                       <View
+                           android:layout_width="15dp"
+                           android:layout_height="15dp"
+                           android:background="@color/quantum_yellow500"/>
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:fontFamily="sans-serif-condensed-light"
+                           android:text="Confirm"
+                           android:textColor="@color/white"
+                           android:textSize="12sp" />
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:gravity="center_vertical"
+                       android:orientation="horizontal">
+
+                       <View
+                           android:layout_width="15dp"
+                           android:layout_height="15dp"
+                           android:background="#33CCFF"/>
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:fontFamily="sans-serif-condensed-light"
+                           android:text="Active"
+                           android:textColor="@color/white"
+                           android:textSize="12sp" />
+                   </LinearLayout>
+
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:gravity="center_vertical"
+                       android:orientation="horizontal">
+
+                       <View
+                           android:layout_width="15dp"
+                           android:layout_height="15dp"
+                           android:background="#41D16C"/>
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:fontFamily="sans-serif-condensed-light"
+                           android:text="Recovered"
+                           android:textColor="@color/white"
+                           android:textSize="12sp" />
+                   </LinearLayout>
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:gravity="center_vertical"
+                       android:orientation="horizontal">
+
+                       <View
+                           android:layout_width="15dp"
+                           android:layout_height="15dp"
+                           android:background="#FF0000"/>
+
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="5dp"
+                           android:fontFamily="sans-serif-condensed-light"
+                           android:text="Death"
+                           android:textColor="@color/white"
+                           android:textSize="12sp" />
+                   </LinearLayout>
+
+
+               </LinearLayout>
+
+               <org.eazegraph.lib.charts.PieChart
+                   android:id="@+id/piechart"
+                   android:layout_width="120dp"
+                   android:layout_height="120dp"
+                   android:padding="8dp"
+                   app:egInnerPaddingColor="#100235"
+                   app:egLegendTextSize="0sp"
+                   app:egUsePieRotation="true"
+                   app:egLegendHeight="0dp"
+                   app:egValueTextSize="0sp"/>
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+
    </RelativeLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2">
+
+            <com.google.android.material.card.MaterialCardView>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </GridLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
 </LinearLayout>
