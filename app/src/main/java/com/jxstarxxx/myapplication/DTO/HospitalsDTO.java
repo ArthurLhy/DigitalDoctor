@@ -1,7 +1,5 @@
 package com.jxstarxxx.myapplication.DTO;
 
-import java.util.List;
-
 public class HospitalsDTO {
     private String hospitalName;
 
