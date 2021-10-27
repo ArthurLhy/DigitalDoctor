@@ -91,7 +91,7 @@ public class AdddoctorFragment extends Fragment {
 
         List<Doctor> totalDoctorList = new ArrayList<>();
 
-        databaseReference.child("Doctor").addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("user").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!snapshot.exists()){
@@ -99,15 +99,20 @@ public class AdddoctorFragment extends Fragment {
                 }
                 Log.i("Status", "Start iterating...");
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    boolean isDoctor = (Boolean) dataSnapshot.child("isDoctor").getValue();
+                    Log.i(dataSnapshot.child("firstName").getValue(String.class), String.valueOf(isDoctor));
+                    if (!isDoctor){
+                        continue;
+                    }
                     String doctorClinic = dataSnapshot.child("clinic").getValue(String.class);
                     Log.i("Current Clinic Name is", doctorClinic);
                     String doctorDepartment = dataSnapshot.child("department").getValue(String.class);
                     Log.i("Current Depart Name is", doctorDepartment);
-                    String doctorFullName = dataSnapshot.child("name").getValue(String.class);
+                    String doctorFullName = dataSnapshot.child("firstName").getValue(String.class) + " " + dataSnapshot.child("lastName").getValue(String.class);
                     Log.i("Current Doctor Name is", doctorFullName);
                     String doctorUid = dataSnapshot.getKey();
                     Log.i("Current Doctor uid is", doctorUid);
-                    String doctorImageUrl = dataSnapshot.child("image").getValue(String.class);
+                    String doctorImageUrl = dataSnapshot.child("photoUrl").getValue(String.class);
                     Log.i("Current Doctor image is", doctorImageUrl);
                     Doctor newDoctor = new Doctor(doctorFullName, doctorClinic, doctorDepartment, doctorUid, doctorImageUrl);
                     totalDoctorList.add(newDoctor);

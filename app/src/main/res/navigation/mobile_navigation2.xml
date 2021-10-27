@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation2"
-    app:startDestination="@id/navigation_chats">
+    app:startDestination="@id/navigation_doctor_list">
 
-    <fragment
-        android:id="@+id/navigation_chats"
-        android:name="com.jxstarxxx.myapplication.ui.chats.ChatsFragment"
-        android:label="fragment_chats"
-        tools:layout="@layout/fragment_chats" />
     <fragment
         android:id="@+id/navigation_doctor_list"
         android:name="com.jxstarxxx.myapplication.ui.doctorlist.DoctorlistFragment"

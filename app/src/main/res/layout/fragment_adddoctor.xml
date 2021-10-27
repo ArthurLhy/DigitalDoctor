@@ -55,9 +55,9 @@
             android:layout_gravity="end"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/add_doctor_recyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/add_doctor_recyle"/>
+            android:layout_height="wrap_content" />
 
 
 
