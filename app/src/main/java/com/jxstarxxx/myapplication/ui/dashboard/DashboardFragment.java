@@ -1,42 +1,59 @@
 package com.jxstarxxx.myapplication.ui.dashboard;
 
-import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.jxstarxxx.myapplication.DoctorListActivity;
 import com.jxstarxxx.myapplication.PermissionActivity;
 import com.jxstarxxx.myapplication.R;
-import com.jxstarxxx.myapplication.VaccineFinderActivity;
 import com.jxstarxxx.myapplication.databinding.FragmentDashboardBinding;
-
-import java.util.Objects;
 
 public class DashboardFragment extends Fragment {
 
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("user");
+    private String user_id  = FirebaseAuth.getInstance().getCurrentUser().getUid();
     private DashboardViewModel dashboardViewModel;
     private FragmentDashboardBinding binding;
     private ImageView chatWithDoc, vaccineFinder, caseTracker;
+    private TextView usernameView;
+    private String username = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        usernameView = binding.textViewUser;
+
+        databaseReference.child(user_id).child("username").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                username = snapshot.getValue(String.class);
+                usernameView.setText(username);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         // button define
-        chatWithDoc = (ImageView) root.findViewById(R.id.dashboard_chat);
+        chatWithDoc = (ImageView) root.findViewById(R.id.dashboard_doctor);
         vaccineFinder = (ImageView) root.findViewById(R.id.dashboard_vaccine_finder);
         caseTracker = (ImageView) root.findViewById(R.id.dashboard_tracker);
 

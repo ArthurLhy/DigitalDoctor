@@ -50,7 +50,6 @@ public class ChatActivity extends AppCompatActivity {
     private String sender_channel, receiver_channel;
 
     private FirebaseUser auth;
-    private FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,6 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         auth = FirebaseAuth.getInstance().getCurrentUser();
-        database = FirebaseDatabase.getInstance();
 
 
         chatAdapter = new ChatAdapter(messageList, ChatActivity.this);
