@@ -53,8 +53,8 @@ public class ProfileActivity extends AppCompatActivity {
     private StorageReference storageRef;
 
     private ImageView profilePic;
-    private TextView tv_username, tv_gender;
-    private LinearLayout ll_profilePic, ll_username, ll_gender;
+    private TextView tvUsername, tvFirstName, tvLastName, tvGender;
+    private LinearLayout llProfilePic, llUsername, llGender, llFirstName, llLastName;
     private Button backToAccount;
 
     private String uid;
@@ -89,18 +89,22 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         profilePic = findViewById(R.id.profile_pic);
-        ll_profilePic = findViewById(R.id.profile_pic_ll);
-        ll_username = findViewById(R.id.user_name_ll);
-        ll_gender = findViewById(R.id.gender_ll);
-        tv_username = findViewById(R.id.user_name);
-        tv_gender = findViewById(R.id.gender);
+        llProfilePic = findViewById(R.id.profile_pic_ll);
+        llUsername = findViewById(R.id.user_name_ll);
+        llFirstName = findViewById(R.id.first_name_ll);
+        llLastName = findViewById(R.id.last_name_ll);
+        llGender = findViewById(R.id.gender_ll);
+        tvUsername = findViewById(R.id.user_name);
+        tvFirstName = findViewById(R.id.first_name);
+        tvLastName = findViewById(R.id.last_name);
+        tvGender = findViewById(R.id.gender);
         backToAccount = findViewById(R.id.back_account);
 
 
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                tv_username.setText(snapshot.getValue(String.class));
+                tvUsername.setText(snapshot.getValue(String.class));
             }
 
             @Override
@@ -109,19 +113,23 @@ public class ProfileActivity extends AppCompatActivity {
             }
         };
         databaseRef.child("user").child(uid).child("username").addValueEventListener(valueEventListener);
+        databaseRef.child("user").child(uid).child("firstname").addValueEventListener(valueEventListener);
+        databaseRef.child("user").child(uid).child("lastname").addValueEventListener(valueEventListener);
 
         databaseRef.child("user").child(uid).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
             public void onSuccess(DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 Glide.with(ProfileActivity.this).load(user.getPhotoUrl()).into(profilePic);
-                tv_username.setText(user.getUsername());
+                tvUsername.setText(user.getUsername());
+                tvFirstName.setText(user.getFirstName());
+                tvLastName.setText(user.getLastName());
                 if (user.getGender() == 1) {
-                    tv_gender.setText("Male");
+                    tvGender.setText("Male");
                 } else if (user.getGender() == 2) {
-                    tv_gender.setText("Female");
+                    tvGender.setText("Female");
                 } else {
-                    tv_gender.setText("Unknown");
+                    tvGender.setText("Unknown");
                 }
                 progressDialog1.dismiss();
             }
@@ -133,7 +141,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        ll_profilePic.setOnClickListener(new View.OnClickListener() {
+        llProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -144,18 +152,34 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        ll_username.setOnClickListener(new View.OnClickListener() {
+        llUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = tv_username.getText().toString();
+                String username = tvUsername.getText().toString();
                 usernameDialog(username);
             }
         });
 
-        ll_gender.setOnClickListener(new View.OnClickListener() {
+        llFirstName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String gender = tv_gender.getText().toString();
+                String firstName = tvFirstName.getText().toString();
+                firstNameDialog(firstName);
+            }
+        });
+
+        llLastName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String lastName = tvLastName.getText().toString();
+                lastNameDialog(lastName);
+            }
+        });
+
+        llGender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String gender = tvGender.getText().toString();
                 genderDialog(gender);
             }
         });
@@ -234,7 +258,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
         final String items[] = {"Male","Female"};
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("set gender");
+        builder.setTitle("Set Gender");
         builder.setSingleChoiceItems(items,sexFlag,new DialogInterface
                 .OnClickListener() {
             @Override
@@ -249,7 +273,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void setGender(String gender){
-        tv_gender.setText(gender);
+        tvGender.setText(gender);
         long genderId = 1;
         if (gender == "Female") {
             genderId = 2;
@@ -271,6 +295,96 @@ public class ProfileActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(ProfileActivity.this, "Successfully update username", Toast.LENGTH_SHORT).show();
+                        progressDialog2.dismiss();
+                        //finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressDialog2.dismiss();
+                    }
+                });
+
+            }
+        });
+
+        builder.setButton(builder.BUTTON_NEGATIVE,"Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //finish();
+            }
+        });
+
+        builder.show();
+
+        Button btnPositive = builder.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button btnNegative = builder.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+        layoutParams.weight = 10;
+        btnPositive.setLayoutParams(layoutParams);
+        btnNegative.setLayoutParams(layoutParams);
+    }
+
+    private void firstNameDialog(String firstName) {
+        AlertDialog builder = new AlertDialog.Builder(this).create();
+        final EditText input = new EditText(ProfileActivity.this);
+        builder.setTitle("First Name");
+        builder.setView(input);
+        builder.setButton(builder.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                progressDialog1.dismiss();
+                progressDialog2.show();
+                firebaseDatabase.getReference().child("user").child(uid).child("firstname")
+                        .setValue(input.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(ProfileActivity.this, "Successfully update first name", Toast.LENGTH_SHORT).show();
+                        progressDialog2.dismiss();
+                        //finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressDialog2.dismiss();
+                    }
+                });
+
+            }
+        });
+
+        builder.setButton(builder.BUTTON_NEGATIVE,"Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //finish();
+            }
+        });
+
+        builder.show();
+
+        Button btnPositive = builder.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button btnNegative = builder.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+        layoutParams.weight = 10;
+        btnPositive.setLayoutParams(layoutParams);
+        btnNegative.setLayoutParams(layoutParams);
+    }
+
+    private void lastNameDialog(String lastName) {
+        AlertDialog builder = new AlertDialog.Builder(this).create();
+        final EditText input = new EditText(ProfileActivity.this);
+        builder.setTitle("Last Name");
+        builder.setView(input);
+        builder.setButton(builder.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                progressDialog1.dismiss();
+                progressDialog2.show();
+                firebaseDatabase.getReference().child("user").child(uid).child("lastname")
+                        .setValue(input.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(ProfileActivity.this, "Successfully update last name", Toast.LENGTH_SHORT).show();
                         progressDialog2.dismiss();
                         //finish();
                     }
