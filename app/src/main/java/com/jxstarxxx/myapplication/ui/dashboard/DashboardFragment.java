@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -27,8 +28,7 @@ public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
     private FragmentDashboardBinding binding;
-    private Button chatWithDoc;
-    private Button vaccineFinder;
+    private ImageView chatWithDoc, vaccineFinder, caseTracker;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
@@ -36,8 +36,9 @@ public class DashboardFragment extends Fragment {
         View root = binding.getRoot();
 
         // button define
-        chatWithDoc = (Button) root.findViewById(R.id.dashboard_chat);
-        vaccineFinder = (Button) root.findViewById(R.id.dashboard_vaccine_finder);
+        chatWithDoc = (ImageView) root.findViewById(R.id.dashboard_chat);
+        vaccineFinder = (ImageView) root.findViewById(R.id.dashboard_vaccine_finder);
+        caseTracker = (ImageView) root.findViewById(R.id.dashboard_tracker);
 
         // click listener
         chatWithDoc.setOnClickListener(new View.OnClickListener() {

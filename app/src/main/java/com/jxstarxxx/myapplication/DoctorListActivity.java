@@ -26,7 +26,7 @@ public class DoctorListActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration2 = new AppBarConfiguration.Builder(
-                R.id.navigation_chats, R.id.navigation_doctor_list, R.id.navigation_add_doctor)
+                R.id.navigation_doctor_list, R.id.navigation_add_doctor)
                 .build();
         NavController navController2 = Navigation.findNavController(this, R.id.nav_host_fragment_activity_doctor_list);
         NavigationUI.setupActionBarWithNavController(this, navController2, appBarConfiguration2);
