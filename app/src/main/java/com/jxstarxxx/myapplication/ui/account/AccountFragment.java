@@ -59,7 +59,7 @@ public class AccountFragment extends Fragment {
     private StorageReference storageRef;
 
     private ImageView profilePic;
-    private LinearLayout profile, aboutUs;
+    private Button profile, aboutUs;
     private Button logout_btn;
 
     private ProgressDialog progressDialog;

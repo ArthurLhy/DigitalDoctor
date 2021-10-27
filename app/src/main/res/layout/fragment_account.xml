@@ -19,90 +19,41 @@
             android:scaleType="fitCenter"
             android:layout_marginTop="10dp"/>
 
-        <LinearLayout
+        <Button
+            android:id="@+id/profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            android:background="@drawable/bg_account">
-            
-            <LinearLayout
-                android:id="@+id/profile"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:gravity="right"
-                android:orientation="horizontal"
-                android:layout_margin="5dp">
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/button_selector"
+            android:text="@string/profile"
+            android:textAlignment="center"
+            android:textSize="18dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Profile"
-                    android:gravity="center_vertical"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="right">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/divider" />
-
-            <LinearLayout
-                android:id="@+id/about_us"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_margin="5dp"
-                android:gravity="right"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="About us"
-                    android:gravity="center_vertical"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="right">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            
-        </LinearLayout>
+        <Button
+            android:id="@+id/about_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/button_selector"
+            android:text="@string/about_us"
+            android:textAlignment="center"
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/logout_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Logout" />
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/button_selector"
+            android:text="@string/logout"
+            android:textAlignment="center"
+            android:textSize="18dp" />
 
 
     </LinearLayout>

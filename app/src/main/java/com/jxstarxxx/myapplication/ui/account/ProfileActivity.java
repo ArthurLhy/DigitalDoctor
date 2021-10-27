@@ -1,5 +1,6 @@
 package com.jxstarxxx.myapplication.ui.account;
 
+import android.accounts.Account;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,8 +8,11 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,6 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.jxstarxxx.myapplication.DashboardActivity;
 import com.jxstarxxx.myapplication.LoginActivity;
 import com.jxstarxxx.myapplication.R;
 import com.jxstarxxx.myapplication.RegisterActivity;
@@ -50,6 +55,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView profilePic;
     private TextView tv_username, tv_gender;
     private LinearLayout ll_profilePic, ll_username, ll_gender;
+    private Button backToAccount;
 
     private String uid;
 
@@ -88,6 +94,7 @@ public class ProfileActivity extends AppCompatActivity {
         ll_gender = findViewById(R.id.gender_ll);
         tv_username = findViewById(R.id.user_name);
         tv_gender = findViewById(R.id.gender);
+        backToAccount = findViewById(R.id.back_account);
 
 
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -140,7 +147,8 @@ public class ProfileActivity extends AppCompatActivity {
         ll_username.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfileActivity.this, SetUsernameActivity.class));
+                String username = tv_username.getText().toString();
+                usernameDialog(username);
             }
         });
 
@@ -150,6 +158,11 @@ public class ProfileActivity extends AppCompatActivity {
                 String gender = tv_gender.getText().toString();
                 genderDialog(gender);
             }
+        });
+
+        backToAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { finish(); }
         });
     }
 
@@ -242,6 +255,51 @@ public class ProfileActivity extends AppCompatActivity {
             genderId = 2;
         }
         databaseRef.child("user").child(uid).child("gender").setValue(genderId);
+    }
+
+    private void usernameDialog(String username) {
+        AlertDialog builder = new AlertDialog.Builder(this).create();
+        final EditText input = new EditText(ProfileActivity.this);
+        builder.setTitle("User Name");
+        builder.setView(input);
+        builder.setButton(builder.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                progressDialog1.dismiss();
+                progressDialog2.show();
+                firebaseDatabase.getReference().child("user").child(uid).child("username")
+                        .setValue(input.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(ProfileActivity.this, "Successfully update username", Toast.LENGTH_SHORT).show();
+                        progressDialog2.dismiss();
+                        //finish();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressDialog2.dismiss();
+                    }
+                });
+
+            }
+        });
+
+        builder.setButton(builder.BUTTON_NEGATIVE,"Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //finish();
+            }
+        });
+
+        builder.show();
+
+        Button btnPositive = builder.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button btnNegative = builder.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+        layoutParams.weight = 10;
+        btnPositive.setLayoutParams(layoutParams);
+        btnNegative.setLayoutParams(layoutParams);
     }
 
 
