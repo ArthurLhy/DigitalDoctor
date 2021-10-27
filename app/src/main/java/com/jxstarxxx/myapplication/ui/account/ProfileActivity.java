@@ -101,7 +101,7 @@ public class ProfileActivity extends AppCompatActivity {
         backToAccount = findViewById(R.id.back_account);
 
 
-        ValueEventListener valueEventListener = new ValueEventListener() {
+        ValueEventListener valueEventListenerUsername = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 tvUsername.setText(snapshot.getValue(String.class));
@@ -112,9 +112,31 @@ public class ProfileActivity extends AppCompatActivity {
                 Log.w("Warning", "loadPost:onCancelled", error.toException());
             }
         };
-        databaseRef.child("user").child(uid).child("username").addValueEventListener(valueEventListener);
-        databaseRef.child("user").child(uid).child("firstname").addValueEventListener(valueEventListener);
-        databaseRef.child("user").child(uid).child("lastname").addValueEventListener(valueEventListener);
+        ValueEventListener valueEventListenerFirstName = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                tvFirstName.setText(snapshot.getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("Warning", "loadPost:onCancelled", error.toException());
+            }
+        };
+        ValueEventListener valueEventListenerLastName = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                tvLastName.setText(snapshot.getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("Warning", "loadPost:onCancelled", error.toException());
+            }
+        };
+        databaseRef.child("user").child(uid).child("username").addValueEventListener(valueEventListenerUsername);
+        databaseRef.child("user").child(uid).child("firstName").addValueEventListener(valueEventListenerFirstName);
+        databaseRef.child("user").child(uid).child("lastName").addValueEventListener(valueEventListenerLastName);
 
         databaseRef.child("user").child(uid).get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
             @Override
@@ -335,7 +357,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int whichButton) {
                 progressDialog1.dismiss();
                 progressDialog2.show();
-                firebaseDatabase.getReference().child("user").child(uid).child("firstname")
+                firebaseDatabase.getReference().child("user").child(uid).child("firstName")
                         .setValue(input.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
@@ -380,7 +402,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int whichButton) {
                 progressDialog1.dismiss();
                 progressDialog2.show();
-                firebaseDatabase.getReference().child("user").child(uid).child("lastname")
+                firebaseDatabase.getReference().child("user").child(uid).child("lastName")
                         .setValue(input.getText().toString().trim()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
