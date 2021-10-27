@@ -1,25 +1,20 @@
 package com.jxstarxxx.myapplication.ui.adddoctor;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,102 +22,157 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jxstarxxx.myapplication.Doctor;
 import com.jxstarxxx.myapplication.R;
-import com.jxstarxxx.myapplication.ui.account.AccountViewModel;
+import com.jxstarxxx.myapplication.databinding.FragmentAdddoctorBinding;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 public class AdddoctorFragment extends Fragment {
 
     private AdddoctorViewModel adddoctorViewModel;
-    EditText search_edit_text;
-    RecyclerView recyclerView;
-    DatabaseReference databaseReference;
-    FirebaseUser firebaseUser;
-    ArrayList<String> fullNameList;
-    ArrayList<String> userNameList;
-    AdddoctorAdapter adddoctorAdapter;
+    private FragmentAdddoctorBinding binding;
+
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
+
+    private FirebaseUser firebaseUser;
+    private FirebaseDatabase database;
+//    EditText search_edit_text;
+    private RecyclerView addDoctorRecyclerView;
+    private String[] clinicList;
+    private String[] departmentList;
+
+    private List<addDoctorModel> addDoctorModels = new ArrayList<>();
+
+    private Spinner clinicSpin;
+    private Spinner departmentSpin;
+
+    private Button searchButton;
+    private AdddoctorAdapter adddoctorAdapter;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        View root = inflater.inflate(R.layout.fragment_adddoctor, container, false);
+        adddoctorViewModel = new ViewModelProvider(this).get(AdddoctorViewModel.class);
+        binding = FragmentAdddoctorBinding.inflate(inflater,container,false);
+        View root = binding.getRoot();
 
-        search_edit_text = (EditText) root.findViewById(R.id.search_edit_text);
-        recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
+//        search_edit_text = (EditText) root.findViewById(R.id.search_edit_text);
+        database = FirebaseDatabase.getInstance();
+        addDoctorRecyclerView = (RecyclerView) root.findViewById(R.id.add_doctor_recyle);
+        addDoctorRecyclerView.setHasFixedSize(true);
+        addDoctorRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this.getActivity(), LinearLayoutManager.VERTICAL));
+        clinicSpin = (Spinner) root.findViewById(R.id.spinner_clinic);
+        departmentSpin = (Spinner) root.findViewById(R.id.spinner_depart);
 
-        fullNameList = new ArrayList<>();
-        userNameList = new ArrayList<>();
+        clinicList = new String[] {"Melbourne North Medical Clinic", "Midtown Medical Clinic", "Southbank Medical Clinic"};
+        departmentList = new String[] {"surgery", "cardiology"};
 
-        search_edit_text.addTextChangedListener(new TextWatcher() {
+        ArrayAdapter<String> clinicAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, clinicList);
+        ArrayAdapter<String> departmentAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, departmentList);
+
+        clinicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        departmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        clinicSpin.setAdapter(clinicAdapter);
+        departmentSpin.setAdapter(departmentAdapter);
+
+        adddoctorAdapter = new AdddoctorAdapter(this.getActivity(), addDoctorModels);
+        addDoctorRecyclerView.setAdapter(adddoctorAdapter);
+
+        searchButton = (Button) root.findViewById(R.id.add_doctor_search_button);
+
+        List<Doctor> totalDoctorList = new ArrayList<>();
+
+        databaseReference.child("Doctor").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!s.toString().isEmpty()) {
-                    setAdapter(s.toString());
-                } else {
-                    /*
-                     * Clear the list when editText is empty
-                     * */
-                    fullNameList.clear();
-                    userNameList.clear();
-                    recyclerView.removeAllViews();
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()){
+                    Log.i("Issue", "snapshot does not exist");
+                }
+                Log.i("Status", "Start iterating...");
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    String doctorClinic = dataSnapshot.child("clinic").getValue(String.class);
+                    Log.i("Current Clinic Name is", doctorClinic);
+                    String doctorDepartment = dataSnapshot.child("department").getValue(String.class);
+                    Log.i("Current Depart Name is", doctorDepartment);
+                    String doctorFullName = dataSnapshot.child("name").getValue(String.class);
+                    Log.i("Current Doctor Name is", doctorFullName);
+                    String doctorUid = dataSnapshot.getKey();
+                    Log.i("Current Doctor uid is", doctorUid);
+                    String doctorImageUrl = dataSnapshot.child("image").getValue(String.class);
+                    Log.i("Current Doctor image is", doctorImageUrl);
+                    Doctor newDoctor = new Doctor(doctorFullName, doctorClinic, doctorDepartment, doctorUid, doctorImageUrl);
+                    totalDoctorList.add(newDoctor);
                 }
             }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                Log.i("Status", "Cancelled");
+            }
         });
+
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.i("Search Button", "Clicked");
+
+                String clinicName = clinicSpin.getSelectedItem().toString();
+                Log.i("Chosen Clinic Name is", clinicName);
+                String departmentName = departmentSpin.getSelectedItem().toString();
+                Log.i("Chosen Department is", departmentName);
+
+                List<Doctor> doctor_list = retrieveDoctors(clinicName, departmentName, totalDoctorList);
+
+                Log.i("find doctors", doctor_list.get(0).getFullName());
+
+                if (doctor_list.size() != 0){
+                    addDoctorModels.clear();
+                    for (int i = 0; i < doctor_list.size(); i++ ){
+                        Log.i("current doctors", doctor_list.get(i).getFullName());
+                        Doctor currentDoctor = doctor_list.get(i);
+
+                        addDoctorModel addDoctorModel = new addDoctorModel(currentDoctor.getFullName(),
+                                currentDoctor.getClinicName(),
+                                currentDoctor.getDepartmentName(),
+                                currentDoctor.getImageUrl());
+                        addDoctorModels.add(addDoctorModel);
+                    }
+                    adddoctorAdapter.notifyDataSetChanged();
+                }
+
+            }
+        });
+
         return root;
     }
 
-    private void setAdapter(final String searchedString) {
-        databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                fullNameList.clear();
-                userNameList.clear();
-                recyclerView.removeAllViews();
+    private List<Doctor> retrieveDoctors(String clinicName, String departmentName, List<Doctor> doctorList) {
 
-                int counter = 0;
+        Log.i("Status", "Started Retrieving Doctors");
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String full_name = snapshot.child("full_name").getValue(String.class);
-                    String user_name = snapshot.child("user_name").getValue(String.class);
+        List<Doctor> searchedDoctors = new ArrayList<>();
 
-                    if (full_name.toLowerCase().contains(searchedString.toLowerCase())) {
-                        fullNameList.add(full_name);
-                        userNameList.add(user_name);
-                        counter++;
-                    } else if (user_name.toLowerCase().contains(searchedString.toLowerCase())) {
-                        fullNameList.add(full_name);
-                        userNameList.add(user_name);
-                        counter++;
-                    }
+        Log.i("Status", "list created");
 
-                    /*
-                     * Get maximum of 15 searched results only
-                     * */
-                    if (counter == 15)
-                        break;
-                }
-
-                adddoctorAdapter = new AdddoctorAdapter(AdddoctorFragment.this, fullNameList, userNameList);
-                recyclerView.setAdapter(adddoctorAdapter);
+        for (Doctor doctor : doctorList){
+            if (doctor.getClinicName().equals(clinicName) && doctor.getDepartmentName().equals(departmentName)){
+                searchedDoctors.add(doctor);
             }
+        }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+        return searchedDoctors;
 
-            }
-        });
     }
+
 }
