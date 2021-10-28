@@ -16,4 +16,9 @@
     <color name="colorPrimaryDark">#289b35</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="yellow_pie">#ffeb3b</color>
+    <color name="blue_pie">#33CCFF</color>
+    <color name="red_pie">#FF0000</color>
+    <color name="green_pie">#41D16C</color>
+
 </resources>
