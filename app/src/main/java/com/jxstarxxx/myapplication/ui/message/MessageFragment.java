@@ -36,7 +36,7 @@ public class MessageFragment extends Fragment {
     private int messageUnseen = 0;
     private String chatID = "0";
     private boolean gotData = false;
-    private String userName, userImage;
+    private String userId, userName, userImage;
 
     private FirebaseUser auth = FirebaseAuth.getInstance().getCurrentUser();
     private FragmentMessageBinding binding;
@@ -76,7 +76,7 @@ public class MessageFragment extends Fragment {
                         List<String> chatList = new ArrayList<>();
 
                         for (DataSnapshot dataSnapshot0 : dataSnapshot.child("friendList").getChildren()) {
-                            final String userId = dataSnapshot0.getKey();
+                            userId = dataSnapshot0.getKey();
                             final boolean chatted = (boolean) dataSnapshot0.child("chatted").getValue();
 
                             if ((!userId.equals(thisUserId)) && chatted) {
@@ -100,13 +100,13 @@ public class MessageFragment extends Fragment {
                                                 newestTimestamp = 0;
 
                                                 if (user1.equals(thisUserId)) {
-                                                    userName = snapshot.child("user").child(user2).child("username").getValue(String.class);
-                                                    userImage = snapshot.child("user").child(user2).child("photoUrl").getValue(String.class);
+                                                    userId = user2;
                                                 }
                                                 else {
-                                                    userName = snapshot.child("user").child(user1).child("username").getValue(String.class);
-                                                    userImage = snapshot.child("user").child(user1).child("photoUrl").getValue(String.class);
+                                                    userId = user1;
                                                 }
+                                                userName = snapshot.child("user").child(userId).child("username").getValue(String.class);
+                                                userImage = snapshot.child("user").child(userId).child("photoUrl").getValue(String.class);
 
                                                 Log.i("Message List", "find the chat" + chatID);
                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.child("messages").getChildren()) {
