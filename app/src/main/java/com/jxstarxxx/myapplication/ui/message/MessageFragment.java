@@ -77,8 +77,8 @@ public class MessageFragment extends Fragment {
                             if ((!userId.equals(thisUserId)) && chatted) {
                                 Log.i("Message List", "finding friend:  " + userId);
 
-                                final String userName = dataSnapshot0.child("username").getValue(String.class);
-                                final String userImage = dataSnapshot0.child("photoUrl").getValue(String.class);
+                                final String userName = snapshot.child("user").child(userId).child("username").getValue(String.class);
+                                final String userImage = snapshot.child("user").child(userId).child("photoUrl").getValue(String.class);
                                 lastMessage = "";
                                 messageUnseen = 0;
                                 databaseReference.child("chat").addListenerForSingleValueEvent(new ValueEventListener() {
