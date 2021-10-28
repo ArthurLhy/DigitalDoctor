@@ -62,13 +62,10 @@ public class AdddoctorFragment extends Fragment {
         binding = FragmentAdddoctorBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
 
-//        search_edit_text = (EditText) root.findViewById(R.id.search_edit_text);
         database = FirebaseDatabase.getInstance();
         addDoctorRecyclerView = (RecyclerView) root.findViewById(R.id.add_doctor_recyle);
         addDoctorRecyclerView.setHasFixedSize(true);
         addDoctorRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         clinicSpin = (Spinner) root.findViewById(R.id.spinner_clinic);
         departmentSpin = (Spinner) root.findViewById(R.id.spinner_depart);
