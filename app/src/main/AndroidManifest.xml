@@ -29,14 +29,16 @@
         </activity>
         <activity
             android:name=".CovidCasesTeacker"
-            android:exported="true" />
+            android:exported="true"/>
         <activity
             android:name=".Chat.ChatActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar" /> <!-- meta data -->
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <!-- meta data -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/map_key" /> <!-- Activity -->
+            android:value="@string/map_key" />
+        <!-- Activity -->
         <activity
             android:name=".PermissionActivity"
             android:exported="true" />
@@ -52,7 +54,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication.NoActionBar"></activity>
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity
             android:name=".ui.account.ProfileActivity"
             android:exported="true" />

@@ -9,29 +9,32 @@
 
    <RelativeLayout
        android:layout_width="match_parent"
-       android:layout_height="300dp"
+       android:layout_height="360dp"
        android:background="#100235">
 
 
        <ImageView
-           android:layout_width="100dp"
-           android:layout_height="100dp"
+           android:layout_width="150dp"
+           android:layout_height="150dp"
            android:layout_alignParentBottom="true"
-           android:layout_marginLeft="-30dp" />
+           android:layout_marginLeft="-30dp"
+           android:src="@drawable/ic_virus" />
 
        <ImageView
-           android:id="@+id/vaccine_1"
-           android:layout_width="100dp"
-           android:layout_height="100dp"
-           android:layout_alignParentEnd="true" />
+           android:id="@+id/virus_1"
+           android:layout_width="150dp"
+           android:layout_height="150dp"
+           android:layout_alignParentEnd="true"
+           android:src="@drawable/ic_virus2" />
 
        <ImageView
            android:layout_width="50dp"
            android:layout_height="50dp"
-           android:layout_toStartOf="@id/vaccine_1"
-           android:layout_marginTop="50dp"
+           android:layout_alignParentTop="true"
+           android:layout_marginTop="100dp"
            android:layout_marginRight="10dp"
-           android:layout_alignParentTop="true" />
+           android:layout_toStartOf="@id/virus_1"
+           android:src="@drawable/ic_vaccine" />
        <LinearLayout
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
@@ -45,12 +48,13 @@
                android:layout_height="wrap_content"
                android:textSize="20sp"
                android:text="Covid Tracker"
+               android:fontFamily="@font/rubikbold"
                android:textColor="@color/white"/>
 
            <TextView
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:fontFamily="serif"
+               android:fontFamily="@font/rubikbold"
                android:layout_marginTop="7dp"
                android:text="Australia"
                android:textColor="@color/white"
@@ -58,10 +62,11 @@
                android:textSize="40sp" />
 
            <TextView
+               android:id="@+id/tracker_date"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_marginTop="5dp"
-               android:fontFamily="sans-serif-condensed-light"
+               android:fontFamily="@font/rubiklight"
                android:text="Updated at May 02, 2021"
                android:textColor="@color/white"
                android:textSize="15sp" />
@@ -93,6 +98,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:gravity="center_vertical"
+                       android:padding="5dp"
                        android:orientation="horizontal">
 
                        <View
@@ -104,7 +110,7 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_marginStart="5dp"
-                           android:fontFamily="sans-serif-condensed-light"
+                           android:fontFamily="@font/rubiklight"
                            android:text="Confirm"
                            android:textColor="@color/white"
                            android:textSize="12sp" />
@@ -114,7 +120,8 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:gravity="center_vertical"
-                       android:orientation="horizontal">
+                       android:orientation="horizontal"
+                       android:padding="5dp">
 
                        <View
                            android:layout_width="15dp"
@@ -125,7 +132,7 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_marginStart="5dp"
-                           android:fontFamily="sans-serif-condensed-light"
+                           android:fontFamily="@font/rubiklight"
                            android:text="Active"
                            android:textColor="@color/white"
                            android:textSize="12sp" />
@@ -135,7 +142,8 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:gravity="center_vertical"
-                       android:orientation="horizontal">
+                       android:orientation="horizontal"
+                       android:padding="5dp">
 
                        <View
                            android:layout_width="15dp"
@@ -146,7 +154,7 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_marginStart="5dp"
-                           android:fontFamily="sans-serif-condensed-light"
+                           android:fontFamily="@font/rubiklight"
                            android:text="Recovered"
                            android:textColor="@color/white"
                            android:textSize="12sp" />
@@ -155,6 +163,7 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:gravity="center_vertical"
+                       android:padding="5dp"
                        android:orientation="horizontal">
 
                        <View
@@ -166,7 +175,7 @@
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_marginStart="5dp"
-                           android:fontFamily="sans-serif-condensed-light"
+                           android:fontFamily="@font/rubiklight"
                            android:text="Death"
                            android:textColor="@color/white"
                            android:textSize="12sp" />
@@ -175,9 +184,9 @@
                </LinearLayout>
 
                <org.eazegraph.lib.charts.PieChart
-                   android:id="@+id/piechart"
-                   android:layout_width="120dp"
-                   android:layout_height="120dp"
+                   android:id="@+id/pieChart"
+                   android:layout_width="150dp"
+                   android:layout_height="150dp"
                    android:padding="8dp"
                    app:egInnerPaddingColor="#100235"
                    app:egLegendTextSize="0sp"
@@ -231,7 +240,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:fontFamily="sans-serif-condensed-light"
+                            android:fontFamily="@font/rubikregular"
                             android:text="Confirm"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
@@ -242,11 +251,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:fontFamily="sans-serif"
-                        android:text="130982"
+                        android:fontFamily="@font/rubikbold"
+                        android:text=""
                         android:layout_marginTop="7dp"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/increase_confirm"
@@ -254,8 +263,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="7dp"
-                        android:fontFamily="sans-serif-light"
-                        android:text="+( 32 )"
+                        android:fontFamily="@font/rubikregular"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -292,7 +301,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:fontFamily="sans-serif-condensed-light"
+                            android:fontFamily="@font/rubikregular"
                             android:text="Active"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
@@ -303,11 +312,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:fontFamily="sans-serif"
-                        android:text="2390"
+                        android:fontFamily="@font/rubikbold"
+                        android:text=""
                         android:layout_marginTop="7dp"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -352,7 +361,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:fontFamily="sans-serif-condensed-light"
+                            android:fontFamily="@font/rubikregular"
                             android:text="Recovered"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
@@ -363,20 +372,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:fontFamily="sans-serif"
-                        android:text="80930"
+                        android:fontFamily="@font/rubikbold"
+                        android:text=""
                         android:layout_marginTop="7dp"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/recovered_increase"
+                        android:id="@+id/increase_recovered"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="7dp"
-                        android:fontFamily="sans-serif-light"
-                        android:text="+( 32 )"
+                        android:fontFamily="@font/rubikregular"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -413,7 +422,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:fontFamily="sans-serif-condensed-light"
+                            android:fontFamily="@font/rubikregular"
                             android:text="Death"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
@@ -424,20 +433,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:fontFamily="sans-serif"
-                        android:text="3200"
+                        android:fontFamily="@font/rubikbold"
+                        android:text=""
                         android:layout_marginTop="7dp"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/death_increase"
+                        android:id="@+id/increase_death"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="7dp"
-                        android:fontFamily="sans-serif-light"
-                        android:text="+( 16 )"
+                        android:fontFamily="@font/rubikregular"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -474,7 +483,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:fontFamily="sans-serif-condensed-light"
+                            android:fontFamily="@font/rubikregular"
                             android:text="Tests"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
@@ -485,11 +494,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
-                        android:fontFamily="sans-serif"
-                        android:text="1300"
+                        android:fontFamily="@font/rubikbold"
+                        android:text=""
                         android:layout_marginTop="7dp"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
