@@ -66,14 +66,19 @@ public class AdddoctorAdapter extends RecyclerView.Adapter<AdddoctorAdapter.Sear
             Picasso.get().load(addDoctor.getImg_url()).into(holder.profile_pic);
         }
 
-        holder.add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("Add doctor", "onClick: ");
-            }
-        });
-    }
+        if(addDoctor.isAdded()){
+            holder.add_button.setVisibility(View.GONE);
+        }else {
+            holder.add_button.setVisibility(View.VISIBLE);
+            holder.add_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("Add doctor", addDoctor.getFull_name());
+                }
+            });
+        }
 
+    }
     @Override
     public int getItemCount() {
         return addDoctorModels.size();

@@ -3,12 +3,14 @@ package com.jxstarxxx.myapplication.ui.adddoctor;
 public class addDoctorModel {
 
     private String full_name, clinic_name, department_name, img_url;
+    private boolean isAdded;
 
-    public addDoctorModel(String full_name, String clinic_name, String department_name, String img_url) {
+    public addDoctorModel(String full_name, String clinic_name, String department_name, String img_url, boolean isAdded) {
         this.full_name = full_name;
         this.clinic_name = clinic_name;
         this.department_name = department_name;
         this.img_url = img_url;
+        this.isAdded = isAdded;
     }
 
     public String getFull_name() {
@@ -25,5 +27,9 @@ public class addDoctorModel {
 
     public String getImg_url() {
         return img_url;
+    }
+
+    public boolean isAdded() {
+        return isAdded;
     }
 }

@@ -40,9 +40,10 @@ public class AdddoctorFragment extends Fragment {
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
 
-    private FirebaseUser firebaseUser;
+    private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private String currentUserUid = firebaseUser.getUid();
     private FirebaseDatabase database;
-//    EditText search_edit_text;
+
     private RecyclerView addDoctorRecyclerView;
     private String[] clinicList;
     private String[] departmentList;
@@ -91,6 +92,23 @@ public class AdddoctorFragment extends Fragment {
 
         List<Doctor> totalDoctorList = new ArrayList<>();
 
+        List<String> addedDoctorList = new ArrayList<>();
+
+        databaseReference.child("user").child(currentUserUid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                if (snapshot.hasChild("friendList")){
+                    for (DataSnapshot dataSnapshot : snapshot.child("friendList").getChildren()){
+                        addedDoctorList.add(dataSnapshot.getKey());
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
         databaseReference.child("user").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -99,6 +117,10 @@ public class AdddoctorFragment extends Fragment {
                 }
                 Log.i("Status", "Start iterating...");
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    //Check if the user is current user.
+                    if (dataSnapshot.getKey().equals(currentUserUid)){
+                        continue;
+                    }
                     boolean isDoctor = (Boolean) dataSnapshot.child("isDoctor").getValue();
                     Log.i(dataSnapshot.child("firstName").getValue(String.class), String.valueOf(isDoctor));
                     if (!isDoctor){
@@ -147,10 +169,20 @@ public class AdddoctorFragment extends Fragment {
                         Log.i("current doctors", doctor_list.get(i).getFullName());
                         Doctor currentDoctor = doctor_list.get(i);
 
+                        boolean isAdded = false;
+
+                        if (!addedDoctorList.isEmpty()){
+                            if (addedDoctorList.contains(currentDoctor.getUid())){
+                                isAdded = true;
+                            }
+                        }
+
                         addDoctorModel addDoctorModel = new addDoctorModel(currentDoctor.getFullName(),
                                 currentDoctor.getClinicName(),
                                 currentDoctor.getDepartmentName(),
-                                currentDoctor.getImageUrl());
+                                currentDoctor.getImageUrl(), isAdded);
+
+
                         addDoctorModels.add(addDoctorModel);
                     }
                     adddoctorAdapter.notifyDataSetChanged();
