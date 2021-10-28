@@ -5,16 +5,22 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +66,8 @@ public class ProfileActivity extends AppCompatActivity {
     private String uid;
 
     private ProgressDialog progressDialog1, progressDialog2;
+
+    private PopupWindow pop;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -166,11 +174,7 @@ public class ProfileActivity extends AppCompatActivity {
         llProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_PICK);
-                intent.setType("image/*");
-
-                startActivityForResult(intent, 200);
+                showPop();
             }
         });
 
@@ -222,6 +226,12 @@ public class ProfileActivity extends AppCompatActivity {
                 if (null != selectImageUri) {
                     progressDialog2.show();
                     profilePic.setImageURI(selectImageUri);
+                    uploadProfilePhoto(uid);
+                }
+            } else if (requestCode == 201) {
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                if (null != bitmap) {
+                    profilePic.setImageBitmap(bitmap);
                     uploadProfilePhoto(uid);
                 }
             }
@@ -436,6 +446,69 @@ public class ProfileActivity extends AppCompatActivity {
         layoutParams.weight = 10;
         btnPositive.setLayoutParams(layoutParams);
         btnNegative.setLayoutParams(layoutParams);
+    }
+
+    private void showPop() {
+        View bottomView = View.inflate(ProfileActivity.this, R.layout.layout_bottom_dialog, null);
+        TextView mAlbum = bottomView.findViewById(R.id.tv_album);
+        TextView mCamera = bottomView.findViewById(R.id.tv_camera);
+        TextView mCancel = bottomView.findViewById(R.id.tv_cancel);
+
+        pop = new PopupWindow(bottomView, -1, -2);
+        pop.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        pop.setOutsideTouchable(true);
+        pop.setFocusable(true);
+        WindowManager.LayoutParams lp = ProfileActivity.this.getWindow().getAttributes();
+        lp.alpha = 0.5f;
+        ProfileActivity.this.getWindow().setAttributes(lp);
+        pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = ProfileActivity.this.getWindow().getAttributes();
+                lp.alpha = 1f;
+                ProfileActivity.this.getWindow().setAttributes(lp);
+            }
+        });
+        pop.setAnimationStyle(R.style.main_menu_photo_anim);
+        pop.showAtLocation(ProfileActivity.this.getWindow().getDecorView(), Gravity.BOTTOM, 0, 0);
+
+
+        View.OnClickListener clickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+                switch (view.getId()) {
+                    case R.id.tv_album:
+                        intent = new Intent();
+                        intent.setAction(Intent.ACTION_PICK);
+                        intent.setType("image/*");
+
+                        startActivityForResult(intent, 200);
+                        break;
+                    case R.id.tv_camera:
+                        intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(intent,201);
+                        break;
+                    case R.id.tv_cancel:
+                        closePopupWindow();
+                        break;
+                }
+                closePopupWindow();
+            }
+        };
+        mCamera.setOnClickListener(clickListener);
+        mAlbum.setOnClickListener(clickListener);
+
+        mCancel.setOnClickListener(clickListener);
+
+    }
+
+    public void closePopupWindow() {
+        if (pop != null && pop.isShowing()) {
+            pop.dismiss();
+            pop = null;
+        }
     }
 
 

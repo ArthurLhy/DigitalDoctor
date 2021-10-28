@@ -15,12 +15,16 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +43,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -65,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private long gender = 0;
     private String photoUrl = "";
+    private PopupWindow pop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,11 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerActivity_uploadPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_PICK);
-                intent.setType("image/*");
-
-                startActivityForResult(intent, 200);
+                showPop();
             }
         });
 
@@ -269,6 +272,11 @@ public class RegisterActivity extends AppCompatActivity {
                 if (null != selectImageUri) {
                     registerActivity_profilePic.setImageURI(selectImageUri);
                 }
+            } else if (requestCode == 201) {
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                if (null != bitmap) {
+                    registerActivity_profilePic.setImageBitmap(bitmap);
+                }
             }
         }
     }
@@ -288,6 +296,69 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 break;
             default:break;
+        }
+    }
+
+    private void showPop() {
+        View bottomView = View.inflate(RegisterActivity.this, R.layout.layout_bottom_dialog, null);
+        TextView mAlbum = bottomView.findViewById(R.id.tv_album);
+        TextView mCamera = bottomView.findViewById(R.id.tv_camera);
+        TextView mCancel = bottomView.findViewById(R.id.tv_cancel);
+
+        pop = new PopupWindow(bottomView, -1, -2);
+        pop.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        pop.setOutsideTouchable(true);
+        pop.setFocusable(true);
+        WindowManager.LayoutParams lp = RegisterActivity.this.getWindow().getAttributes();
+        lp.alpha = 0.5f;
+        RegisterActivity.this.getWindow().setAttributes(lp);
+        pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                WindowManager.LayoutParams lp = RegisterActivity.this.getWindow().getAttributes();
+                lp.alpha = 1f;
+                RegisterActivity.this.getWindow().setAttributes(lp);
+            }
+        });
+        pop.setAnimationStyle(R.style.main_menu_photo_anim);
+        pop.showAtLocation(RegisterActivity.this.getWindow().getDecorView(), Gravity.BOTTOM, 0, 0);
+
+
+        View.OnClickListener clickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+                switch (view.getId()) {
+                    case R.id.tv_album:
+                        intent = new Intent();
+                        intent.setAction(Intent.ACTION_PICK);
+                        intent.setType("image/*");
+
+                        startActivityForResult(intent, 200);
+                        break;
+                    case R.id.tv_camera:
+                        intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(intent,201);
+                        break;
+                    case R.id.tv_cancel:
+                        closePopupWindow();
+                        break;
+                }
+                closePopupWindow();
+            }
+        };
+        mCamera.setOnClickListener(clickListener);
+        mAlbum.setOnClickListener(clickListener);
+
+        mCancel.setOnClickListener(clickListener);
+
+    }
+
+    public void closePopupWindow() {
+        if (pop != null && pop.isShowing()) {
+            pop.dismiss();
+            pop = null;
         }
     }
 
