@@ -49,7 +49,8 @@
         <activity android:name=".DoctorListActivity" />
         <activity
             android:name=".DashboardActivity"
-            android:label="@string/title_activity_chat_dashboard"/>
+            android:label="@string/title_activity_chat_dashboard"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".LoginActivity"

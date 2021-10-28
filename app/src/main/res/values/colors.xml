@@ -10,6 +10,7 @@
     <color name="teal_700">#FD018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="notWhite">#EDF1E9</color>
     <color name="back_blue">#FFEDFBFD</color>
 
     <color name="colorPrimary">#35b64f</color>

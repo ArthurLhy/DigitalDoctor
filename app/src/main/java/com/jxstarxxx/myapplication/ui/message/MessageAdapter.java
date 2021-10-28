@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jxstarxxx.myapplication.Chat.ChatActivity;
@@ -86,7 +87,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         private TextView userName;
         private TextView lastMessage;
         private TextView messageNumber;
-        private LinearLayout root;
+        private CardView root;
 
         public MessageView(@NonNull View itemView) {
             super(itemView);
