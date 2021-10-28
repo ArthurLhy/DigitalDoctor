@@ -158,7 +158,7 @@ public class AdddoctorFragment extends Fragment {
 
                 List<Doctor> doctor_list = retrieveDoctors(clinicName, departmentName, totalDoctorList);
 
-                Log.i("find doctors", doctor_list.get(0).getFullName());
+                Log.i("find doctors", String.valueOf(doctor_list.size()));
 
                 if (doctor_list.size() != 0){
                     addDoctorModels.clear();
@@ -183,9 +183,9 @@ public class AdddoctorFragment extends Fragment {
 
                         addDoctorModels.add(addDoctorModel);
                     }
+                    Log.i("searched doctors", String.valueOf(addDoctorModels.size()));
                     adddoctorAdapter.notifyDataSetChanged();
                 }
-
             }
         });
 
