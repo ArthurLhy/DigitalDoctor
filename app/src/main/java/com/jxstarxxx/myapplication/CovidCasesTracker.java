@@ -18,7 +18,6 @@ import com.jxstarxxx.myapplication.myUtils.ApiUtils;
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
-import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -72,14 +71,8 @@ public class CovidCasesTracker extends AppCompatActivity implements AdapterView.
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
         spinner.setOnItemSelectedListener(CovidCasesTracker.this);
+        // default position, Australia
         spinner.setSelection(6);
-        try {
-            Field popup = Spinner.class.getDeclaredField("mPopup");
-            popup.setAccessible(true);
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinner);
-            popupWindow.setHeight(100);
-        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
-        }
 
         progressDialog = new ProgressDialog(CovidCasesTracker.this);
         progressDialog.setCancelable(false);
@@ -103,12 +96,9 @@ public class CovidCasesTracker extends AppCompatActivity implements AdapterView.
 
    private void setTrackerDate (String update) {
        DateFormat format = new SimpleDateFormat("MMM dd, yyyy");
-
        long milliseconds = Long.parseLong(update);
-
        Calendar calendar = Calendar.getInstance();
        calendar.setTimeInMillis(milliseconds);
-
        trackerDate.setText("Updated at " + format.format(calendar.getTime()));
     }
 
@@ -135,12 +125,12 @@ public class CovidCasesTracker extends AppCompatActivity implements AdapterView.
                 increaseDeath.setText("+(" + NumberFormat.getInstance().format(Integer.parseInt(caseTracker.getTodayDeaths())) + ")");
 
                 setTrackerDate(caseTracker.getUpdated());
+
                 mPieChart.clearChart();
                 mPieChart.addPieSlice(new PieModel("Confirm", tempConfirm, getResources().getColor(R.color.yellow_pie)));
                 mPieChart.addPieSlice(new PieModel("Active", tempActive, getResources().getColor(R.color.blue_pie)));
                 mPieChart.addPieSlice(new PieModel("Recovered", tempRecovered, getResources().getColor(R.color.green_pie)));
                 mPieChart.addPieSlice(new PieModel("Death", tempDeath, getResources().getColor(R.color.red_pie)));
-
                 mPieChart.startAnimation();
             }
         }

@@ -73,8 +73,6 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
     private static final Integer REQUEST_CODE = 44;
     private static final float MAP_ZOOM = 12;
 
-
-    // Initialize variable
     private SupportMapFragment mapFragment;
     private GoogleMap mapAPI;
     private FusedLocationProviderClient fusedLocationProviderClient;
