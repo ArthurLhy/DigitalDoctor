@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CovidCasesTeacker">
+    tools:context=".CovidCasesTracker">
 
    <RelativeLayout
        android:layout_width="match_parent"
@@ -35,31 +35,30 @@
            android:layout_marginRight="10dp"
            android:layout_toStartOf="@id/virus_1"
            android:src="@drawable/ic_vaccine" />
+
        <LinearLayout
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:layout_marginTop="20dp"
-           android:layout_marginStart="20dp"
            android:layout_alignParentStart="true"
+           android:layout_marginStart="20dp"
+           android:layout_marginTop="20dp"
            android:orientation="vertical">
 
            <TextView
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:textSize="20sp"
-               android:text="Covid Tracker"
                android:fontFamily="@font/rubikbold"
-               android:textColor="@color/white"/>
+               android:text="Covid Tracker"
+               android:textColor="@color/white"
+               android:textSize="20sp" />
 
-           <TextView
+           <Spinner
+               android:id="@+id/country_select"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:fontFamily="@font/rubikbold"
                android:layout_marginTop="7dp"
-               android:text="Australia"
-               android:textColor="@color/white"
-               android:drawableRight="@drawable/ic_dropdown"
-               android:textSize="40sp" />
+               android:spinnerMode="dropdown"
+               android:background="@null"/>
 
            <TextView
                android:id="@+id/tracker_date"
@@ -70,7 +69,6 @@
                android:text="Updated at May 02, 2021"
                android:textColor="@color/white"
                android:textSize="15sp" />
-
        </LinearLayout>
 
        <LinearLayout

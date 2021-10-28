@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CovidCasesTeacker"
+            android:name=".CovidCasesTracker"
             android:exported="true"/>
         <activity
             android:name=".Chat.ChatActivity"

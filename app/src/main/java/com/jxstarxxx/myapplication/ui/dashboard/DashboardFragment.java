@@ -18,7 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jxstarxxx.myapplication.CovidCasesTeacker;
+import com.jxstarxxx.myapplication.CovidCasesTracker;
 import com.jxstarxxx.myapplication.DoctorListActivity;
 import com.jxstarxxx.myapplication.PermissionActivity;
 import com.jxstarxxx.myapplication.R;
@@ -76,7 +76,7 @@ public class DashboardFragment extends Fragment {
         caseTracker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), CovidCasesTeacker.class));
+                startActivity(new Intent(getActivity(), CovidCasesTracker.class));
             }
         });
 
