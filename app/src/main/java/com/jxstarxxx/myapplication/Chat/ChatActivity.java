@@ -10,6 +10,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -118,7 +119,6 @@ public class ChatActivity extends AppCompatActivity {
                             Message message1 = new Message(theMessage, userID, simpleDateFormat.format(time));
                             messageList.add(message1);
                             if (first || Long.parseLong(timestamp) > Long.parseLong(LocalData.getLastMessage(chatID, ChatActivity.this))) {
-                                LocalData.saveLastMessage(timestamp, chatID, ChatActivity.this);
                                 chatAdapter.update(messageList);
                                 first = false;
                             }
@@ -139,6 +139,12 @@ public class ChatActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String timeStamp = String.valueOf(System.currentTimeMillis());
+                if (Long.parseLong(timeStamp) > Long.parseLong(LocalData.getLastMessage(chatID, ChatActivity.this))){
+                    Log.i("time stamp", timeStamp);
+                    LocalData.saveLastMessage(chatID, timeStamp, ChatActivity.this);
+                    chatAdapter.update(messageList);
+                }
                 finish();
             }
         });
