@@ -9,7 +9,7 @@
 
    <RelativeLayout
        android:layout_width="match_parent"
-       android:layout_height="320dp"
+       android:layout_height="300dp"
        android:background="#100235">
 
 
@@ -98,7 +98,7 @@
                        <View
                            android:layout_width="15dp"
                            android:layout_height="15dp"
-                           android:background="@color/quantum_yellow500"/>
+                           android:background="@color/yellow_pie"/>
 
                        <TextView
                            android:layout_width="wrap_content"
@@ -119,7 +119,7 @@
                        <View
                            android:layout_width="15dp"
                            android:layout_height="15dp"
-                           android:background="#33CCFF"/>
+                           android:background="@color/blue_pie"/>
 
                        <TextView
                            android:layout_width="wrap_content"
@@ -140,7 +140,7 @@
                        <View
                            android:layout_width="15dp"
                            android:layout_height="15dp"
-                           android:background="#41D16C"/>
+                           android:background="@color/green_pie"/>
 
                        <TextView
                            android:layout_width="wrap_content"
@@ -160,7 +160,7 @@
                        <View
                            android:layout_width="15dp"
                            android:layout_height="15dp"
-                           android:background="#FF0000"/>
+                           android:background="@color/red_pie"/>
 
                        <TextView
                            android:layout_width="wrap_content"
@@ -171,7 +171,6 @@
                            android:textColor="@color/white"
                            android:textSize="12sp" />
                    </LinearLayout>
-
 
                </LinearLayout>
 
@@ -190,7 +189,6 @@
 
        </LinearLayout>
 
-
    </RelativeLayout>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -199,12 +197,311 @@
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:columnCount="2">
 
-            <com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="wrap_content"
+                android:layout_width="170dp"
+                android:layout_columnWeight="1"
+                app:strokeColor="#100235"
+                app:strokeWidth="1dp"
+                android:padding="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@color/yellow_pie"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="sans-serif-condensed-light"
+                            android:text="Confirm"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="sans-serif"
+                        android:text="130982"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/increase_confirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="+( 32 )"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="wrap_content"
+                android:layout_width="170dp"
+                android:layout_columnWeight="1"
+                app:strokeColor="#100235"
+                app:strokeWidth="1dp"
+                android:padding="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@color/blue_pie"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="sans-serif-condensed-light"
+                            android:text="Active"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/active"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="sans-serif"
+                        android:text="2390"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="wrap_content"
+                android:layout_width="170dp"
+                android:layout_columnWeight="1"
+                app:strokeColor="#100235"
+                app:strokeWidth="1dp"
+                android:padding="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@color/green_pie"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="sans-serif-condensed-light"
+                            android:text="Recovered"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/recovered"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="sans-serif"
+                        android:text="80930"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/recovered_increase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="+( 32 )"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="wrap_content"
+                android:layout_width="170dp"
+                android:layout_columnWeight="1"
+                app:strokeColor="#100235"
+                app:strokeWidth="1dp"
+                android:padding="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@color/red_pie"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="sans-serif-condensed-light"
+                            android:text="Death"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/death"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="sans-serif"
+                        android:text="3200"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/death_increase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text="+( 16 )"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_height="wrap_content"
+                android:layout_width="170dp"
+                android:layout_columnWeight="1"
+                app:strokeColor="#100235"
+                app:strokeWidth="1dp"
+                android:padding="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:background="@color/colorAccent"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="sans-serif-condensed-light"
+                            android:text="Tests"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/test"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="sans-serif"
+                        android:text="1300"
+                        android:layout_marginTop="7dp"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="7dp"
+                        android:fontFamily="sans-serif-light"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
         </GridLayout>
     </androidx.core.widget.NestedScrollView>
