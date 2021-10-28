@@ -81,7 +81,7 @@ public class MessageFragment extends Fragment {
 
                             if ((!userId.equals(thisUserId)) && chatted) {
                                 Log.i("Message List", "finding friend:  " + userId);
-                                chatID = String.valueOf(dataSnapshot0.child("chatID").getValue(Long.class));
+                                chatID = dataSnapshot0.child("chatID").getValue(String.class);
                                 chatList.add(chatID);
                                 lastMessage = "";
                                 messageUnseen = 0;

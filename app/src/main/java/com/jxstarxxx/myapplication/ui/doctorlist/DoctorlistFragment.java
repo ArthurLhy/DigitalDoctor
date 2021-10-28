@@ -77,7 +77,9 @@ public class DoctorlistFragment extends Fragment {
                         String clinicName = snapshot.child(friendUid).child("clinic").getValue(String.class);
                         String departmentName = snapshot.child(friendUid).child("department").getValue(String.class);
                         String profilePic = snapshot.child(friendUid).child("photoUrl").getValue(String.class);
-                        DoctorModel doctorModel = new DoctorModel(fullName, clinicName, departmentName, profilePic);
+                        boolean chatted = (Boolean) dataSnapshot.child("chatted").getValue();
+                        String userName = snapshot.child(friendUid).child("username").getValue(String.class);
+                        DoctorModel doctorModel = new DoctorModel(fullName, clinicName, departmentName, profilePic, friendUid, chatted, userName);
                         doctorModels.add(doctorModel);
                     }
                     doctorListAdapter.notifyDataSetChanged();
