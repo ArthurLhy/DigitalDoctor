@@ -2,15 +2,22 @@ package com.jxstarxxx.myapplication.ui.adddoctor;
 
 public class addDoctorModel {
 
-    private String full_name, clinic_name, department_name, img_url;
+    private String uid, full_name, clinic_name, department_name, img_url;
     private boolean isAdded;
 
-    public addDoctorModel(String full_name, String clinic_name, String department_name, String img_url, boolean isAdded) {
+
+
+    public addDoctorModel(String uid, String full_name, String clinic_name, String department_name, String img_url, boolean isAdded) {
+        this.uid = uid;
         this.full_name = full_name;
         this.clinic_name = clinic_name;
         this.department_name = department_name;
         this.img_url = img_url;
         this.isAdded = isAdded;
+    }
+
+    public String getUid() {
+        return uid;
     }
 
     public String getFull_name() {
