@@ -36,12 +36,14 @@ public class MessageFragment extends Fragment {
     private int messageUnseen = 0;
     private String chatID = "0";
     private boolean gotData = false;
+    private String userId, userName, userImage;
 
     private FirebaseUser auth = FirebaseAuth.getInstance().getCurrentUser();
     private FragmentMessageBinding binding;
     private final String thisUserId = auth.getUid();
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -66,85 +68,95 @@ public class MessageFragment extends Fragment {
                 messageLists.clear();
                 List<String> have_find = new ArrayList<>();
 
-                for (DataSnapshot dataSnapshot: snapshot.child("user").getChildren()) {
+                for (DataSnapshot dataSnapshot : snapshot.child("user").getChildren()) {
                     final String our_user_id = dataSnapshot.getKey();
                     Log.i("Message List", "finding user: " + our_user_id);
 
                     if (our_user_id.equals(thisUserId)) {
-                        for (DataSnapshot dataSnapshot0: dataSnapshot.child("friendList").getChildren()) {
-                            final String userId = dataSnapshot0.getKey();
+                        List<String> chatList = new ArrayList<>();
+
+                        for (DataSnapshot dataSnapshot0 : dataSnapshot.child("friendList").getChildren()) {
+                            userId = dataSnapshot0.getKey();
                             final boolean chatted = (boolean) dataSnapshot0.child("chatted").getValue();
+
                             if ((!userId.equals(thisUserId)) && chatted) {
                                 Log.i("Message List", "finding friend:  " + userId);
-
-                                final String userName = snapshot.child("user").child(userId).child("username").getValue(String.class);
-                                final String userImage = snapshot.child("user").child(userId).child("photoUrl").getValue(String.class);
+                                chatID = String.valueOf(dataSnapshot0.child("chatID").getValue(Long.class));
+                                chatList.add(chatID);
                                 lastMessage = "";
                                 messageUnseen = 0;
+
                                 databaseReference.child("chat").addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        long chatCount = snapshot.getChildrenCount();
+                                    public void onDataChange(@NonNull DataSnapshot snapshot1) {
 
-                                        if (chatCount > 0) {
-                                            for (DataSnapshot dataSnapshot1: snapshot.getChildren()) {
+                                        for (DataSnapshot dataSnapshot1 : snapshot1.getChildren()) {
 
-                                                if (dataSnapshot1.hasChild("user_1") && dataSnapshot1.hasChild("user_2") && dataSnapshot1.hasChild("messages")){
-                                                    final String user1 = dataSnapshot1.child("user_1").getValue(String.class);
-                                                    final String user2 = dataSnapshot1.child("user_2").getValue(String.class);
+                                            if (chatList.contains(dataSnapshot1.getKey()) && dataSnapshot1.hasChild("messages")) {
+                                                chatID = dataSnapshot1.getKey();
+                                                final String user1 = dataSnapshot1.child("user_1").getValue(String.class);
+                                                final String user2 = dataSnapshot1.child("user_2").getValue(String.class);
+                                                gotData = true;
+                                                newestTimestamp = 0;
 
-                                                    if ((user1.equals(userId) && user2.equals(thisUserId)) || (user1.equals(thisUserId) && user2.equals(userId))) {
-                                                        chatID = dataSnapshot1.getKey();
-                                                        gotData = true;
-                                                        newestTimestamp = 0;
+                                                if (user1.equals(thisUserId)) {
+                                                    userId = user2;
+                                                }
+                                                else {
+                                                    userId = user1;
+                                                }
+                                                userName = snapshot.child("user").child(userId).child("username").getValue(String.class);
+                                                userImage = snapshot.child("user").child(userId).child("photoUrl").getValue(String.class);
 
-                                                        Log.i("Message List", "find the chat" + chatID);
-                                                        for (DataSnapshot dataSnapshot2: dataSnapshot1.child("messages").getChildren()) {
-                                                            final long Timestamp =  Long.parseLong(dataSnapshot2.getKey());
-                                                            if (MessageFragment.this.getActivity() != null) {
-                                                                final long lastUnseenTime = Long.parseLong(LocalData.getLastMessage(chatID, MessageFragment.this.getActivity()));
-                                                                if(Timestamp > lastUnseenTime) {
-                                                                    messageUnseen++;
-                                                                }
-                                                            }
-                                                            if (Timestamp > newestTimestamp && dataSnapshot2.child("user").getValue(String.class).equals(userId)) {
-                                                                newestTimestamp = Timestamp;
-                                                            }
+                                                Log.i("Message List", "find the chat" + chatID);
+                                                for (DataSnapshot dataSnapshot2 : dataSnapshot1.child("messages").getChildren()) {
+                                                    final long Timestamp = Long.parseLong(dataSnapshot2.getKey());
+                                                    if (MessageFragment.this.getActivity() != null) {
+                                                        final long lastUnseenTime = Long.parseLong(LocalData.getLastMessage(chatID, MessageFragment.this.getActivity()));
+                                                        if (Timestamp > lastUnseenTime) {
+                                                            messageUnseen++;
                                                         }
-                                                        lastMessage = dataSnapshot1.child("messages").child(String.valueOf(newestTimestamp)).child("message").getValue(String.class);
+                                                    }
+                                                    if (Timestamp > newestTimestamp && dataSnapshot2.child("user").getValue(String.class).equals(userId)) {
+                                                        newestTimestamp = Timestamp;
                                                     }
                                                 }
-                                            }
-                                        }
-                                        if (gotData) {
-                                            MessageList messageList = new MessageList(chatID, userName, userId, userImage, lastMessage, messageUnseen);
+                                                lastMessage = dataSnapshot1.child("messages").child(String.valueOf(newestTimestamp)).child("message").getValue(String.class);
 
-                                            if (messageLists.isEmpty()) {
-                                                Log.i("Message List", "add the chat to the list: " + chatID + userName);
-                                                messageLists.add(messageList);
-                                                adapter.updateList(messageLists);
+                                            }
+
+                                            if (gotData) {
+                                                MessageList messageList = new MessageList(chatID, userName, userId, userImage, lastMessage, messageUnseen);
+
+                                                if (messageLists.isEmpty()) {
+                                                    Log.i("Message List", "add the chat to the list: " + chatID + userName);
+                                                    messageLists.add(messageList);
+                                                    adapter.updateList(messageLists);
+                                                    gotData = false;
+                                                }
+
+                                                for (MessageList i : messageLists) {
+                                                    if (i.getChatID().equals(messageList.getChatID())) {
+                                                        gotData = false;
+                                                        break;
+                                                    }
+                                                }
+                                                if (gotData) {
+                                                    Log.i("Message List", "add the chat to the list: " + chatID + userName);
+                                                    messageLists.add(messageList);
+                                                    adapter.updateList(messageLists);
+                                                }
                                                 gotData = false;
                                             }
-
-                                            for (MessageList i:messageLists) {
-                                                if (i.getChatID().equals(messageList.getChatID())) {
-                                                    gotData = false;
-                                                    break;
-                                                }
-                                            }
-                                            if (gotData) {
-                                                Log.i("Message List", "add the chat to the list: " + chatID + userName);
-                                                messageLists.add(messageList);
-                                                adapter.updateList(messageLists);
-                                            }
-                                            gotData = false;
                                         }
                                     }
+
 
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError error) {
                                         progressDialog.dismiss();
                                     }
+
                                 });
                             }
                         }
@@ -168,7 +180,6 @@ public class MessageFragment extends Fragment {
 //        });
         return root;
     }
-
 
 
     @Override

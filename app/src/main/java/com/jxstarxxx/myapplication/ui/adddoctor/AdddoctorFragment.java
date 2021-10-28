@@ -174,7 +174,8 @@ public class AdddoctorFragment extends Fragment {
                             }
                         }
 
-                        addDoctorModel addDoctorModel = new addDoctorModel(currentDoctor.getFullName(),
+                        addDoctorModel addDoctorModel = new addDoctorModel(currentDoctor.getUid(),
+                                currentDoctor.getFullName(),
                                 currentDoctor.getClinicName(),
                                 currentDoctor.getDepartmentName(),
                                 currentDoctor.getImageUrl(), isAdded);

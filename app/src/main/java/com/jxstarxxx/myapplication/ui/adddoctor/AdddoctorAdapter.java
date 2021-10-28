@@ -12,6 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.jxstarxxx.myapplication.R;
 import com.squareup.picasso.Picasso;
 
@@ -22,6 +26,10 @@ public class AdddoctorAdapter extends RecyclerView.Adapter<AdddoctorAdapter.Sear
 
 
     List<addDoctorModel> addDoctorModels;
+
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
+    private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private String currentUserUid = firebaseUser.getUid();
 
     public class SearchViewHolder extends RecyclerView.ViewHolder {
 
@@ -74,10 +82,12 @@ public class AdddoctorAdapter extends RecyclerView.Adapter<AdddoctorAdapter.Sear
                 @Override
                 public void onClick(View v) {
                     Log.i("Add doctor", addDoctor.getFull_name());
+                    databaseReference.child("user").child(currentUserUid).child("friendList").child(addDoctor.getUid()).child("chatted").setValue(false);
+                    databaseReference.child("user").child(addDoctor.getUid()).child("friendList").child(currentUserUid).child("chatted").setValue(false);
+                    holder.add_button.setVisibility(View.GONE);
                 }
             });
         }
-
     }
     @Override
     public int getItemCount() {
