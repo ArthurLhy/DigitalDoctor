@@ -26,11 +26,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please choose a clinic"/>
+            android:text="Please choose a clinic"
+            android:textSize="18dp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="20dp"/>
 
         <Spinner
             android:id="@+id/spinner_clinic"
             android:layout_width="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_height="wrap_content"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown"/>
@@ -38,12 +43,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please choose a department"/>
+            android:layout_marginLeft="20dp"
+            android:text="Please choose a department"
+            android:textSize="18dp"
+            android:textColor="@color/black" />
 
         <Spinner
             android:id="@+id/spinner_depart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown"/>
 
@@ -51,7 +61,9 @@
             android:id="@+id/add_doctor_search_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:text="Search"
+            android:background="@drawable/button_selector"
             android:layout_gravity="end"/>
 
         <androidx.recyclerview.widget.RecyclerView
