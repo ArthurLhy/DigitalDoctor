@@ -4,50 +4,57 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:elevation="96dp"
-    app:cardCornerRadius="10dp">
+    android:layout_margin="10dp"
+    app:cardCornerRadius="15dp">
 
     <LinearLayout
         android:id="@+id/doctor_list_card_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#B6F4D5">
 
         <ImageView
             android:id="@+id/doctorlist_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:scaleType="centerCrop"/>
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp">
+            android:layout_gravity="center"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/doctorlist_fullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Full name"
-                android:textAlignment="center"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:id="@+id/doctorlist_clinic"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="clinic name"
-                android:textAlignment="center"
-                android:textSize="20sp"/>
+                android:textSize="24sp"
+                android:fontFamily="@string/rubicBold"/>
 
             <TextView
                 android:id="@+id/doctorlist_depart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="clinic name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/doctorlist_clinic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="Department"
-                android:textAlignment="center"
-                android:textSize="20sp"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
     </LinearLayout>
