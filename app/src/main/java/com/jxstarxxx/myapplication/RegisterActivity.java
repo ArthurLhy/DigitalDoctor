@@ -29,6 +29,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -61,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView registerActivity_dob, registerActivity_reg_user, registerActivity_reg_password,
             registerActivity_reg_firstName, registerActivity_reg_userName, registerActivity_reg_lastName;
     private DatePickerDialog.OnDateSetListener dobSetListener;
+    private LottieAnimationView lottieAnimationView;
 
     private FirebaseAuth registerActivity_firebaseAuth;
     private FirebaseDatabase registerActivity_firebaseDatabase;
@@ -226,6 +228,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerActivity_registered = (Button) findViewById(R.id.register_back_button);
         registerActivity_uploadPhoto = (Button) findViewById(R.id.upload_photo_btn);
         registerActivity_dob = (TextView) findViewById(R.id.register_select_dob);
+        lottieAnimationView = (LottieAnimationView) findViewById(R.id.lottie_reg);
 
         registerActivity_emailID_del = (ImageView) findViewById(R.id.register_user_box_del);
         registerActivity_password_del = (ImageView) findViewById(R.id.register_pass_box_del);
@@ -271,11 +274,15 @@ public class RegisterActivity extends AppCompatActivity {
                 Uri selectImageUri = data.getData();
                 if (null != selectImageUri) {
                     registerActivity_profilePic.setImageURI(selectImageUri);
+                    registerActivity_profilePic.setVisibility(View.VISIBLE);
+                    lottieAnimationView.setVisibility(View.GONE);
                 }
             } else if (requestCode == 201) {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 if (null != bitmap) {
                     registerActivity_profilePic.setImageBitmap(bitmap);
+                    registerActivity_profilePic.setVisibility(View.VISIBLE);
+                    lottieAnimationView.setVisibility(View.GONE);
                 }
             }
         }

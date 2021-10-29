@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/back_blue"
     tools:context=".RegisterActivity">
 
     <RelativeLayout
@@ -39,13 +40,30 @@
             android:orientation="vertical"
             android:paddingHorizontal="15dp">
 
-            <ImageView
-                android:id="@+id/register_profilepic"
+            <androidx.cardview.widget.CardView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_gravity="center"
+                android:elevation="10dp"
+                app:cardCornerRadius="50dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/register_profile_pic" />
+                android:layout_gravity="center">
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/lottie_reg"
+                    app:lottie_rawRes="@raw/user"
+                    app:lottie_autoPlay="true"/>
+
+                <ImageView
+                    android:src="@drawable/ic_account"
+                    android:id="@+id/register_profilepic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:visibility="invisible"
+                    />
+            </androidx.cardview.widget.CardView>
 
             <Button
                 android:id="@+id/upload_photo_btn"
