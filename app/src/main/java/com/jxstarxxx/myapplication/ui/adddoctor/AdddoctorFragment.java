@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -50,8 +50,9 @@ public class AdddoctorFragment extends Fragment {
 
     private List<addDoctorModel> addDoctorModels = new ArrayList<>();
 
-    private Spinner clinicSpin;
-    private Spinner departmentSpin;
+    private AutoCompleteTextView clinicText;
+    private AutoCompleteTextView departmentText;
+    //private Spinner departmentSpin;
 
     private Button searchButton;
     private AdddoctorAdapter adddoctorAdapter;
@@ -67,20 +68,20 @@ public class AdddoctorFragment extends Fragment {
         addDoctorRecyclerView.setHasFixedSize(true);
         addDoctorRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        clinicSpin = (Spinner) root.findViewById(R.id.spinner_clinic);
-        departmentSpin = (Spinner) root.findViewById(R.id.spinner_depart);
+        clinicText = root.findViewById(R.id.text_clinic);
+        departmentText = root.findViewById(R.id.text_department);
 
         clinicList = new String[] {"Melbourne North Medical Clinic", "Midtown Medical Clinic", "Southbank Medical Clinic"};
         departmentList = new String[] {"surgery", "cardiology"};
 
-        ArrayAdapter<String> clinicAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, clinicList);
-        ArrayAdapter<String> departmentAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, departmentList);
+        ArrayAdapter<String> clinicAdapter = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item, clinicList);
+        ArrayAdapter<String> departmentAdapter = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item, departmentList);
 
         clinicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         departmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        clinicSpin.setAdapter(clinicAdapter);
-        departmentSpin.setAdapter(departmentAdapter);
+        clinicText.setAdapter(clinicAdapter);
+        departmentText.setAdapter(departmentAdapter);
 
         adddoctorAdapter = new AdddoctorAdapter(this.getActivity(), addDoctorModels);
         addDoctorRecyclerView.setAdapter(adddoctorAdapter);
@@ -151,9 +152,9 @@ public class AdddoctorFragment extends Fragment {
 
                 Log.i("Search Button", "Clicked");
 
-                String clinicName = clinicSpin.getSelectedItem().toString();
+                String clinicName = clinicText.getText().toString();
                 Log.i("Chosen Clinic Name is", clinicName);
-                String departmentName = departmentSpin.getSelectedItem().toString();
+                String departmentName = departmentText.getText().toString();
                 Log.i("Chosen Department is", departmentName);
 
                 List<Doctor> doctor_list = retrieveDoctors(clinicName, departmentName, totalDoctorList);

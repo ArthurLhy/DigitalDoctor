@@ -46,11 +46,12 @@
             android:name=".VaccineFinderActivity"
             android:exported="true"
             android:label="@string/vaccine_finder" />
-        <activity android:name=".DoctorListActivity" />
+        <activity android:name=".DoctorListActivity"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_chat_dashboard"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".LoginActivity"
