@@ -1,60 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="96dp"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="15dp">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#B6F4D5">
     <LinearLayout
+        android:id="@+id/ll_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#B6F4D5" >
 
 
         <ImageView
             android:id="@+id/add_doctor_image"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp">
+            android:layout_gravity="center"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/add_doctor_fullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Full name"
-                android:textAlignment="center"
+                android:textSize="24sp"
+                android:fontFamily="@string/rubicBold"/>
+
+            <TextView
+                android:id="@+id/add_doctor_depart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="clinic name"
                 android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/add_doctor_clinic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="clinic name"
-                android:textAlignment="center"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:id="@+id/add_doctor_depart"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="Department"
-                android:textAlignment="center"
-                android:textSize="20sp"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/add_doctor_button"
-                android:text="+ Add"
-                android:layout_gravity="right"/>
-
-
+                android:textSize="16sp"/>
         </LinearLayout>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/add_doctor_button"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_alignRight="@id/ll_1"
+        android:background="@drawable/button_selector"
+        android:text="+ Add" />
+</RelativeLayout>
 </androidx.cardview.widget.CardView>
