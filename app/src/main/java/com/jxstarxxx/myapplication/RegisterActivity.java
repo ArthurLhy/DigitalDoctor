@@ -160,7 +160,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerActivity_profilePic.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) registerActivity_profilePic.getDrawable()).getBitmap();
         ByteArrayOutputStream os = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, os);
         byte[] data = os.toByteArray();
 
         UploadTask uploadTask = myUserStorageRef.child(uid+".jpg").putBytes(data);

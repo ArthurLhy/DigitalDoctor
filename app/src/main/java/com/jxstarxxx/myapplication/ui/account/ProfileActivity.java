@@ -243,7 +243,7 @@ public class ProfileActivity extends AppCompatActivity {
         profilePic.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
         ByteArrayOutputStream os = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, os);
         byte[] data = os.toByteArray();
 
         UploadTask uploadTask = storageRef.child("user/profilepic/"+uid+".jpg").putBytes(data);
