@@ -3,8 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="96dp"
-    android:layout_margin="10dp"
+    app:cardElevation="5dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginBottom="15dp"
     app:cardCornerRadius="15dp">
 
     <LinearLayout
@@ -12,21 +14,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#B6F4D5">
+        android:background="#5CE4FAE5">
 
-        <ImageView
-            android:id="@+id/doctorlist_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:scaleType="centerCrop" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:elevation="10dp"
+            app:cardCornerRadius="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:foregroundGravity="center"
+            android:layout_marginStart="20dp">
+
+            <ImageView
+                android:id="@+id/doctorlist_image"
+                android:src="@drawable/ic_account"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:scaleType="centerCrop" />
+
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="10dp"
             android:gravity="center"

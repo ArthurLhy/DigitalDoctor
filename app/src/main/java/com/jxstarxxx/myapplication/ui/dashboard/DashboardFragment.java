@@ -1,5 +1,6 @@
 package com.jxstarxxx.myapplication.ui.dashboard;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -40,11 +41,20 @@ public class DashboardFragment extends Fragment {
         View root = binding.getRoot();
         usernameView = binding.textViewUser;
 
-        databaseReference.child(user_id).child("username").addValueEventListener(new ValueEventListener() {
+        ProgressDialog progressDialog = new ProgressDialog(this.getActivity());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading Dashboard...");
+        progressDialog.show();
+
+        databaseReference.child(user_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                username = snapshot.getValue(String.class);
+                username = snapshot.child("username").getValue(String.class);
+                if (snapshot.child("isDoctor").getValue(boolean.class)) {
+                    binding.findDocCard.setVisibility(View.GONE);
+                }
                 usernameView.setText(username);
+                progressDialog.dismiss();
             }
 
             @Override
