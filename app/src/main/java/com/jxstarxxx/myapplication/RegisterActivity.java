@@ -345,8 +345,12 @@ public class RegisterActivity extends AppCompatActivity {
                         startActivityForResult(intent, 200);
                         break;
                     case R.id.tv_camera:
-                        intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(intent,201);
+                        if (ActivityCompat.checkSelfPermission(RegisterActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(RegisterActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
+                        } else {
+                            intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(intent,201);
+                        }
                         break;
                     case R.id.tv_cancel:
                         closePopupWindow();
@@ -366,6 +370,20 @@ public class RegisterActivity extends AppCompatActivity {
         if (pop != null && pop.isShowing()) {
             pop.dismiss();
             pop = null;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                // close the app
+                Toast.makeText(RegisterActivity.this, "Permission not granted", Toast.LENGTH_LONG).show();
+                finish();
+            } else {
+                startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE),201);
+            }
         }
     }
 

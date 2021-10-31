@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
@@ -59,6 +60,9 @@
             android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity
             android:name=".ui.account.ProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HeartRateActivity"
             android:exported="true" />
     </application>
 
