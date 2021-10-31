@@ -380,7 +380,6 @@ public class RegisterActivity extends AppCompatActivity {
             if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
                 // close the app
                 Toast.makeText(RegisterActivity.this, "Permission not granted", Toast.LENGTH_LONG).show();
-                finish();
             } else {
                 startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE),201);
             }

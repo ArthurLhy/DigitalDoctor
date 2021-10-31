@@ -2,6 +2,7 @@ package com.jxstarxxx.myapplication;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
@@ -15,14 +16,16 @@ import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+import android.os.HandlerThread;
 import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -41,7 +44,8 @@ public class HeartRateActivity extends AppCompatActivity {
     private CameraDevice mCameraDevice;
     private CaptureRequest.Builder mCaptureRequestBuilder;
     private CameraCaptureSession mCameraCaptureSession;
-    private Handler mBackgroundHandler;
+    private Handler mCameraHandler;
+    private HandlerThread mCameraThread;
 
     private int bpm;
     private int mNumCaptures = 0;
@@ -99,7 +103,7 @@ public class HeartRateActivity extends AppCompatActivity {
 //                    tv.setText("beats="+mNumBeats+"\ntime="+mTimeArray[mNumBeats]);
                     mNumBeats++;
                     if (mNumBeats == 15) {
-                        calcBPM();
+                        computeBPM();
                     }
                 }
             }
@@ -151,7 +155,7 @@ public class HeartRateActivity extends AppCompatActivity {
 
     }
 
-    private void calcBPM() {
+    private void computeBPM() {
         int med;
         long [] timedist = new long [14];
         for (int i = 0; i < 14; i++) {
@@ -160,8 +164,23 @@ public class HeartRateActivity extends AppCompatActivity {
         Arrays.sort(timedist);
         med = (int) timedist[timedist.length/2];
         bpm= 60000/med;
-        Log.d("bpm", String.valueOf(bpm));
+        showResult();
+    }
 
+    private void showResult() {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Heart rate")
+                .setMessage("Your heart rate is: " + bpm + " bpm")
+                .setCancelable(false)
+                .setIcon(R.drawable.ic_baseline_favorite_24)
+                .setPositiveButton("got it", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .create();
+        dialog.show();
     }
 
     private void openCamera() {
@@ -199,7 +218,7 @@ public class HeartRateActivity extends AppCompatActivity {
                     mCaptureRequestBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
                     mCaptureRequestBuilder.set(CaptureRequest.FLASH_MODE, CameraMetadata.FLASH_MODE_TORCH);
                     try {
-                        mCameraCaptureSession.setRepeatingRequest(mCaptureRequestBuilder.build(), null, mBackgroundHandler);
+                        mCameraCaptureSession.setRepeatingRequest(mCaptureRequestBuilder.build(), null, mCameraHandler);
                     } catch (CameraAccessException e) {
                         e.printStackTrace();
                     }
@@ -216,6 +235,13 @@ public class HeartRateActivity extends AppCompatActivity {
         }
     }
 
+    private void closeCamera() {
+        if (null != mCameraDevice) {
+            mCameraDevice.close();
+            mCameraDevice = null;
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -225,6 +251,33 @@ public class HeartRateActivity extends AppCompatActivity {
                 Toast.makeText(HeartRateActivity.this, "Permission not granted", Toast.LENGTH_LONG).show();
                 finish();
             }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        closeCamera();
+        mCameraThread.quitSafely();
+        try {
+            mCameraThread.join();
+            mCameraThread = null;
+            mCameraHandler = null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mCameraThread = new HandlerThread("Camera Background");
+        mCameraThread.start();
+        mCameraHandler = new Handler(mCameraThread.getLooper());
+        if (mTextureView.isAvailable()) {
+            openCamera();
+        } else {
+            mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
         }
     }
 }
