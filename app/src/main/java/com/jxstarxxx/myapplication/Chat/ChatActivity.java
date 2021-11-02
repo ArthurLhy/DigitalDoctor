@@ -179,6 +179,8 @@ public class ChatActivity extends AppCompatActivity {
                     LocalData.saveLastMessage(chatID, senderID, timeStamp, ChatActivity.this);
                     chatAdapter.update(messageList);
                 }
+                databaseReference.child("chat").child(chatID).child("user_1").setValue(senderID);
+                databaseReference.child("chat").child(chatID).child("user_2").setValue(receiverID);
                 finish();
             }
         });
