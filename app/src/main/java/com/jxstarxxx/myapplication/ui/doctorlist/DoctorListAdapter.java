@@ -2,7 +2,6 @@ package com.jxstarxxx.myapplication.ui.doctorlist;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,10 +86,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.do
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (doctorModel.isChatted()){
                     chatId[0] = snapshot.child("user").child(currentUserUid).child("friendList").child(doctorModel.getUid()).child("chatID").getValue(String.class);
-                } else {
-                    chatId[0] = String.valueOf(snapshot.child("chat").getChildrenCount() + 1);
                 }
-
             }
 
             @Override
@@ -104,14 +100,14 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.do
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("chat id", String.valueOf(chatId[0]));
                 if (!doctorModel.isChatted()){
+                    chatId[0] = databaseReference.child("chat").push().getKey();
                     databaseReference.child("user").child(currentUserUid).child("friendList").child(doctorModel.getUid()).child("chatted").setValue(true);
                     databaseReference.child("user").child(currentUserUid).child("friendList").child(doctorModel.getUid()).child("chatID").setValue(chatId[0]);
                     databaseReference.child("user").child(doctorModel.getUid()).child("friendList").child(currentUserUid).child("chatted").setValue(true);
                     databaseReference.child("user").child(doctorModel.getUid()).child("friendList").child(currentUserUid).child("chatID").setValue(chatId[0]);
                     databaseReference.child("chat").child(chatId[0]).child("user_1").setValue(currentUserUid);
-                    databaseReference.child("chat").child(chatId[0]).child("user_1").setValue(doctorModel.getUid());
+                    databaseReference.child("chat").child(chatId[0]).child("user_2").setValue(doctorModel.getUid());
                 }
 
                 Intent intent = new Intent(context, ChatActivity.class);

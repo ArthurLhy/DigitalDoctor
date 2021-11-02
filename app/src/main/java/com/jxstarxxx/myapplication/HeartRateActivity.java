@@ -110,7 +110,8 @@ public class HeartRateActivity extends AppCompatActivity {
                     mTimeArray[mNumBeats] = System.currentTimeMillis();
 //                    tv.setText("beats="+mNumBeats+"\ntime="+mTimeArray[mNumBeats]);
                     mNumBeats++;
-                    Toast.makeText(HeartRateActivity.this, String.valueOf(mNumBeats), Toast.LENGTH_SHORT).show();
+                    int countDown = 15 - mNumBeats;
+                    Toast.makeText(HeartRateActivity.this, String.valueOf(countDown), Toast.LENGTH_SHORT).show();
                     if (mNumBeats == 15) {
                         computeBPM();
                     }
