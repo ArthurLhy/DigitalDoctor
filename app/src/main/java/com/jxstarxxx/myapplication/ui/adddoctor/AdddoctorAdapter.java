@@ -1,7 +1,6 @@
 package com.jxstarxxx.myapplication.ui.adddoctor;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +80,6 @@ public class AdddoctorAdapter extends RecyclerView.Adapter<AdddoctorAdapter.Sear
             holder.add_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.i("Add doctor", addDoctor.getFull_name());
                     databaseReference.child("user").child(currentUserUid).child("friendList").child(addDoctor.getUid()).child("chatted").setValue(false);
                     databaseReference.child("user").child(addDoctor.getUid()).child("friendList").child(currentUserUid).child("chatted").setValue(false);
                     holder.add_button.setVisibility(View.GONE);

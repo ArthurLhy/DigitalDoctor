@@ -20,7 +20,6 @@ import android.os.HandlerThread;
 import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,14 +29,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 
 public class HeartRateActivity extends AppCompatActivity {
 
-    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseAuth = FirebaseAuth.getInstance().getCurrentUser();
+    private String senderId = firebaseAuth.getUid();
     private FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
 
     private String mCameraId;
     private Size mPreviewSize;
@@ -54,6 +57,11 @@ public class HeartRateActivity extends AppCompatActivity {
     private int mLastRollingAverage;
     private int mLastLastRollingAverage;
     private long [] mTimeArray;
+
+    private String chatId;
+    private String receiverName;
+    private String receiverId;
+    private String receiverImage;
 
 
 
@@ -102,6 +110,7 @@ public class HeartRateActivity extends AppCompatActivity {
                     mTimeArray[mNumBeats] = System.currentTimeMillis();
 //                    tv.setText("beats="+mNumBeats+"\ntime="+mTimeArray[mNumBeats]);
                     mNumBeats++;
+                    Toast.makeText(HeartRateActivity.this, String.valueOf(mNumBeats), Toast.LENGTH_SHORT).show();
                     if (mNumBeats == 15) {
                         computeBPM();
                     }
@@ -148,6 +157,14 @@ public class HeartRateActivity extends AppCompatActivity {
 //        firebaseDatabase = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
 
+        chatId = getIntent().getStringExtra("chatId");
+        receiverId = getIntent().getStringExtra("receiverID");
+
+        receiverName = getIntent().getStringExtra("receiverName");
+        receiverImage = getIntent().getStringExtra("receiverImage");
+
+
+
         mTextureView = findViewById(R.id.texture_view);
         mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
 
@@ -165,6 +182,19 @@ public class HeartRateActivity extends AppCompatActivity {
         med = (int) timedist[timedist.length/2];
         bpm= 60000/med;
         showResult();
+
+        if (chatId != null){
+            final String heartRateTimeStamp = String.valueOf(System.currentTimeMillis());
+
+            String heartRateMessage = "My current heart rate is " + bpm;
+
+            databaseReference.child("chat").child(chatId).child("user_1").setValue(senderId);
+            databaseReference.child("chat").child(chatId).child("user_2").setValue(receiverId);
+            databaseReference.child("chat").child(chatId).child("messages").child(heartRateTimeStamp).child("message").setValue(heartRateMessage);
+            databaseReference.child("chat").child(chatId).child("messages").child(heartRateTimeStamp).child("user").setValue(senderId);
+
+            finish();
+        }
     }
 
     private void showResult() {
