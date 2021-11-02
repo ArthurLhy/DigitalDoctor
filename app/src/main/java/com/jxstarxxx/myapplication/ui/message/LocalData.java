@@ -13,9 +13,10 @@ import java.nio.charset.StandardCharsets;
 
 public class LocalData {
 
-    public static void saveLastMessage(String chatID, String message, Context context) {
+    // save the timestamp of last message
+    public static void saveLastMessage(String chatID, String userID, String message, Context context) {
         try {
-            FileOutputStream fileOutputStream = context.openFileOutput(chatID+"_last.txt", Context.MODE_PRIVATE);
+            FileOutputStream fileOutputStream = context.openFileOutput(userID + chatID + "_last.txt", Context.MODE_PRIVATE);
             fileOutputStream.write(message.getBytes(StandardCharsets.UTF_8));
             fileOutputStream.close();
         } catch (IOException e) {
@@ -23,10 +24,10 @@ public class LocalData {
         }
     }
 
-    public static String getLastMessage(String chatID, Context context) {
-        String message = "0";
+    public static String getLastMessage(String chatID, String userID, Context context) {
+        String messageTime = "0";
         try {
-            FileInputStream fileInputStream = context.openFileInput(chatID+"_last.txt");
+            FileInputStream fileInputStream = context.openFileInput(userID + chatID + "_last.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             StringBuilder stringBuilder = new StringBuilder();
@@ -34,10 +35,10 @@ public class LocalData {
             while((thisline = bufferedReader.readLine())!= null) {
                 stringBuilder.append(thisline);
             }
-            message = stringBuilder.toString();
+            messageTime = stringBuilder.toString();
         } catch (IOException e) {
-            e.printStackTrace();
+            return "0";
         }
-        return message;
+        return messageTime;
     }
 }

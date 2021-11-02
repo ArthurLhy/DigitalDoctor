@@ -98,6 +98,7 @@ public class MessageFragment extends Fragment {
                                                 final String user2 = dataSnapshot1.child("user_2").getValue(String.class);
                                                 gotData = true;
                                                 newestTimestamp = 0;
+                                                messageUnseen = 0;
 
                                                 if (user1.equals(thisUserId)) {
                                                     userId = user2;
@@ -110,15 +111,19 @@ public class MessageFragment extends Fragment {
 
                                                 Log.i("Message List", "find the chat" + chatID);
                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.child("messages").getChildren()) {
-                                                    final long Timestamp = Long.parseLong(dataSnapshot2.getKey());
-                                                    if (MessageFragment.this.getActivity() != null) {
-                                                        final long lastUnseenTime = Long.parseLong(LocalData.getLastMessage(chatID, MessageFragment.this.getActivity()));
-                                                        if (Timestamp > lastUnseenTime) {
-                                                            messageUnseen++;
+                                                    if (dataSnapshot2.child("user").getValue(String.class).equals(userId)) {
+                                                        final long Timestamp = Long.parseLong(dataSnapshot2.getKey());
+                                                        if (MessageFragment.this.getActivity() != null) {
+
+                                                            final long lastUnseenTime = Long.parseLong(LocalData.getLastMessage(chatID, thisUserId, MessageFragment.this.getActivity()));
+                                                            Log.i("local time", String.valueOf(lastUnseenTime));
+                                                            if (Timestamp > lastUnseenTime) {
+                                                                messageUnseen++;
+                                                            }
                                                         }
-                                                    }
-                                                    if (Timestamp > newestTimestamp && dataSnapshot2.child("user").getValue(String.class).equals(userId)) {
-                                                        newestTimestamp = Timestamp;
+                                                        if (Timestamp > newestTimestamp) {
+                                                            newestTimestamp = Timestamp;
+                                                        }
                                                     }
                                                 }
                                                 lastMessage = dataSnapshot1.child("messages").child(String.valueOf(newestTimestamp)).child("message").getValue(String.class);
