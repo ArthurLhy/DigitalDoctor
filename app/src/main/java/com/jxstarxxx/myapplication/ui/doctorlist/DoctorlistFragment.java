@@ -60,8 +60,6 @@ public class DoctorlistFragment extends Fragment {
 
         List<String> friendListUid = new ArrayList<>();
 
-        Log.i("Status", "friend list created");
-        Log.i("userid", currentUserUid);
 
         doctorModels.clear();
 
@@ -69,7 +67,6 @@ public class DoctorlistFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (snapshot.child(currentUserUid).hasChild("friendList")){
-                    Log.i("has friend", "yes");
                     for (DataSnapshot dataSnapshot : snapshot.child(currentUserUid).child("friendList").getChildren()){
                         Log.i("friendiud", dataSnapshot.getKey());
                         String friendUid = dataSnapshot.getKey();
