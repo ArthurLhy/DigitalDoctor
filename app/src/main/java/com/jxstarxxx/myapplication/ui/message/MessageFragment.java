@@ -24,6 +24,7 @@ import com.jxstarxxx.myapplication.databinding.FragmentMessageBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MessageFragment extends Fragment {
 
@@ -111,7 +112,8 @@ public class MessageFragment extends Fragment {
 
                                                 Log.i("Message List", "find the chat" + chatID);
                                                 for (DataSnapshot dataSnapshot2 : dataSnapshot1.child("messages").getChildren()) {
-                                                    if (dataSnapshot2.child("user").getValue(String.class).equals(userId)) {
+                                                    String messageFrom = dataSnapshot2.child("user").getValue(String.class);
+                                                    if (messageFrom != null && messageFrom.equals(userId)) {
                                                         final long Timestamp = Long.parseLong(dataSnapshot2.getKey());
                                                         if (MessageFragment.this.getActivity() != null) {
 
