@@ -31,9 +31,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_1"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginRight="15dp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_1"
@@ -94,7 +94,8 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/content"
                 android:textSize="16dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:justificationMode="inter_word"/>
 
             <TextView
                 android:id="@+id/thanks"
