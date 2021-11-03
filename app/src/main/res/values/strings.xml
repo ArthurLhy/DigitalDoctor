@@ -50,4 +50,15 @@
     <string name="rubicBold" tools:ignore="ReferenceType">@font/rubikbold</string>
     <string name="rubicRegular" tools:ignore="ReferenceType">@font/rubikregular</string>
     <string name="rubicLight" tools:ignore="ReferenceType">@font/rubiklight</string>
+    <string name="team_member">Team Member</string>
+    <string name="team_member_name1">Rui Chen, Shiyi Xu, Ruowen Yao,</string>
+    <string name="team_member_name2">Hangyu Liu, Yicheng Zhang, Nan Bai</string>
+    <string name="content">Digital Doctor is a communication app that provides a platform for
+        patients and doctors to discuss the patient\'s conditions. Besides the Chat function,
+        it also integrated a function to monitor heart rate via a mobile device,
+        which may assist doctors to understand patient’s health condition. Vaccine Finder and
+        Covid-19 Tracker are also cooperated to the current demands. The Vaccine Finder helps
+        the patient to find the local medical centres that offer vaccination service. Covid-19
+        Tracker shows Covid-19 data from the selected country. </string>
+    <string name="thanks">Some Icons of this app are from www.flaticon.com</string>
 </resources>
