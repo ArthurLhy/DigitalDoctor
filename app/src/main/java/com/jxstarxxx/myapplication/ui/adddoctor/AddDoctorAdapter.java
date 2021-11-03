@@ -35,7 +35,7 @@ public class AddDoctorAdapter extends RecyclerView.Adapter<AddDoctorAdapter.Sear
 
         TextView fullName, clinicName, departmentName;
         ImageView profile_pic;
-        Button add_button;
+        Button addButton;
 
         public SearchViewHolder(View itemView) {
             super(itemView);
@@ -44,7 +44,7 @@ public class AddDoctorAdapter extends RecyclerView.Adapter<AddDoctorAdapter.Sear
             this.clinicName = (TextView) itemView.findViewById(R.id.add_doctor_clinic);
             this.departmentName = (TextView) itemView.findViewById(R.id.add_doctor_depart);
             this.profile_pic = (ImageView) itemView.findViewById(R.id.add_doctor_image);
-            this.add_button = (Button) itemView.findViewById(R.id.add_doctor_button);
+            this.addButton = (Button) itemView.findViewById(R.id.add_doctor_button);
         }
     }
 
@@ -74,15 +74,15 @@ public class AddDoctorAdapter extends RecyclerView.Adapter<AddDoctorAdapter.Sear
         }
 
         if(addDoctor.isAdded()){
-            holder.add_button.setVisibility(View.GONE);
+            holder.addButton.setVisibility(View.GONE);
         }else {
-            holder.add_button.setVisibility(View.VISIBLE);
-            holder.add_button.setOnClickListener(new View.OnClickListener() {
+            holder.addButton.setVisibility(View.VISIBLE);
+            holder.addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     databaseReference.child("user").child(currentUserUid).child("friendList").child(addDoctor.getUid()).child("chatted").setValue(false);
                     databaseReference.child("user").child(addDoctor.getUid()).child("friendList").child(currentUserUid).child("chatted").setValue(false);
-                    holder.add_button.setVisibility(View.GONE);
+                    holder.addButton.setVisibility(View.GONE);
                 }
             });
         }

@@ -165,15 +165,14 @@ public class AddDoctorFragment extends Fragment {
             public void onClick(View v) {
                 String clinicName = clinicText.getText().toString();
                 String departmentName = departmentText.getText().toString();
-                List<Doctor> doctorList = retrieveDoctors(clinicName, departmentName, totalDoctorList);
+                doctorDTOS.clear();
 
+                // filter doctors using clinic and department
+                List<Doctor> doctorList = retrieveDoctors(clinicName, departmentName, totalDoctorList);
                 if (doctorList.size() != 0){
-                    doctorDTOS.clear();
                     for (int i = 0; i < doctorList.size(); i++ ){
                         Doctor currentDoctor = doctorList.get(i);
-
                         boolean isAdded = false;
-
                         if (!addedDoctorList.isEmpty()){
                             if (addedDoctorList.contains(currentDoctor.getUid())){
                                 isAdded = true;
@@ -186,11 +185,10 @@ public class AddDoctorFragment extends Fragment {
                                 currentDoctor.getDepartmentName(),
                                 currentDoctor.getImageUrl(), isAdded);
 
-
                         doctorDTOS.add(doctorDTO);
                     }
-                    adddoctorAdapter.notifyDataSetChanged();
                 }
+                adddoctorAdapter.notifyDataSetChanged();
             }
         });
 
@@ -198,19 +196,13 @@ public class AddDoctorFragment extends Fragment {
     }
 
     private List<Doctor> retrieveDoctors(String clinicName, String departmentName, List<Doctor> doctorList) {
-
-
         List<Doctor> searchedDoctors = new ArrayList<>();
-
-
         for (Doctor doctor : doctorList){
             if (doctor.getClinicName().equals(clinicName) && doctor.getDepartmentName().equals(departmentName)){
                 searchedDoctors.add(doctor);
             }
         }
-
         return searchedDoctors;
-
     }
 
 }
