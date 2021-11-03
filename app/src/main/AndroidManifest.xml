@@ -16,10 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".HeartRateGuideActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
             android:name=".AboutUsActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication.NoActionBar" >
-        </activity>
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".ui.account.SetUsernameActivity"
             android:exported="true" />

@@ -20,6 +20,7 @@ import android.os.HandlerThread;
 import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +42,6 @@ public class HeartRateActivity extends AppCompatActivity {
 
     private FirebaseUser firebaseAuth = FirebaseAuth.getInstance().getCurrentUser();
     private String senderId = firebaseAuth.getUid();
-    private FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
 
     private String mCameraId;
@@ -50,6 +51,7 @@ public class HeartRateActivity extends AppCompatActivity {
     private CameraCaptureSession mCameraCaptureSession;
     private Handler mCameraHandler;
     private HandlerThread mCameraThread;
+    private ProgressBar progressBar;
 
     private int bpm;
     private int mNumCaptures = 0;
@@ -60,12 +62,8 @@ public class HeartRateActivity extends AppCompatActivity {
     private long [] mTimeArray;
 
     private String chatId;
-//    private String receiverName;
     private String receiverId;
-//    private String receiverImage;
     private TextView countDown;
-
-
 
     private TextureView mTextureView;
     private TextureView.SurfaceTextureListener mSurfaceTextureListener = new TextureView.SurfaceTextureListener() {
@@ -112,7 +110,8 @@ public class HeartRateActivity extends AppCompatActivity {
                     mTimeArray[mNumBeats] = System.currentTimeMillis();
 //                    tv.setText("beats="+mNumBeats+"\ntime="+mTimeArray[mNumBeats]);
                     mNumBeats++;
-                    countDown.setText(String.valueOf(15 - mNumBeats));
+                    countDown.setText(String.valueOf(100*mNumBeats/15) + "%");
+                    progressBar.setProgress(100*mNumBeats/15, true);
                     if (mNumBeats == 15) {
                         computeBPM();
                     }
@@ -155,21 +154,13 @@ public class HeartRateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heart_rate);
 
-//        firebaseAuth = FirebaseAuth.getInstance();
-//        firebaseDatabase = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/");
-
-
-        countDown = (TextView) findViewById(R.id.heart_rate_count);
         chatId = getIntent().getStringExtra("chatId");
         receiverId = getIntent().getStringExtra("receiverID");
 
-//        receiverName = getIntent().getStringExtra("receiverName");
-//        receiverImage = getIntent().getStringExtra("receiverImage");
-
-
-
         mTextureView = findViewById(R.id.texture_view);
         mTextureView.setSurfaceTextureListener(mSurfaceTextureListener);
+        progressBar = findViewById(R.id.progress_bar);
+        countDown = (TextView) findViewById(R.id.heart_rate_count);
 
         mTimeArray = new long [15];
 

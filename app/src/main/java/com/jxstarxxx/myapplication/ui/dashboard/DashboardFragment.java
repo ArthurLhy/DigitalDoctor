@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.jxstarxxx.myapplication.CovidCasesTracker;
 import com.jxstarxxx.myapplication.DoctorListActivity;
 import com.jxstarxxx.myapplication.HeartRateActivity;
+import com.jxstarxxx.myapplication.HeartRateGuideActivity;
 import com.jxstarxxx.myapplication.PermissionActivity;
 import com.jxstarxxx.myapplication.R;
 import com.jxstarxxx.myapplication.databinding.FragmentDashboardBinding;
@@ -102,7 +103,7 @@ public class DashboardFragment extends Fragment {
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, 1);
                 } else {
-                    startActivity(new Intent(getActivity(), HeartRateActivity.class));
+                    startActivity(new Intent(getActivity(), HeartRateGuideActivity.class));
                 }
             }
         });

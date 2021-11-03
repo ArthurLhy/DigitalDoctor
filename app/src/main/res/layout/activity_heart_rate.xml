@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,28 +9,54 @@
         android:id="@+id/texture_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8" />
+        android:layout_weight="0.7" />
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="0.2">
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:background="#2F3949"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:padding="5dp"
-            android:text="Place your finger lightly on the camera lens. Try not to move it." />
+            android:text="Task complete:"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:fontFamily="@string/rubicLight"
+            android:gravity="center"/>
 
-        <TextView
-            android:id="@+id/heart_rate_count"
-            android:layout_width="68dp"
-            android:layout_height="79dp"
-            android:layout_gravity="bottom"
-            android:text="15"
-            android:textSize="50dp" />
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp">
 
-    </FrameLayout>
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/circle_shape"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circle_progree_bar"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/heart_rate_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@string/rubicLight"
+                android:gravity="center"
+                android:text="0%"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

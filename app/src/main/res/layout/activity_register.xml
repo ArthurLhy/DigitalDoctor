@@ -43,26 +43,25 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:elevation="10dp"
-                app:cardCornerRadius="50dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:layout_gravity="center">
+                android:elevation="10dp"
+                app:cardCornerRadius="50dp">
 
                 <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_reg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/lottie_reg"
-                    app:lottie_rawRes="@raw/user"
-                    app:lottie_autoPlay="true"/>
+                    app:lottie_autoPlay="true"
+                    app:lottie_rawRes="@raw/user" />
 
                 <ImageView
-                    android:src="@drawable/ic_account"
                     android:id="@+id/register_profilepic"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:visibility="invisible"
-                    />
+                    android:src="@drawable/ic_account"
+                    android:visibility="invisible" />
             </androidx.cardview.widget.CardView>
 
             <Button
@@ -292,9 +291,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/register_gender"
-                    android:orientation="horizontal"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginLeft="40dp">
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/radio_btn1"

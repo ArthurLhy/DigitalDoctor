@@ -58,33 +58,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cv_1"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:text="@string/team_member"
-                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
                 android:textSize="18dp"
-                android:textColor="@color/black"/>
+                android:fontFamily="@string/rubicBold"/>
 
             <TextView
                 android:id="@+id/team_member_name1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/team_member"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:text="@string/team_member_name1"
-                android:layout_centerHorizontal="true"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:fontFamily="@font/rubikbold"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/team_member_name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/team_member_name1"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="0dp"
                 android:text="@string/team_member_name2"
-                android:layout_centerHorizontal="true"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:fontFamily="@string/rubicBold"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/content"
@@ -92,10 +95,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/team_member_name2"
                 android:layout_marginTop="20dp"
+                android:justificationMode="inter_word"
                 android:text="@string/content"
-                android:textSize="16dp"
                 android:textColor="@color/black"
-                android:justificationMode="inter_word"/>
+                android:fontFamily="@font/rubikregular"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/thanks"
@@ -104,8 +108,9 @@
                 android:layout_below="@id/content"
                 android:layout_marginTop="20dp"
                 android:text="@string/thanks"
-                android:textSize="16dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:fontFamily="@font/rubikregular"
+                android:textSize="16dp" />
 
             <Button
                 android:id="@+id/back_account"
