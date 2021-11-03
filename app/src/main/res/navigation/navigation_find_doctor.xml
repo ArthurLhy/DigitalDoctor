@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_doctorlist" />
     <fragment
         android:id="@+id/navigation_add_doctor"
-        android:name="com.jxstarxxx.myapplication.ui.adddoctor.AdddoctorFragment"
+        android:name="com.jxstarxxx.myapplication.ui.adddoctor.AddDoctorFragment"
         android:label="fragment_add_doctor"
         tools:layout="@layout/fragment_adddoctor" />
 </navigation>

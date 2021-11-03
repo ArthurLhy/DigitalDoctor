@@ -1,4 +1,4 @@
-package com.jxstarxxx.myapplication;
+package com.jxstarxxx.myapplication.DTO;
 
 public class Doctor {
     private String fullName;

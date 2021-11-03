@@ -23,7 +23,7 @@
             android:text="Permission Request"
             android:textSize="24sp"
             android:layout_marginTop="12dp"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="@string/rubicBold"
             android:textStyle="bold"/>
 
 

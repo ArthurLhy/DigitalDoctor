@@ -67,7 +67,7 @@ public class CovidCasesTracker extends AppCompatActivity implements AdapterView.
         spinner.setDropDownHorizontalOffset(100);
         spinner.setDropDownVerticalOffset(300);
         arrayAdapter = new ArrayAdapter<String>(CovidCasesTracker.this,
-        R.layout.spinner_style_covif_tracker, getResources().getStringArray(R.array.areaList));
+        R.layout.spinner_style_covid_tracker, getResources().getStringArray(R.array.areaList));
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
         spinner.setOnItemSelectedListener(CovidCasesTracker.this);

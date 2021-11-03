@@ -3,39 +3,71 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/drawable/bg_account.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/drawable/bg_click.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/drawable/divider.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/drawable/ic_account.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/drawable/ic_placeholder.xml" value="0.26979166666666665" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_chat.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_dashboard.xml" value="0.4" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_heart_rate.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_login.xml" value="0.264" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_main.xml" value="0.2259963768115942" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_profile.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_register.xml" value="0.264" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_register2.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_set_gender.xml" value="0.2" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_set_profile_photo.xml" value="0.1296875" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/activity_set_username.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/chat_adapter_layout.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/content_vaccine_finder.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/fragment_account.xml" value="0.264" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/fragment_chats.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/fragment_dashboard.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/fragment_message.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/heart_rate_result.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/layout/layout_bottom_dialog.xml" value="0.264" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14583333333333334" />
-        <entry key="..\:/Users/Zhang/AndroidStudioProjects/MedicalCHAT/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/Public/AppData/Local/Android/Sdk/platforms/android-29/data/res/layout/simple_spinner_dropdown_item.xml" value="0.20697463768115942" />
+        <entry key="..\:/Users/Public/AppData/Local/Android/Sdk/platforms/android-29/data/res/layout/simple_spinner_item.xml" value="0.1580547112462006" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.29259259259259257" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable-v24/receive_chat_box.xml" value="0.19375" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/bg_account.xml" value="0.19375" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/bg_click.xml" value="0.19375" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/button_selector.xml" value="0.19375" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/divider.xml" value="0.19322916666666667" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/dynamic_message_bg.xml" value="0.19375" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_account.xml" value="0.26851851851851855" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_baseline_arrow_forward_ios_24.xml" value="0.19375" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.29259259259259257" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.29259259259259257" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_doctor2.xml" value="0.19322916666666667" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_dropdown.xml" value="0.19375" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_home.xml" value="0.19322916666666667" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.29259259259259257" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_launcher_background.xml" value="0.29259259259259257" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_location.xml" value="0.19322916666666667" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_message_2.xml" value="0.19322916666666667" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.29259259259259257" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_password.xml" value="0.19322916666666667" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/ic_profile1.xml" value="0.19322916666666667" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/round_circle_red.xml" value="0.19375" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/drawable/sender_chat_box.xml" value="0.19375" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_chat.xml" value="0.1580547112462006" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_chat_dashboard.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_covid_cases_teacker.xml" value="0.375" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_dashboard.xml" value="0.221875" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_doctor_list.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_map.xml" value="0.2617753623188406" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_permission.xml" value="0.325" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_profile.xml" value="0.15760869565217392" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_register.xml" value="0.2558876811594203" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_register2.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_set_username.xml" value="0.15760869565217392" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_splash.xml" value="0.16576086956521738" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/activity_vaccine_finder.xml" value="0.2558876811594203" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/add_doctor_cardview.xml" value="0.1" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/card_view_message.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/chat_adapter_layout.xml" value="0.15760869565217392" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/content_test.xml" value="0.17708333333333334" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/content_vaccine_finder.xml" value="0.165" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/doctorlist_cardview.xml" value="0.16802536231884058" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/dropdown_item.xml" value="0.16576086956521738" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/fragment_account.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/fragment_adddoctor.xml" value="0.25" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/fragment_chats.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/fragment_dashboard.xml" value="0.335" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/fragment_doctorlist.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/fragment_message.xml" value="0.15760869565217392" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/layout_bottom_dialog.xml" value="0.15760869565217392" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/message_card_view.xml" value="0.16802536231884058" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/layout/spinner_style_covif_tracker.xml" value="0.1580547112462006" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/menu/bottom_nav_menu.xml" value="0.17708333333333334" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/menu/bottom_nav_menu2.xml" value="0.17708333333333334" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/menu/menu_main.xml" value="0.17708333333333334" />
+        <entry key="..\:/Users/Public/COMP90018/MedicalChat/MedicalCHAT/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19322916666666667" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="14" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
 
-public class splashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     private ImageView appName, background;
     private LottieAnimationView lottieAnimationView;
@@ -32,7 +32,7 @@ public class splashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(splashActivity.this, LoginActivity.class);
+                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }

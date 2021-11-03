@@ -22,7 +22,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jxstarxxx.myapplication.Doctor;
+import com.jxstarxxx.myapplication.DTO.DoctorDTO;
+import com.jxstarxxx.myapplication.DTO.Doctor;
 import com.jxstarxxx.myapplication.R;
 import com.jxstarxxx.myapplication.databinding.FragmentAdddoctorBinding;
 
@@ -33,9 +34,9 @@ import java.util.List;
 
 
 
-public class AdddoctorFragment extends Fragment {
+public class AddDoctorFragment extends Fragment {
 
-    private AdddoctorViewModel adddoctorViewModel;
+    private AddDoctorViewModel adddoctorViewModel;
     private FragmentAdddoctorBinding binding;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
@@ -48,18 +49,18 @@ public class AdddoctorFragment extends Fragment {
     private List<String> clinicList;
     private String[] departmentList;
 
-    private List<addDoctorModel> addDoctorModels = new ArrayList<>();
+    private List<DoctorDTO> doctorDTOS = new ArrayList<>();
 
     private AutoCompleteTextView clinicText;
     private AutoCompleteTextView departmentText;
     //private Spinner departmentSpin;
 
     private Button searchButton;
-    private AdddoctorAdapter adddoctorAdapter;
+    private AddDoctorAdapter adddoctorAdapter;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        adddoctorViewModel = new ViewModelProvider(this).get(AdddoctorViewModel.class);
+        adddoctorViewModel = new ViewModelProvider(this).get(AddDoctorViewModel.class);
         binding = FragmentAdddoctorBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
 
@@ -71,7 +72,7 @@ public class AdddoctorFragment extends Fragment {
         clinicText = root.findViewById(R.id.text_clinic);
         departmentText = root.findViewById(R.id.text_department);
 
-        clinicList = new ArrayList<String>();
+        clinicList = new ArrayList<>();
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -80,8 +81,6 @@ public class AdddoctorFragment extends Fragment {
                     String clinicName = dataSnapshot.getKey();
                     clinicList.add(clinicName);
                 }
-
-
             }
 
             @Override
@@ -92,16 +91,15 @@ public class AdddoctorFragment extends Fragment {
 
         departmentList = new String[] {"surgery", "cardiology"};
 
-        ArrayAdapter<String> clinicAdapter = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item, clinicList);
-        ArrayAdapter<String> departmentAdapter = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item, departmentList);
+        ArrayAdapter<String> clinicAdapter = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item_style_add_doctor, clinicList);
+        ArrayAdapter<String> departmentAdapter = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item_style_add_doctor, departmentList);
 
         clinicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         departmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         clinicText.setAdapter(clinicAdapter);
         departmentText.setAdapter(departmentAdapter);
 
-        adddoctorAdapter = new AdddoctorAdapter(this.getActivity(), addDoctorModels);
+        adddoctorAdapter = new AddDoctorAdapter(this.getActivity(), doctorDTOS);
         addDoctorRecyclerView.setAdapter(adddoctorAdapter);
 
         searchButton = (Button) root.findViewById(R.id.add_doctor_search_button);
@@ -110,6 +108,7 @@ public class AdddoctorFragment extends Fragment {
 
         List<String> addedDoctorList = new ArrayList<>();
 
+        // Retrieve doctors in user's friend list
         databaseReference.child("user").child(currentUserUid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -125,6 +124,7 @@ public class AdddoctorFragment extends Fragment {
             }
         });
 
+        // Retrieve all the doctor
         databaseReference.child("user").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -141,14 +141,11 @@ public class AdddoctorFragment extends Fragment {
                     if (!isDoctor){
                         continue;
                     }
+
                     String doctorClinic = dataSnapshot.child("clinic").getValue(String.class);
-
                     String doctorDepartment = dataSnapshot.child("department").getValue(String.class);
-
                     String doctorFullName = dataSnapshot.child("firstName").getValue(String.class) + " " + dataSnapshot.child("lastName").getValue(String.class);
-
                     String doctorUid = dataSnapshot.getKey();
-
                     String doctorImageUrl = dataSnapshot.child("photoUrl").getValue(String.class);
 
                     Doctor newDoctor = new Doctor(doctorFullName, doctorClinic, doctorDepartment, doctorUid, doctorImageUrl);
@@ -166,18 +163,14 @@ public class AdddoctorFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 String clinicName = clinicText.getText().toString();
-
                 String departmentName = departmentText.getText().toString();
+                List<Doctor> doctorList = retrieveDoctors(clinicName, departmentName, totalDoctorList);
 
-                List<Doctor> doctor_list = retrieveDoctors(clinicName, departmentName, totalDoctorList);
-
-                if (doctor_list.size() != 0){
-                    addDoctorModels.clear();
-                    for (int i = 0; i < doctor_list.size(); i++ ){
-                        Doctor currentDoctor = doctor_list.get(i);
+                if (doctorList.size() != 0){
+                    doctorDTOS.clear();
+                    for (int i = 0; i < doctorList.size(); i++ ){
+                        Doctor currentDoctor = doctorList.get(i);
 
                         boolean isAdded = false;
 
@@ -187,14 +180,14 @@ public class AdddoctorFragment extends Fragment {
                             }
                         }
 
-                        addDoctorModel addDoctorModel = new addDoctorModel(currentDoctor.getUid(),
+                        DoctorDTO doctorDTO = new DoctorDTO(currentDoctor.getUid(),
                                 currentDoctor.getFullName(),
                                 currentDoctor.getClinicName(),
                                 currentDoctor.getDepartmentName(),
                                 currentDoctor.getImageUrl(), isAdded);
 
 
-                        addDoctorModels.add(addDoctorModel);
+                        doctorDTOS.add(doctorDTO);
                     }
                     adddoctorAdapter.notifyDataSetChanged();
                 }

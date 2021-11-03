@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.jxstarxxx.myapplication.DTO.Message;
 import com.jxstarxxx.myapplication.R;
 
 import java.util.List;

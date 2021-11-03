@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jxstarxxx.myapplication.DTO.DoctorModel;
 import com.jxstarxxx.myapplication.R;
 import com.jxstarxxx.myapplication.databinding.FragmentDoctorlistBinding;
 
@@ -59,7 +60,6 @@ public class DoctorlistFragment extends Fragment {
         doctorListRecycler.setAdapter(doctorListAdapter);
 
         List<String> friendListUid = new ArrayList<>();
-
 
         doctorModels.clear();
 

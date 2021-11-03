@@ -1,4 +1,4 @@
-package com.jxstarxxx.myapplication.Chat;
+package com.jxstarxxx.myapplication.DTO;
 
 public class Message {
 

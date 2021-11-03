@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jxstarxxx.myapplication.Chat.ChatActivity;
+import com.jxstarxxx.myapplication.DTO.DoctorModel;
 import com.jxstarxxx.myapplication.R;
 import com.squareup.picasso.Picasso;
 

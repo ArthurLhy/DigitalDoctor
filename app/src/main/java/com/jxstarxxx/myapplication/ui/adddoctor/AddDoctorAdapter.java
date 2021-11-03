@@ -15,16 +15,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.jxstarxxx.myapplication.DTO.DoctorDTO;
 import com.jxstarxxx.myapplication.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class AdddoctorAdapter extends RecyclerView.Adapter<AdddoctorAdapter.SearchViewHolder> {
+public class AddDoctorAdapter extends RecyclerView.Adapter<AddDoctorAdapter.SearchViewHolder> {
     private final Context context;
 
 
-    List<addDoctorModel> addDoctorModels;
+    List<DoctorDTO> doctorDTOS;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -32,45 +33,44 @@ public class AdddoctorAdapter extends RecyclerView.Adapter<AdddoctorAdapter.Sear
 
     public class SearchViewHolder extends RecyclerView.ViewHolder {
 
-
-        TextView full_name, clinic_name, department_name;
+        TextView fullName, clinicName, departmentName;
         ImageView profile_pic;
         Button add_button;
 
         public SearchViewHolder(View itemView) {
             super(itemView);
 
-            this.full_name = (TextView) itemView.findViewById(R.id.add_doctor_fullname);
-            this.clinic_name = (TextView) itemView.findViewById(R.id.add_doctor_clinic);
-            this.department_name = (TextView) itemView.findViewById(R.id.add_doctor_depart);
+            this.fullName = (TextView) itemView.findViewById(R.id.add_doctor_fullname);
+            this.clinicName = (TextView) itemView.findViewById(R.id.add_doctor_clinic);
+            this.departmentName = (TextView) itemView.findViewById(R.id.add_doctor_depart);
             this.profile_pic = (ImageView) itemView.findViewById(R.id.add_doctor_image);
             this.add_button = (Button) itemView.findViewById(R.id.add_doctor_button);
         }
     }
 
 
-    public AdddoctorAdapter(Context context, List<addDoctorModel> addDoctorModels) {
+    public AddDoctorAdapter(Context context, List<DoctorDTO> doctorDTOS) {
         this.context = context;
-        this.addDoctorModels = addDoctorModels;
+        this.doctorDTOS = doctorDTOS;
     }
 
     @NonNull
     @Override
-    public AdddoctorAdapter.SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AddDoctorAdapter.SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.add_doctor_cardview, parent, false);
-        return new AdddoctorAdapter.SearchViewHolder(view);
+        return new AddDoctorAdapter.SearchViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(AdddoctorAdapter.SearchViewHolder holder, int position) {
+    public void onBindViewHolder(AddDoctorAdapter.SearchViewHolder holder, int position) {
 
-        addDoctorModel addDoctor = addDoctorModels.get(position);
+        DoctorDTO addDoctor = doctorDTOS.get(position);
 
-        holder.full_name.setText(addDoctor.getFull_name());
-        holder.clinic_name.setText(addDoctor.getClinic_name());
-        holder.department_name.setText(addDoctor.getDepartment_name());
-        if(!addDoctor.getImg_url().isEmpty()){
-            Picasso.get().load(addDoctor.getImg_url()).into(holder.profile_pic);
+        holder.fullName.setText(addDoctor.getFullName());
+        holder.clinicName.setText(addDoctor.getClinicName());
+        holder.departmentName.setText(addDoctor.getDepartmentName());
+        if(!addDoctor.getImgUrl().isEmpty()){
+            Picasso.get().load(addDoctor.getImgUrl()).into(holder.profile_pic);
         }
 
         if(addDoctor.isAdded()){
@@ -89,6 +89,6 @@ public class AdddoctorAdapter extends RecyclerView.Adapter<AdddoctorAdapter.Sear
     }
     @Override
     public int getItemCount() {
-        return addDoctorModels.size();
+        return doctorDTOS.size();
     }
 }

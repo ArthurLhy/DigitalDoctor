@@ -19,7 +19,7 @@
             android:name=".ui.account.SetUsernameActivity"
             android:exported="true" />
         <activity
-            android:name=".splashActivity"
+            android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>

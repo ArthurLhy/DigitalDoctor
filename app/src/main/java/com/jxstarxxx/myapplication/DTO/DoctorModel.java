@@ -1,4 +1,4 @@
-package com.jxstarxxx.myapplication.ui.doctorlist;
+package com.jxstarxxx.myapplication.DTO;
 
 public class DoctorModel {
     private String fullName;
