@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextureView
+        android:id="@+id/texture_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:padding="5dp"
+            android:text="Place your finger lightly on the camera lens. Try not to move it." />
+
+        <TextView
+            android:id="@+id/heart_rate_count"
+            android:layout_width="68dp"
+            android:layout_height="79dp"
+            android:layout_gravity="bottom"
+            android:text="15"
+            android:textSize="50dp" />
+
+    </FrameLayout>
+
+</LinearLayout>

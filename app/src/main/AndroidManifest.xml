@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
@@ -46,10 +47,12 @@
             android:name=".VaccineFinderActivity"
             android:exported="true"
             android:label="@string/vaccine_finder" />
-        <activity android:name=".DoctorListActivity" />
+        <activity android:name=".DoctorListActivity"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity
             android:name=".DashboardActivity"
-            android:label="@string/title_activity_chat_dashboard"/>
+            android:label="@string/title_activity_chat_dashboard"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".LoginActivity"
@@ -57,6 +60,9 @@
             android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity
             android:name=".ui.account.ProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HeartRateActivity"
             android:exported="true" />
     </application>
 

@@ -9,31 +9,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@string/rubicBold"
             android:text="Permission Request"
-            android:textSize="26sp"
-            android:textStyle="bold" />
+            android:textSize="24sp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"/>
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:fontFamily="@font/rubikregular"
             android:gravity="center_horizontal"
-            android:text="Place Project needs permission to access device location to provide required services. Please allow the permission." />
+            android:layout_marginTop="36dp"
+            android:text="Place Project needs permission to access device location to provide required services. Please allow the permission."/>
     </LinearLayout>
 
     <Button
@@ -41,10 +40,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:text="Grant Permission"
-        android:fontFamily="@string/rubicBold"
-        android:textColor="#FFFFFF" />
+        android:background="@drawable/button_selector"
+        android:textColor="#FFFFFF"
+        android:text="Grant Permission"/>
 
 
 

@@ -1,9 +1,11 @@
 package com.jxstarxxx.myapplication.ui.account;
 
+import android.Manifest;
 import android.accounts.Account;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -28,6 +30,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -243,7 +246,7 @@ public class ProfileActivity extends AppCompatActivity {
         profilePic.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
         ByteArrayOutputStream os = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, os);
         byte[] data = os.toByteArray();
 
         UploadTask uploadTask = storageRef.child("user/profilepic/"+uid+".jpg").putBytes(data);
@@ -487,8 +490,12 @@ public class ProfileActivity extends AppCompatActivity {
                         startActivityForResult(intent, 200);
                         break;
                     case R.id.tv_camera:
-                        intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(intent,201);
+                        if (ActivityCompat.checkSelfPermission(ProfileActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(ProfileActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
+                        } else {
+                            intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(intent,201);
+                        }
                         break;
                     case R.id.tv_cancel:
                         closePopupWindow();
@@ -508,6 +515,19 @@ public class ProfileActivity extends AppCompatActivity {
         if (pop != null && pop.isShowing()) {
             pop.dismiss();
             pop = null;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                // close the app
+                Toast.makeText(ProfileActivity.this, "Permission not granted", Toast.LENGTH_LONG).show();
+            } else {
+                startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE),201);
+            }
         }
     }
 

@@ -29,7 +29,6 @@ public class DoctorListActivity extends AppCompatActivity {
                 R.id.navigation_doctor_list, R.id.navigation_add_doctor)
                 .build();
         NavController navController2 = Navigation.findNavController(this, R.id.nav_host_fragment_activity_doctor_list);
-        NavigationUI.setupActionBarWithNavController(this, navController2, appBarConfiguration2);
         NavigationUI.setupWithNavController(binding2.navView2, navController2);
 
     }

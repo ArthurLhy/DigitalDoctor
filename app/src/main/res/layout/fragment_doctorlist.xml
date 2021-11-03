@@ -1,45 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:padding="10dp"
+    android:background="@color/back_blue"
     tools:context=".ui.doctorlist.DoctorlistFragment">
 
+    <View
+        android:id="@+id/docColorBoard"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="#103A36"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/docHead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:orientation="vertical">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/doctorlist_recycle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp">
 
 
+        <TextView
+            android:id="@+id/docTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/rubikbold"
+            android:text="Doctors"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="150dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="100dp"
+            android:layout_toRightOf="@id/docTitle"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/medical_frontliners" />
+    </RelativeLayout>
 
-
-<!--        <TextView-->
-<!--            android:id="@+id/full_name"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Full name goes here"-->
-<!--            android:textColor="#212121"-->
-<!--            android:textSize="15sp" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/user_name"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="User name goes here" />-->
-    </LinearLayout>
-
-</LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="130dp"
+        android:id="@+id/doctorlist_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="70dp"/>
+</RelativeLayout>

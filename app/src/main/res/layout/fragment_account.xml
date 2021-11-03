@@ -1,61 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/back_blue"
     tools:context=".ui.account.AccountFragment">
 
-    <LinearLayout
+    <View
+        android:id="@+id/accountColorBoard"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="#3D5C75" />
+
+    <RelativeLayout
+        android:id="@+id/accountHead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_marginLeft="20dp">
 
-        <ImageView
-            android:id="@+id/profile_pic"
+        <TextView
+            android:id="@+id/accountTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/rubikbold"
+            android:text="Account"
+            android:textColor="@color/white"
+            android:textSize="40dp" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_alignParentRight="true"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/profile"/>
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="90dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="15dp">
+
+        <androidx.cardview.widget.CardView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:scaleType="fitCenter"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="10dp">
 
-        <Button
-            android:id="@+id/profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:background="@drawable/button_selector"
-            android:text="@string/profile"
-            android:textAlignment="center"
-            android:textSize="18dp" />
-
-        <Button
-            android:id="@+id/about_us"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:background="@drawable/button_selector"
-            android:text="@string/about_us"
-            android:textAlignment="center"
-            android:textSize="18dp" />
-
-        <Button
-            android:id="@+id/logout_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:background="@drawable/button_selector"
-            android:text="@string/logout"
-            android:textAlignment="center"
-            android:textSize="18dp" />
+            <ImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_account" />
+        </androidx.cardview.widget.CardView>
 
 
+            <Button
+                android:id="@+id/profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/button_selector"
+                android:text="@string/profile"
+                android:textAlignment="center"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/about_us"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/button_selector"
+                android:text="@string/about_us"
+                android:textAlignment="center"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/logout_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/button_selector"
+                android:text="@string/logout"
+                android:textAlignment="center"
+                android:textSize="18dp" />
     </LinearLayout>
 
-</ScrollView>
+
+</RelativeLayout>

@@ -29,6 +29,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -61,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView registerActivity_dob, registerActivity_reg_user, registerActivity_reg_password,
             registerActivity_reg_firstName, registerActivity_reg_userName, registerActivity_reg_lastName;
     private DatePickerDialog.OnDateSetListener dobSetListener;
+    private LottieAnimationView lottieAnimationView;
 
     private FirebaseAuth registerActivity_firebaseAuth;
     private FirebaseDatabase registerActivity_firebaseDatabase;
@@ -160,7 +162,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerActivity_profilePic.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) registerActivity_profilePic.getDrawable()).getBitmap();
         ByteArrayOutputStream os = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, os);
         byte[] data = os.toByteArray();
 
         UploadTask uploadTask = myUserStorageRef.child(uid+".jpg").putBytes(data);
@@ -226,6 +228,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerActivity_registered = (Button) findViewById(R.id.register_back_button);
         registerActivity_uploadPhoto = (Button) findViewById(R.id.upload_photo_btn);
         registerActivity_dob = (TextView) findViewById(R.id.register_select_dob);
+        lottieAnimationView = (LottieAnimationView) findViewById(R.id.lottie_reg);
 
         registerActivity_emailID_del = (ImageView) findViewById(R.id.register_user_box_del);
         registerActivity_password_del = (ImageView) findViewById(R.id.register_pass_box_del);
@@ -271,11 +274,15 @@ public class RegisterActivity extends AppCompatActivity {
                 Uri selectImageUri = data.getData();
                 if (null != selectImageUri) {
                     registerActivity_profilePic.setImageURI(selectImageUri);
+                    registerActivity_profilePic.setVisibility(View.VISIBLE);
+                    lottieAnimationView.setVisibility(View.GONE);
                 }
             } else if (requestCode == 201) {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 if (null != bitmap) {
                     registerActivity_profilePic.setImageBitmap(bitmap);
+                    registerActivity_profilePic.setVisibility(View.VISIBLE);
+                    lottieAnimationView.setVisibility(View.GONE);
                 }
             }
         }
@@ -338,8 +345,12 @@ public class RegisterActivity extends AppCompatActivity {
                         startActivityForResult(intent, 200);
                         break;
                     case R.id.tv_camera:
-                        intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(intent,201);
+                        if (ActivityCompat.checkSelfPermission(RegisterActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(RegisterActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
+                        } else {
+                            intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(intent,201);
+                        }
                         break;
                     case R.id.tv_cancel:
                         closePopupWindow();
@@ -359,6 +370,19 @@ public class RegisterActivity extends AppCompatActivity {
         if (pop != null && pop.isShowing()) {
             pop.dismiss();
             pop = null;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                // close the app
+                Toast.makeText(RegisterActivity.this, "Permission not granted", Toast.LENGTH_LONG).show();
+            } else {
+                startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE),201);
+            }
         }
     }
 
