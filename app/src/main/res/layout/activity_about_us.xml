@@ -31,9 +31,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_1"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp">
+            android:layout_marginRight="20dp">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_1"
@@ -111,9 +111,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/thanks"
-                android:layout_marginLeft="50dp"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="60dp"
                 android:layout_marginBottom="40dp"
                 android:background="@drawable/button_selector"
                 android:text="OK"
