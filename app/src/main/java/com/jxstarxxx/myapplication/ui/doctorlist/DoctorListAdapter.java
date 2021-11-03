@@ -106,6 +106,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.do
                     databaseReference.child("user").child(currentUserUid).child("friendList").child(doctorModel.getUid()).child("chatted").setValue(true);
                     databaseReference.child("user").child(currentUserUid).child("friendList").child(doctorModel.getUid()).child("chatID").setValue(chatId[0]);
                     databaseReference.child("user").child(doctorModel.getUid()).child("friendList").child(currentUserUid).child("chatted").setValue(true);
+                    doctorModel.setChatted(true);
                     databaseReference.child("user").child(doctorModel.getUid()).child("friendList").child(currentUserUid).child("chatID").setValue(chatId[0]);
                     databaseReference.child("chat").child(chatId[0]).child("user_1").setValue(currentUserUid);
                     databaseReference.child("chat").child(chatId[0]).child("user_2").setValue(doctorModel.getUid());

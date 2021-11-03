@@ -104,20 +104,6 @@ public class ChatActivity extends AppCompatActivity {
         floatingAddBtn = findViewById(R.id.floatingActionAddButton);
         floatingAudioBtn = findViewById(R.id.floatingActionAudioButton);
 
-//        heartRate = getIntent().getStringExtra("heartRate");
-//
-//        if (heartRate != null){
-//
-//            final String heartRateTimeStamp = String.valueOf(System.currentTimeMillis());
-//
-//            databaseReference.child("chat").child(chatID).child("user_1").setValue(senderID);
-//            databaseReference.child("chat").child(chatID).child("user_2").setValue(receiverID);
-//            databaseReference.child("chat").child(chatID).child("messages").child(heartRateTimeStamp).child("message").setValue(heartRate);
-//            databaseReference.child("chat").child(chatID).child("messages").child(heartRateTimeStamp).child("user").setValue(senderID);
-//            LocalData.saveLastMessage(chatID, heartRateTimeStamp, ChatActivity.this);
-//
-//        }
-
 
         send_lottie.addAnimatorListener(new AnimatorListenerAdapter() {
             @Override
@@ -216,9 +202,8 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChatActivity.this, HeartRateActivity.class);
-                intent.putExtra("receiverName", Name);
-                intent.putExtra("receiverImage", userImage);
-                Log.i("receiverid", receiverID);
+//                intent.putExtra("receiverName", Name);
+//                intent.putExtra("receiverImage", userImage);
                 intent.putExtra("receiverID", receiverID);
                 intent.putExtra("chatId", chatID);
                 startActivity(intent);
