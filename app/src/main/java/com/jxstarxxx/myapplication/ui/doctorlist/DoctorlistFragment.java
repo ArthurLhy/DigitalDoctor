@@ -1,6 +1,7 @@
 package com.jxstarxxx.myapplication.ui.doctorlist;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -63,6 +64,11 @@ public class DoctorlistFragment extends Fragment {
 
         doctorModels.clear();
 
+        ProgressDialog progressDialog = new ProgressDialog(this.getActivity());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading Friend List ...");
+        progressDialog.show();
+
         databaseReference.child("user").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -81,6 +87,7 @@ public class DoctorlistFragment extends Fragment {
                     }
                     doctorListAdapter.notifyDataSetChanged();
                 }
+                progressDialog.dismiss();
             }
 
             @Override

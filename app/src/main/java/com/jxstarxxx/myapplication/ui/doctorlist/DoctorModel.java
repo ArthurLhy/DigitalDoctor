@@ -43,6 +43,10 @@ public class DoctorModel {
         return chatted;
     }
 
+    public void setChatted(boolean chatted) {
+        this.chatted = chatted;
+    }
+
     public String getUsername() {
         return username;
     }
