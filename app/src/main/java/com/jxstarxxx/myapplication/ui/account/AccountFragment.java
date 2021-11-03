@@ -38,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.jxstarxxx.myapplication.AboutUsActivity;
 import com.jxstarxxx.myapplication.LoginActivity;
 import com.jxstarxxx.myapplication.R;
 import com.jxstarxxx.myapplication.RegisterActivity;
@@ -124,7 +125,7 @@ public class AccountFragment extends Fragment {
         aboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getActivity(), AboutUsActivity.class));
             }
         });
 
