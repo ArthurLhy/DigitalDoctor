@@ -20,6 +20,7 @@ import android.os.HandlerThread;
 import android.util.Size;
 import android.view.Surface;
 import android.view.TextureView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -59,9 +60,10 @@ public class HeartRateActivity extends AppCompatActivity {
     private long [] mTimeArray;
 
     private String chatId;
-    private String receiverName;
+//    private String receiverName;
     private String receiverId;
-    private String receiverImage;
+//    private String receiverImage;
+    private TextView countDown;
 
 
 
@@ -110,8 +112,7 @@ public class HeartRateActivity extends AppCompatActivity {
                     mTimeArray[mNumBeats] = System.currentTimeMillis();
 //                    tv.setText("beats="+mNumBeats+"\ntime="+mTimeArray[mNumBeats]);
                     mNumBeats++;
-                    int countDown = 15 - mNumBeats;
-                    Toast.makeText(HeartRateActivity.this, String.valueOf(countDown), Toast.LENGTH_SHORT).show();
+                    countDown.setText(String.valueOf(15 - mNumBeats));
                     if (mNumBeats == 15) {
                         computeBPM();
                     }
@@ -158,11 +159,12 @@ public class HeartRateActivity extends AppCompatActivity {
 //        firebaseDatabase = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/");
 
 
+        countDown = (TextView) findViewById(R.id.heart_rate_count);
         chatId = getIntent().getStringExtra("chatId");
         receiverId = getIntent().getStringExtra("receiverID");
 
-        receiverName = getIntent().getStringExtra("receiverName");
-        receiverImage = getIntent().getStringExtra("receiverImage");
+//        receiverName = getIntent().getStringExtra("receiverName");
+//        receiverImage = getIntent().getStringExtra("receiverImage");
 
 
 
