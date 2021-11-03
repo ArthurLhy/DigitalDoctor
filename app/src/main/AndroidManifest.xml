@@ -16,6 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".AboutUsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar" >
+        </activity>
+        <activity
             android:name=".ui.account.SetUsernameActivity"
             android:exported="true" />
         <activity
@@ -30,16 +35,14 @@
         </activity>
         <activity
             android:name=".CovidCasesTracker"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".Chat.ChatActivity"
             android:exported="true"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <!-- meta data -->
+            android:theme="@style/Theme.AppCompat.NoActionBar" /> <!-- meta data -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/map_key" />
-        <!-- Activity -->
+            android:value="@string/map_key" /> <!-- Activity -->
         <activity
             android:name=".PermissionActivity"
             android:exported="true" />
@@ -47,20 +50,22 @@
             android:name=".VaccineFinderActivity"
             android:exported="true"
             android:label="@string/vaccine_finder" />
-        <activity android:name=".DoctorListActivity"
-            android:theme="@style/Theme.MyApplication.NoActionBar"/>
+        <activity
+            android:name=".DoctorListActivity"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".DashboardActivity"
             android:label="@string/title_activity_chat_dashboard"
-            android:theme="@style/Theme.MyApplication.NoActionBar"/>
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication.NoActionBar"/>
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".ui.account.ProfileActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".HeartRateActivity"
             android:exported="true" />

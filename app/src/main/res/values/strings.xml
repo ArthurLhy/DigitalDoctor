@@ -46,7 +46,7 @@
     <string name="about_us">About Us</string>
     <string name="profile">Profile</string>
 
-   <!-- String used for case tracker -->
+    <!-- String used for case tracker -->
     <string name="rubicBold" tools:ignore="ReferenceType">@font/rubikbold</string>
     <string name="rubicRegular" tools:ignore="ReferenceType">@font/rubikregular</string>
     <string name="rubicLight" tools:ignore="ReferenceType">@font/rubiklight</string>
