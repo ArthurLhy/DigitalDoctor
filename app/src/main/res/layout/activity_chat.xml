@@ -115,9 +115,9 @@
         android:layout_marginBottom="13dp"
         android:clickable="true"
         android:focusable="true"
-        app:fabCustomSize="40dp"
         android:visibility="invisible"
-        app:srcCompat="@drawable/ic_baseline_mic_24" />
+        app:fabCustomSize="40dp"
+        app:srcCompat="@drawable/ic_heart_rate" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="40dp"
