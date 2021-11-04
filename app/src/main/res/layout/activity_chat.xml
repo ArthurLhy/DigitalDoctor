@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D0D3B7"
+    tools:context=".Chat.ChatActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/blue_700"
+        android:id="@+id/toolbar_for_chat">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="130dp"
+                android:id="@+id/chat_back_button"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_arrow_left_black_48dp"
+                android:layout_centerVertical="true"
+                app:tint="@color/browser_actions_bg_grey">
+
+            </ImageButton>
+
+            <androidx.cardview.widget.CardView
+                app:cardElevation = "16dp"
+                app:cardCornerRadius = "35dp"
+                android:foregroundGravity = "center"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/card_view_of_chat_user"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_account"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/chat_user_image">
+                </ImageView>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User name"
+                android:textSize="25sp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/name_of_chat_user"
+                android:layout_marginTop="80dp"
+                android:textColor="@color/white">
+            </TextView>
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_of_chat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/input_message"
+        android:layout_below="@id/toolbar_for_chat"
+        android:padding="7dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <EditText
+        android:id="@+id/input_message"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/message_shape"
+        android:hint="Type the message here"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textAlignment="textStart"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="7dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_alignParentBottom="true">
+    </EditText>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionAddButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:fabCustomSize="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:focusable="true"
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_baseline_add_24" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionAudioButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/floatingActionAddButton"
+        android:layout_alignStart="@+id/floatingActionAddButton"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="13dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="invisible"
+        app:fabCustomSize="40dp"
+        app:srcCompat="@drawable/ic_heart_rate" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/card_view_of_send"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:backgroundTint="#82B584"
+        app:cardCornerRadius="20dp">
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/send_lottie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_rawRes="@raw/send_completely"
+            app:lottie_autoPlay="false"/>
+
+        <ImageButton
+            android:id="@+id/send_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:background="@android:color/transparent"
+            app:tint="@color/black">
+        </ImageButton>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</RelativeLayout>

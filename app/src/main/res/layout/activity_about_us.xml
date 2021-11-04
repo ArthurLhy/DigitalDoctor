@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutUsActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/blue_700" />
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="35dp"
+        android:background="@color/blue_700"
+        android:text="About Us"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="32dp"
+        android:textStyle="bold" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/uom_logo" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/team_member"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cv_1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="@string/team_member"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:fontFamily="@string/rubicBold"/>
+
+            <TextView
+                android:id="@+id/team_member_name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/team_member"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="@string/team_member_name1"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rubikbold"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/team_member_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/team_member_name1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+                android:text="@string/team_member_name2"
+                android:textColor="@color/black"
+                android:fontFamily="@string/rubicBold"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/team_member_name2"
+                android:layout_marginTop="20dp"
+                android:justificationMode="inter_word"
+                android:text="@string/content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rubikregular"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/thanks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/content"
+                android:layout_marginTop="20dp"
+                android:text="@string/thanks"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rubikregular"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/back_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/thanks"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/button_selector"
+                android:text="OK"
+                android:textAlignment="center"
+                android:textSize="18dp">
+
+            </Button>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

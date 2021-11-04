@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_doctor_list"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_doctor_list" />
+
+
+    <item
+        android:id="@+id/navigation_add_doctor"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/title_add_doctors" />
+
+</menu>

@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jxstarxxx.myapplication">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,23 +16,62 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".chatDashboardActivity"
-            android:label="@string/title_activity_chat_dashboard"></activity>
-        <activity android:name=".RegisterActivity2" />
+            android:name=".HeartRateGuideActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".AboutUsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".ui.account.SetUsernameActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.MyApplication.NoActionBar">
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CovidCasesTracker"
+            android:exported="true" />
+        <activity
+            android:name=".Chat.ChatActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.NoActionBar" /> <!-- meta data -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" /> <!-- Activity -->
+        <activity
+            android:name=".PermissionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ClinicFinderActivity"
+            android:exported="true"
+            android:label="@string/clinic_finder"/>
+        <activity
+            android:name=".DoctorListActivity"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".DashboardActivity"
+            android:label="@string/title_activity_chat_dashboard"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".ui.account.ProfileActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".HeartRateActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
