@@ -3,7 +3,6 @@ This is a project of Group T01/01-3 for COMP 90018, Sem 2, 2021.
 Digital Doctor is designed for users to remotely consult a doctor about their symptoms without physically going to the clinic.
 
 **Demostration On YouTube:** https://youtu.be/GjS66ZTT-VA
-[![IMAGE ALT TEXT HERE](https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/youtube.png)](https://youtu.be/GjS66ZTT-VA)
 
 ## Build and Run
 ### Compilation and build tools
@@ -46,8 +45,6 @@ Please install the tools required. Download the code and open it with Android St
 * **Modules**
 
 <img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/finddoctor.jpg" width="200">  &nbsp; &nbsp; <img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/covidTracker.jpg" width="200">  &nbsp;  &nbsp; <img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/ClinicFnder.jpg" width="200">  &nbsp;  &nbsp; <img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/heartrate.jpg" width="200">
-
-&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; **Find a doctor** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp; **Covid Cases Tracker** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; **Clinic Finder** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; **Heart Rate Testing**
 
 ***
 * **Chat and Message Page**
