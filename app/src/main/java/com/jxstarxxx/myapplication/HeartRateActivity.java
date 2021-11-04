@@ -30,7 +30,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -55,12 +54,12 @@ public class HeartRateActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     private int bpm;
-    private int mNumCaptures = 0;
-    private int mNumBeats = 0;
-    private int mCurrentRollingAverage;
-    private int mLastRollingAverage;
-    private int mLastLastRollingAverage;
-    private long [] mTimeArray;
+    private int captureCounter = 0;
+    private int beatCounter = 0;
+    private int currentAvg;
+    private int lastAvg;
+    private int lastLastAvg;
+    private long [] timeArray;
 
     private String chatId;
     private String receiverId;
@@ -95,35 +94,30 @@ public class HeartRateActivity extends AppCompatActivity {
                 int red = (pixels[i] >> 16) & 0xFF;
                 sum = sum + red;
             }
-            // Waits 20 captures, to remove startup artifacts.  First average is the sum.
-            if (mNumCaptures == 20) {
-                mCurrentRollingAverage = sum;
+            if (captureCounter == 20) {
+                currentAvg = sum;
             }
-            // Next 18 averages needs to incorporate the sum with the correct N multiplier
-            // in rolling average.
-            else if (mNumCaptures > 20 && mNumCaptures < 49) {
-                mCurrentRollingAverage = (mCurrentRollingAverage*(mNumCaptures-20) + sum)/(mNumCaptures-19);
+
+            else if (captureCounter > 20 && captureCounter < 49) {
+                currentAvg = (currentAvg *(captureCounter -20) + sum)/(captureCounter -19);
             }
-            // From 49 on, the rolling average incorporates the last 30 rolling averages.
-            else if (mNumCaptures >= 49) {
-                mCurrentRollingAverage = (mCurrentRollingAverage*29 + sum)/30;
-                if (mLastRollingAverage > mCurrentRollingAverage && mLastRollingAverage > mLastLastRollingAverage && mNumBeats < 15) {
-                    mTimeArray[mNumBeats] = System.currentTimeMillis();
+            else if (captureCounter >= 49) {
+                currentAvg = (currentAvg *29 + sum)/30;
+                if (lastAvg > currentAvg && lastAvg > lastLastAvg && beatCounter < 15) {
+                    timeArray[beatCounter] = System.currentTimeMillis();
 //                    tv.setText("beats="+mNumBeats+"\ntime="+mTimeArray[mNumBeats]);
-                    mNumBeats++;
-                    countDown.setText(String.valueOf(100*mNumBeats/15) + "%");
-                    progressBar.setProgress(100*mNumBeats/15, true);
-                    if (mNumBeats == 15) {
+                    beatCounter++;
+                    countDown.setText(String.valueOf(100* beatCounter /15) + "%");
+                    progressBar.setProgress(100* beatCounter /15, true);
+                    if (beatCounter == 15) {
                         computeBPM();
                     }
                 }
             }
 
-            // Another capture
-            mNumCaptures++;
-            // Save previous two values
-            mLastLastRollingAverage = mLastRollingAverage;
-            mLastRollingAverage = mCurrentRollingAverage;
+            captureCounter++;
+            lastLastAvg = lastAvg;
+            lastAvg = currentAvg;
         }
     };
 
@@ -163,7 +157,7 @@ public class HeartRateActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
         countDown = (TextView) findViewById(R.id.heart_rate_count);
 
-        mTimeArray = new long [15];
+        timeArray = new long [15];
 
     }
 
@@ -171,7 +165,7 @@ public class HeartRateActivity extends AppCompatActivity {
         int med;
         long [] timedist = new long [14];
         for (int i = 0; i < 14; i++) {
-            timedist[i] = mTimeArray[i+1] - mTimeArray[i];
+            timedist[i] = timeArray[i+1] - timeArray[i];
         }
         Arrays.sort(timedist);
         med = (int) timedist[timedist.length/2];
