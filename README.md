@@ -30,8 +30,6 @@ Please install the tools required. Download the code and open it with Android St
 
 
 
-
-
 ## Authors
 
 ```
