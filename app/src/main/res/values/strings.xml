@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- String used for Activity label    -->
     <string name="app_name">Digital Doctor</string>
-    <string name="vaccine_finder">Vaccine Finder</string>
+    <string name="clinic_finder">Clinic Finder</string>
     <string name="action_settings">Settings</string>
 
     <!-- Strings used for fragments for navigation -->

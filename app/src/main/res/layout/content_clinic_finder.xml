@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".VaccineFinderActivity"
-    tools:showIn="@layout/activity_vaccine_finder">
+    tools:context=".ClinicFinderActivity"
+    tools:showIn="@layout/activity_clinic_finder">
 
     <fragment
         android:id="@+id/map"
@@ -57,7 +57,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_selector"
-        android:text="Find Vaccine"
+        android:text="Find Clinics"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 

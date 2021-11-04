@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VaccineFinderActivity">
+    tools:context=".ClinicFinderActivity">
 
-    <include layout="@layout/content_vaccine_finder"/>
+    <include layout="@layout/content_clinic_finder"/>
 
 </LinearLayout>

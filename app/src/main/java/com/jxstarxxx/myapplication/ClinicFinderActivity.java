@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.common.util.CollectionUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -46,11 +45,8 @@ import com.google.android.libraries.places.api.model.AutocompletePrediction;
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.model.RectangularBounds;
-import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
-import com.google.android.libraries.places.api.net.FetchPlaceResponse;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
-import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.jxstarxxx.myapplication.DTO.HospitalsDTO;
 import com.jxstarxxx.myapplication.myUtils.MapDataParser;
@@ -67,10 +63,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
 
-public class VaccineFinderActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class ClinicFinderActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final Integer REQUEST_CODE = 44;
     private static final float MAP_ZOOM = 13;
@@ -92,7 +86,7 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vaccine_finder);
+        setContentView(R.layout.activity_clinic_finder);
 
         materialSearchBar = findViewById(R.id.searchBar);
         btnFind = findViewById(R.id.btn_find);
@@ -104,8 +98,8 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
         mapFragment.getMapAsync(this);
         mapView = mapFragment.getView();
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(VaccineFinderActivity.this);
-        Places.initialize(VaccineFinderActivity.this, getResources().getString(R.string.map_key));
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(ClinicFinderActivity.this);
+        Places.initialize(ClinicFinderActivity.this, getResources().getString(R.string.map_key));
         placesClient = Places.createClient(this);
         AutocompleteSessionToken token = AutocompleteSessionToken.newInstance();
 
@@ -288,23 +282,23 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
 
-        SettingsClient settingsClient = LocationServices.getSettingsClient(VaccineFinderActivity.this);
+        SettingsClient settingsClient = LocationServices.getSettingsClient(ClinicFinderActivity.this);
         Task<LocationSettingsResponse> task = settingsClient.checkLocationSettings(builder.build());
 
-        task.addOnSuccessListener(VaccineFinderActivity.this, new OnSuccessListener<LocationSettingsResponse>() {
+        task.addOnSuccessListener(ClinicFinderActivity.this, new OnSuccessListener<LocationSettingsResponse>() {
             @Override
             public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                 getCurrentLocation();
             }
         });
 
-        task.addOnFailureListener(VaccineFinderActivity.this, new OnFailureListener() {
+        task.addOnFailureListener(ClinicFinderActivity.this, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 if (e instanceof ResolvableApiException) {
                     ResolvableApiException resolvableApiException = (ResolvableApiException) e;
                     try {
-                        resolvableApiException.startResolutionForResult(VaccineFinderActivity.this, REQUEST_CODE);
+                        resolvableApiException.startResolutionForResult(ClinicFinderActivity.this, REQUEST_CODE);
                     } catch (IntentSender.SendIntentException sendIntentException) {
                         sendIntentException.printStackTrace();
                     }
@@ -366,7 +360,7 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
                        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
                    }
                } else {
-                   Toast.makeText(VaccineFinderActivity.this, "Unable to get the last location", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(ClinicFinderActivity.this, "Unable to get the last location", Toast.LENGTH_SHORT).show();
                }
            }
        });

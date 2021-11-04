@@ -50,9 +50,9 @@
             android:name=".PermissionActivity"
             android:exported="true" />
         <activity
-            android:name=".VaccineFinderActivity"
+            android:name=".ClinicFinderActivity"
             android:exported="true"
-            android:label="@string/vaccine_finder" />
+            android:label="@string/clinic_finder"/>
         <activity
             android:name=".DoctorListActivity"
             android:theme="@style/Theme.MyApplication.NoActionBar" />

@@ -197,7 +197,7 @@
                             android:layout_below="@+id/dashboard_vaccine_finder"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="10dp"
-                            android:text="Vaccine Finder"
+                            android:text="Clinic Finder"
                             android:textSize="18sp" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
