@@ -3,7 +3,7 @@ This is a project of Group T01/01-3 for COMP 90018, Sem 2, 2021.
 Digital Doctor is designed for users to remotely consult a doctor about their symptoms without physically going to the clinic.
 
 **Demostration On YouTube:**
-https://youtu.be/GjS66ZTT-VA
+[![IMAGE ALT TEXT HERE](https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/youtube.png)](https://youtu.be/GjS66ZTT-VA)
 
 ## Build and Run
 ### Compilation and build tools
