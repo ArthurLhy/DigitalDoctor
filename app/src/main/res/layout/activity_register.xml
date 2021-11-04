@@ -109,7 +109,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/icon_del"
+                    android:src="@drawable/ic_del"
                     android:visibility="invisible" />
 
             </RelativeLayout>
@@ -151,7 +151,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/icon_del"
+                    android:src="@drawable/ic_del"
                     android:visibility="invisible" />
 
             </RelativeLayout>
@@ -192,7 +192,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/icon_del"
+                    android:src="@drawable/ic_del"
                     android:visibility="invisible" />
 
             </RelativeLayout>
@@ -233,7 +233,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/icon_del"
+                    android:src="@drawable/ic_del"
                     android:visibility="invisible" />
 
             </RelativeLayout>
@@ -274,7 +274,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/icon_del"
+                    android:src="@drawable/ic_del"
                     android:visibility="invisible" />
 
                 <TextView

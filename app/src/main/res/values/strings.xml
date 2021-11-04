@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- String used for Activity label    -->
-    <string name="app_name">MedicalChat</string>
+    <string name="app_name">Digital Doctor</string>
     <string name="vaccine_finder">Vaccine Finder</string>
     <string name="action_settings">Settings</string>
 

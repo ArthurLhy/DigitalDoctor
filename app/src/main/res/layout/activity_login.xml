@@ -53,7 +53,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginRight="10dp"
-                android:drawableLeft="@drawable/icon_user"
+                android:drawableLeft="@drawable/ic_account"
                 android:drawablePadding="5dp"
                 android:hint="@string/email_address"
                 android:maxLines="1"
@@ -71,8 +71,8 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/icon_del"
-                android:visibility="invisible"/>
+                android:src="@drawable/ic_del"
+                android:visibility="invisible" />
 
             <EditText
                 android:id="@+id/psd_edit"
@@ -82,7 +82,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:drawableLeft="@drawable/icon_password"
+                android:drawableLeft="@drawable/ic_password"
                 android:drawablePadding="5dp"
                 android:hint="@string/password"
                 android:inputType="textPassword"
@@ -101,7 +101,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="35dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/icon_del"
+                android:src="@drawable/ic_del"
                 android:visibility="invisible"/>
 
             <Button
