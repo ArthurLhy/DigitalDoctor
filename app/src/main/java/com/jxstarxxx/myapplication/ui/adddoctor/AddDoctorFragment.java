@@ -89,7 +89,7 @@ public class AddDoctorFragment extends Fragment {
             }
         });
 
-        departmentList = new String[] {"surgery", "cardiology"};
+        departmentList = new String[] {"General Practitioner", "Dentist", "Physio", "Optometrist", "Audiologist"};
 
         ArrayAdapter<String> clinicAdapter = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item_style_add_doctor, clinicList);
         ArrayAdapter<String> departmentAdapter = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item_style_add_doctor, departmentList);
