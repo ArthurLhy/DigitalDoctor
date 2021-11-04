@@ -37,6 +37,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class HeartRateActivity extends AppCompatActivity {
 
@@ -153,7 +154,7 @@ public class HeartRateActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heart_rate);
-
+        Objects.requireNonNull(getSupportActionBar()).hide();
         chatId = getIntent().getStringExtra("chatId");
         receiverId = getIntent().getStringExtra("receiverID");
 

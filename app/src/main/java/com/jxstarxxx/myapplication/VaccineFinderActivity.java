@@ -67,11 +67,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class VaccineFinderActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final Integer REQUEST_CODE = 44;
-    private static final float MAP_ZOOM = 12;
+    private static final float MAP_ZOOM = 13;
 
     private SupportMapFragment mapFragment;
     private GoogleMap mapAPI;
@@ -84,7 +86,7 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
 
     private MaterialSearchBar materialSearchBar;
     private View mapView;
-    private Button btnFind;
+    private Button btnFind, zoomIn, zoomOut;
     private RippleBackground rippleBg;
 
     @Override
@@ -95,6 +97,8 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
         materialSearchBar = findViewById(R.id.searchBar);
         btnFind = findViewById(R.id.btn_find);
         rippleBg = findViewById(R.id.ripple_bg);
+        zoomIn = findViewById(R.id.zoomInBtn);
+        zoomOut = findViewById(R.id.zoomOutBtn);
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -220,6 +224,20 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
             @Override
             public void OnItemDeleteListener(int position, View v) {
 
+            }
+        });
+
+        zoomOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mapAPI.animateCamera(CameraUpdateFactory.zoomOut());
+            }
+        });
+
+        zoomIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mapAPI.animateCamera(CameraUpdateFactory.zoomIn());
             }
         });
 
@@ -411,7 +429,6 @@ public class VaccineFinderActivity extends AppCompatActivity implements OnMapRea
         protected List<HospitalsDTO> doInBackground(String... strings) {
             MapDataParser mapDataParser = new MapDataParser();
             List<HospitalsDTO> result = new ArrayList<>(mapDataParser.parse(strings[0]));
-            Log.i("Hospital information", result.toString());
             return result;
         }
 

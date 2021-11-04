@@ -15,20 +15,21 @@
         android:layout_height="match_parent" />
 
     <com.skyfishjy.library.RippleBackground
+        android:id="@+id/ripple_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/ripple_bg"
         app:rb_color="#0099CC"
+        app:rb_duration="3000"
         app:rb_radius="32dp"
         app:rb_rippleAmount="4"
-        app:rb_duration="3000"
         app:rb_scale="6">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:translationY="-18dp"
-            android:src="@drawable/ic_placeholder"/>
+            android:src="@drawable/ic_placeholder"
+            android:translationY="-18dp" />
     </com.skyfishjy.library.RippleBackground>
 
     <com.mancj.materialsearchbar.MaterialSearchBar
@@ -47,7 +48,7 @@
 
     <Button
         android:id="@+id/btn_find"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
@@ -58,6 +59,29 @@
         android:background="@drawable/button_selector"
         android:text="Find Vaccine"
         android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/zoomOutBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="80dp"
+        android:layout_marginStart="12dp"
+        android:background="#FFFFFF"
+        android:text="-"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/zoomInBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_above="@+id/zoomOutBtn"
+        android:layout_alignStart="@+id/zoomOutBtn"
+        android:background="#FFFFFF"
+        android:text="+"
         android:textStyle="bold" />
 
 </RelativeLayout>

@@ -23,12 +23,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@string/rubicBold"
-        android:gravity="center_horizontal"
         android:paddingLeft="30dp"
-        android:lineHeight="30dp"
+        android:lineHeight="20dp"
         android:paddingRight="30dp"
         android:text="Place your finger lightly on the camera lens. Try not to move it."
         android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@string/rubicBold"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="Please note: The accuracy of heart rate depends on the device your are using. The result cannot be used for offcial medical diagnose purposes."
+        android:textSize="12sp" />
 
     <Button
         android:id="@+id/start_button"
@@ -36,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/button_selector"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="30dp"
         android:text="Get Start"
         android:fontFamily="@string/rubicBold"
         android:textSize="18dp" />
