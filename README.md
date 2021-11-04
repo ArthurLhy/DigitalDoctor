@@ -26,11 +26,32 @@ Please install the tools required. Download the code and open it with Android St
 * Google Map API
 * Covid-19 Case Tracker API: https://corona.lmao.ninja/v2/
 ### Screenshops
-<img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/Account.jpg" width="240" alt="gif"><img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/Account.jpg" width="240">
+***
+* **Login Page**
 
-huh sdsd
+<img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/login.jpg" width="240">
 
+***
+* **Darshboards of User Client and Doctor Client**  
 
+<img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/userCli.jpg" width="200">  &nbsp;  &nbsp;  &nbsp; <img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/doctorCli.jpg" width="200">
+
+&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; **Client for User** &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp; **Client for Doctors**
+
+**Note:** You can use the client for doctor by login with a doctor account
+***
+* **Modules**
+
+<img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/finddoctor.jpg" width="200">  &nbsp; &nbsp; <img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/covidTracker.jpg" width="200">  &nbsp;  &nbsp; <img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/ClinicFnder.jpg" width="200">  &nbsp;  &nbsp; <img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/heartrate.jpg" width="200">
+
+&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; **Find a doctor** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp; **Covid Cases Tracker** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; **Clinic Finder** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; **Heart Rate Testing**
+
+***
+* **Chat and Message Page**
+
+<img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/message.jpg" width="240"> 
+
+***
 
 ## Authors
 
