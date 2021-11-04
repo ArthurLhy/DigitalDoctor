@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_height="400dp">
 
         <ImageView
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@string/rubicBold"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:text="Please note: The accuracy of heart rate depends on the device your are using. The result cannot be used for offcial medical diagnose purposes."
@@ -45,7 +45,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/button_selector"
         android:fontFamily="@string/rubicBold"
         android:text="Get Start"
