@@ -102,9 +102,8 @@ public class DashboardFragment extends Fragment {
             public void onClick(View v) {
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, 1);
-                } else {
-                    startActivity(new Intent(getActivity(), HeartRateGuideActivity.class));
                 }
+                startActivity(new Intent(getActivity(), HeartRateGuideActivity.class));
             }
         });
 
