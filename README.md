@@ -26,7 +26,9 @@ Please install the tools required. Download the code and open it with Android St
 * Google Map API
 * Covid-19 Case Tracker API: https://corona.lmao.ninja/v2/
 ### Screenshops
+<img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/Account.jpg" width="240" alt="gif"><img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/Account.jpg" width="240">
 
+huh sdsd
 
 
 
