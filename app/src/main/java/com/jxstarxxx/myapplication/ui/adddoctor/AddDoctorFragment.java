@@ -1,5 +1,6 @@
 package com.jxstarxxx.myapplication.ui.adddoctor;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -58,6 +59,8 @@ public class AddDoctorFragment extends Fragment {
     private Button searchButton;
     private AddDoctorAdapter adddoctorAdapter;
 
+    private ProgressDialog progressDialog;
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         adddoctorViewModel = new ViewModelProvider(this).get(AddDoctorViewModel.class);
@@ -73,6 +76,12 @@ public class AddDoctorFragment extends Fragment {
         departmentText = root.findViewById(R.id.text_department);
 
         clinicList = new ArrayList<>();
+
+        progressDialog = new ProgressDialog(this.getActivity());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading Doctor Information ...");
+        progressDialog.show();
+
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -151,13 +160,19 @@ public class AddDoctorFragment extends Fragment {
                     Doctor newDoctor = new Doctor(doctorFullName, doctorClinic, doctorDepartment, doctorUid, doctorImageUrl);
                     totalDoctorList.add(newDoctor);
                 }
+                progressDialog.dismiss();
             }
+
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
                 Log.i("Status", "Cancelled");
             }
+
+
         });
+
+
 
 
         searchButton.setOnClickListener(new View.OnClickListener() {
