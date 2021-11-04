@@ -28,7 +28,7 @@ Please install the tools required. Download the code and open it with Android St
 ### External API Used
 * Google Map API
 * Covid-19 Case Tracker API: https://corona.lmao.ninja/v2/
-### Screenshops
+### Screenshots
 ***
 * **Login Page**
 
