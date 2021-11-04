@@ -14,7 +14,7 @@ Please install the tools required. Download the code and open it with Android St
 1. In the toolbar, select your app from the run configurations drop-down menu.
 2. From the target device drop-down menu, select the device that you want to run your app on.
   ![image](https://user-images.githubusercontent.com/58505249/140388523-cfe2834d-df14-421b-82a5-102ed6d7744f.png)
-3. Click the button ![image](https://user-images.githubusercontent.com/58505249/140389513-90dbdd7d-9967-47c8-9685-8066a19a82ea.png =100) to build and run the app. The build process may cost several minutes. After successfully build, Android Studio will install the app on the selected device, and now you can use it on your device.
+3. Click the button ![image](https://user-images.githubusercontent.com/58505249/140389513-90dbdd7d-9967-47c8-9685-8066a19a82ea.png) to build and run the app. The build process may cost several minutes. After successfully build, Android Studio will install the app on the selected device, and now you can use it on your device.
 
 **Note:** You can run the app either on a physical device or a emulator. If you run on a emulator, please create a vitural device with API level 29 + using AVD manager. Alternatively, if you run on a physical device, please connect the device via USB and ensure that the device can use service provided by **Google Play**. The app will require some permissions such as GPS permission and Camera permission. To use the app, please confirm to grant permissions to the app. 
 
