@@ -56,9 +56,9 @@
     <string name="content">Digital Doctor is a communication app that provides a platform for
         patients and doctors to discuss the patient\'s conditions. Besides the Chat function,
         it also integrated a function to monitor heart rate via a mobile device,
-        which may assist doctors to understand patient’s health condition. Vaccine Finder and
-        Covid-19 Tracker are also cooperated to the current demands. The Vaccine Finder helps
-        the patient to find the local medical centres that offer vaccination service. Covid-19
-        Tracker shows Covid-19 data from the selected country. </string>
+        which may assist doctors to understand patient’s health condition. Clinic Finder and
+        Covid-19 Tracker are also cooperated to the current demands. The Clinic Finder helps
+        the patient to find the local medical centres and hospitals through Google Map. Covid-19
+        Tracker shows Covid-19 data from the selected country, updating everyday. </string>
     <string name="thanks">Some Icons of this app are from www.flaticon.com</string>
 </resources>
