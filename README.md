@@ -62,7 +62,7 @@ xus3@student.unimelb.edu.au
 
 ```
 Yicheng Zhang
-yichezhang3@student.unimelb.
+yichezhang3@student.unimelb.edu.au
 ```
 
 ```
