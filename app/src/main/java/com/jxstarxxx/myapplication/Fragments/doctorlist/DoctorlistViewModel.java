@@ -1,14 +1,14 @@
-package com.jxstarxxx.myapplication.ui.adddoctor;
+package com.jxstarxxx.myapplication.Fragments.doctorlist;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class AddDoctorViewModel extends ViewModel {
+public class DoctorlistViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public AddDoctorViewModel() {
+    public DoctorlistViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is notifications fragment");
     }
@@ -17,3 +17,4 @@ public class AddDoctorViewModel extends ViewModel {
         return mText;
     }
 }
+

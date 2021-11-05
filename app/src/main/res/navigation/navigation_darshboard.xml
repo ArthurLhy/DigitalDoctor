@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_message"
-        android:name="com.jxstarxxx.myapplication.ui.message.MessageFragment"
+        android:name="com.jxstarxxx.myapplication.Fragments.message.MessageFragment"
         android:label="@string/title_message"
         tools:layout="@layout/fragment_message" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.jxstarxxx.myapplication.ui.dashboard.DashboardFragment"
+        android:name="com.jxstarxxx.myapplication.Fragments.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_account"
-        android:name="com.jxstarxxx.myapplication.ui.account.AccountFragment"
+        android:name="com.jxstarxxx.myapplication.Fragments.account.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account" />
 

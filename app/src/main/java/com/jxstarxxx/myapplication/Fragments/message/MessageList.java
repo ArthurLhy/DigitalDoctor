@@ -1,4 +1,4 @@
-package com.jxstarxxx.myapplication.ui.message;
+package com.jxstarxxx.myapplication.Fragments.message;
 
 public class MessageList {
 

@@ -1,4 +1,4 @@
-package com.jxstarxxx.myapplication.ui.adddoctor;
+package com.jxstarxxx.myapplication.Fragments.adddoctor;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jxstarxxx.myapplication.DTO.DoctorDTO;
+import com.jxstarxxx.myapplication.DTO.FriendListDoctor;
 import com.jxstarxxx.myapplication.DTO.Doctor;
 import com.jxstarxxx.myapplication.R;
 import com.jxstarxxx.myapplication.databinding.FragmentAdddoctorBinding;
@@ -50,7 +50,7 @@ public class AddDoctorFragment extends Fragment {
     private List<String> clinicList;
     private String[] departmentList;
 
-    private List<DoctorDTO> doctorDTOS = new ArrayList<>();
+    private List<FriendListDoctor> friendListDoctors = new ArrayList<>();
 
     private AutoCompleteTextView clinicText;
     private AutoCompleteTextView departmentText;
@@ -108,7 +108,7 @@ public class AddDoctorFragment extends Fragment {
         clinicText.setAdapter(clinicAdapter);
         departmentText.setAdapter(departmentAdapter);
 
-        adddoctorAdapter = new AddDoctorAdapter(this.getActivity(), doctorDTOS);
+        adddoctorAdapter = new AddDoctorAdapter(this.getActivity(), friendListDoctors);
         addDoctorRecyclerView.setAdapter(adddoctorAdapter);
 
         searchButton = (Button) root.findViewById(R.id.add_doctor_search_button);
@@ -180,7 +180,7 @@ public class AddDoctorFragment extends Fragment {
             public void onClick(View v) {
                 String clinicName = clinicText.getText().toString();
                 String departmentName = departmentText.getText().toString();
-                doctorDTOS.clear();
+                friendListDoctors.clear();
 
                 // filter doctors using clinic and department
                 List<Doctor> doctorList = retrieveDoctors(clinicName, departmentName, totalDoctorList);
@@ -194,13 +194,13 @@ public class AddDoctorFragment extends Fragment {
                             }
                         }
 
-                        DoctorDTO doctorDTO = new DoctorDTO(currentDoctor.getUid(),
+                        FriendListDoctor friendListDoctor = new FriendListDoctor(currentDoctor.getUid(),
                                 currentDoctor.getFullName(),
                                 currentDoctor.getClinicName(),
                                 currentDoctor.getDepartmentName(),
                                 currentDoctor.getImageUrl(), isAdded);
 
-                        doctorDTOS.add(doctorDTO);
+                        friendListDoctors.add(friendListDoctor);
                     }
                 }
                 adddoctorAdapter.notifyDataSetChanged();

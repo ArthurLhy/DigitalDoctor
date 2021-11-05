@@ -1,4 +1,4 @@
-package com.jxstarxxx.myapplication.ui.message;
+package com.jxstarxxx.myapplication.Fragments.message;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -24,7 +24,6 @@ import com.jxstarxxx.myapplication.databinding.FragmentMessageBinding;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class MessageFragment extends Fragment {
 

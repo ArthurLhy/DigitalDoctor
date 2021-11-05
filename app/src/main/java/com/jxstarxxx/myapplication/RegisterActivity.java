@@ -3,7 +3,6 @@ package com.jxstarxxx.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
@@ -16,7 +15,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -36,21 +34,16 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.jxstarxxx.myapplication.DTO.User;
+import com.jxstarxxx.myapplication.MyUtils.RegisterTextClear;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -247,11 +240,11 @@ public class RegisterActivity extends AppCompatActivity {
         registerActivity_firebaseDatabase = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/");
         registerActivity_firebaseStorage = FirebaseStorage.getInstance("gs://mobile-chat-demo-cacdf.appspot.com/");
 
-        TextClearTwo.addClearListener(registerActivity_emailID, registerActivity_emailID_del, registerActivity_reg_user);
-        TextClearTwo.addClearListener(registerActivity_password, registerActivity_password_del, registerActivity_reg_password);
-        TextClearTwo.addClearListener(registerActivity_userName, registerActivity_userName_del, registerActivity_reg_userName);
-        TextClearTwo.addClearListener(registerActivity_firstName, registerActivity_firstName_del, registerActivity_reg_firstName);
-        TextClearTwo.addClearListener(registerActivity_lastName, registerActivity_lastName_del, registerActivity_reg_lastName);
+        RegisterTextClear.addClearListener(registerActivity_emailID, registerActivity_emailID_del, registerActivity_reg_user);
+        RegisterTextClear.addClearListener(registerActivity_password, registerActivity_password_del, registerActivity_reg_password);
+        RegisterTextClear.addClearListener(registerActivity_userName, registerActivity_userName_del, registerActivity_reg_userName);
+        RegisterTextClear.addClearListener(registerActivity_firstName, registerActivity_firstName_del, registerActivity_reg_firstName);
+        RegisterTextClear.addClearListener(registerActivity_lastName, registerActivity_lastName_del, registerActivity_reg_lastName);
 
     }
 

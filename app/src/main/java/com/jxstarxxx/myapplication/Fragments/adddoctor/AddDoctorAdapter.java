@@ -1,4 +1,4 @@
-package com.jxstarxxx.myapplication.ui.adddoctor;
+package com.jxstarxxx.myapplication.Fragments.adddoctor;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.jxstarxxx.myapplication.DTO.DoctorDTO;
+import com.jxstarxxx.myapplication.DTO.FriendListDoctor;
 import com.jxstarxxx.myapplication.R;
 import com.squareup.picasso.Picasso;
 
@@ -25,7 +25,7 @@ public class AddDoctorAdapter extends RecyclerView.Adapter<AddDoctorAdapter.Sear
     private final Context context;
 
 
-    List<DoctorDTO> doctorDTOS;
+    List<FriendListDoctor> friendListDoctors;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -49,9 +49,9 @@ public class AddDoctorAdapter extends RecyclerView.Adapter<AddDoctorAdapter.Sear
     }
 
 
-    public AddDoctorAdapter(Context context, List<DoctorDTO> doctorDTOS) {
+    public AddDoctorAdapter(Context context, List<FriendListDoctor> friendListDoctors) {
         this.context = context;
-        this.doctorDTOS = doctorDTOS;
+        this.friendListDoctors = friendListDoctors;
     }
 
     @NonNull
@@ -64,7 +64,7 @@ public class AddDoctorAdapter extends RecyclerView.Adapter<AddDoctorAdapter.Sear
     @Override
     public void onBindViewHolder(AddDoctorAdapter.SearchViewHolder holder, int position) {
 
-        DoctorDTO addDoctor = doctorDTOS.get(position);
+        FriendListDoctor addDoctor = friendListDoctors.get(position);
 
         holder.fullName.setText(addDoctor.getFullName());
         holder.clinicName.setText(addDoctor.getClinicName());
@@ -89,6 +89,6 @@ public class AddDoctorAdapter extends RecyclerView.Adapter<AddDoctorAdapter.Sear
     }
     @Override
     public int getItemCount() {
-        return doctorDTOS.size();
+        return friendListDoctors.size();
     }
 }

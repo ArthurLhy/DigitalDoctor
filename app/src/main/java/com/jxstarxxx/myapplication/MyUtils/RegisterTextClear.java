@@ -1,4 +1,4 @@
-package com.jxstarxxx.myapplication;
+package com.jxstarxxx.myapplication.MyUtils;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -7,7 +7,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class TextClearTwo {
+public class RegisterTextClear {
     public static void addClearListener(final EditText editText, final ImageView imageView, final TextView textView) {
 
         editText.addTextChangedListener(new TextWatcher() {

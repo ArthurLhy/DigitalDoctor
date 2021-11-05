@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/back_blue"
-    tools:context=".ui.adddoctor.AddDoctorFragment">
+    tools:context=".Fragments.adddoctor.AddDoctorFragment">
 
     <View
         android:id="@+id/addColorBoard"

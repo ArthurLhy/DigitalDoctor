@@ -1,13 +1,11 @@
 package com.jxstarxxx.myapplication.DTO;
 
-public class DoctorDTO {
+public class FriendListDoctor {
 
     private String uid, fullName, clinicName, departmentName, imgUrl;
     private boolean isAdded;
 
-
-
-    public DoctorDTO(String uid, String full_name, String clinicName, String departmentName, String imgUrl, boolean isAdded) {
+    public FriendListDoctor(String uid, String full_name, String clinicName, String departmentName, String imgUrl, boolean isAdded) {
         this.uid = uid;
         this.fullName = full_name;
         this.clinicName = clinicName;

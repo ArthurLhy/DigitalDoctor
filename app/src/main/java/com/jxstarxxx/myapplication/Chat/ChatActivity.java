@@ -30,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.jxstarxxx.myapplication.DTO.Message;
 import com.jxstarxxx.myapplication.HeartRateActivity;
 import com.jxstarxxx.myapplication.R;
-import com.jxstarxxx.myapplication.ui.message.LocalData;
+import com.jxstarxxx.myapplication.Fragments.message.LocalData;
 import com.squareup.picasso.Picasso;
 
 import java.sql.Timestamp;

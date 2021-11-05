@@ -1,4 +1,4 @@
-package com.jxstarxxx.myapplication.ui.dashboard;
+package com.jxstarxxx.myapplication.Fragments.dashboard;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -25,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jxstarxxx.myapplication.CovidCasesTracker;
 import com.jxstarxxx.myapplication.DoctorListActivity;
-import com.jxstarxxx.myapplication.HeartRateActivity;
 import com.jxstarxxx.myapplication.HeartRateGuideActivity;
 import com.jxstarxxx.myapplication.PermissionActivity;
 import com.jxstarxxx.myapplication.R;

@@ -16,6 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.jxstarxxx.myapplication.MyUtils.LoginTextClear;
 //import com.jxstarxxx.myapplication.databinding.ActivityMainBinding;
 
 import android.widget.Button;
@@ -111,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         loginActivity_loginBun.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
         loginActivity_newUser.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(900).start();
 
-        TextClear.addClearListener(loginActivity_emailID,loginActivity_emailID_del);
-        TextClear.addClearListener(loginActivity_password,loginActivity_password_del);
+        LoginTextClear.addClearListener(loginActivity_emailID,loginActivity_emailID_del);
+        LoginTextClear.addClearListener(loginActivity_password,loginActivity_password_del);
     }
 }

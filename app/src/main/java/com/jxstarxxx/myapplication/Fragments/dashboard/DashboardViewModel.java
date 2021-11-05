@@ -1,20 +1,19 @@
-package com.jxstarxxx.myapplication.ui.doctorlist;
+package com.jxstarxxx.myapplication.Fragments.dashboard;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class DoctorlistViewModel extends ViewModel {
+public class DashboardViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public DoctorlistViewModel() {
+    public DashboardViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This is dashboard fragment");
     }
 
     public LiveData<String> getText() {
         return mText;
     }
 }
-

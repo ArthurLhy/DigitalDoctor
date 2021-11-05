@@ -1,4 +1,4 @@
-package com.jxstarxxx.myapplication.ui.doctorlist;
+package com.jxstarxxx.myapplication.Fragments.doctorlist;
 
 
 import android.app.ProgressDialog;
@@ -21,7 +21,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jxstarxxx.myapplication.DTO.DoctorModel;
+import com.jxstarxxx.myapplication.DTO.ChatListDoctor;
 import com.jxstarxxx.myapplication.R;
 import com.jxstarxxx.myapplication.databinding.FragmentDoctorlistBinding;
 
@@ -42,7 +42,7 @@ public class DoctorlistFragment extends Fragment {
     private RecyclerView doctorListRecycler;
     private DoctorListAdapter doctorListAdapter;
 
-    private List<DoctorModel> doctorModels = new ArrayList<>();
+    private List<ChatListDoctor> chatListDoctors = new ArrayList<>();
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -57,12 +57,12 @@ public class DoctorlistFragment extends Fragment {
         doctorListRecycler.hasFixedSize();
         doctorListRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        doctorListAdapter = new DoctorListAdapter(this.getActivity(), doctorModels);
+        doctorListAdapter = new DoctorListAdapter(this.getActivity(), chatListDoctors);
         doctorListRecycler.setAdapter(doctorListAdapter);
 
         List<String> friendListUid = new ArrayList<>();
 
-        doctorModels.clear();
+        chatListDoctors.clear();
 
         ProgressDialog progressDialog = new ProgressDialog(this.getActivity());
         progressDialog.setCancelable(false);
@@ -82,8 +82,8 @@ public class DoctorlistFragment extends Fragment {
                         String profilePic = snapshot.child(friendUid).child("photoUrl").getValue(String.class);
                         boolean chatted = (Boolean) dataSnapshot.child("chatted").getValue();
                         String userName = snapshot.child(friendUid).child("username").getValue(String.class);
-                        DoctorModel doctorModel = new DoctorModel(fullName, clinicName, departmentName, profilePic, friendUid, chatted, userName);
-                        doctorModels.add(doctorModel);
+                        ChatListDoctor chatListDoctor = new ChatListDoctor(fullName, clinicName, departmentName, profilePic, friendUid, chatted, userName);
+                        chatListDoctors.add(chatListDoctor);
                     }
                     doctorListAdapter.notifyDataSetChanged();
                 }

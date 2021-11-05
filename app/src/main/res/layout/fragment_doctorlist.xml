@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/back_blue"
-    tools:context=".ui.doctorlist.DoctorlistFragment">
+    tools:context=".Fragments.doctorlist.DoctorlistFragment">
 
     <View
         android:id="@+id/docColorBoard"

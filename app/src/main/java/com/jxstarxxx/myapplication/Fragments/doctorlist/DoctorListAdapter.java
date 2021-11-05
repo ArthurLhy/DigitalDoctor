@@ -1,4 +1,4 @@
-package com.jxstarxxx.myapplication.ui.doctorlist;
+package com.jxstarxxx.myapplication.Fragments.doctorlist;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jxstarxxx.myapplication.Chat.ChatActivity;
-import com.jxstarxxx.myapplication.DTO.DoctorModel;
+import com.jxstarxxx.myapplication.DTO.ChatListDoctor;
 import com.jxstarxxx.myapplication.R;
 import com.squareup.picasso.Picasso;
 
@@ -31,7 +31,7 @@ import java.util.List;
 public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.doctorSearchViewHolder> {
 
     private final Context context;
-    List<DoctorModel> doctorModels;
+    List<ChatListDoctor> chatListDoctors;
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://mobile-chat-demo-cacdf-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference();
     private FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -54,9 +54,9 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.do
         }
     }
 
-    public DoctorListAdapter(Context context, List<DoctorModel> doctorModels) {
+    public DoctorListAdapter(Context context, List<ChatListDoctor> chatListDoctors) {
         this.context = context;
-        this.doctorModels = doctorModels;
+        this.chatListDoctors = chatListDoctors;
     }
 
     @NonNull
@@ -70,14 +70,14 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.do
     @Override
     public void onBindViewHolder(@NonNull @NotNull doctorSearchViewHolder holder, int position) {
 
-        DoctorModel doctorModel = doctorModels.get(position);
+        ChatListDoctor chatListDoctor = chatListDoctors.get(position);
 
-        holder.fullName.setText(doctorModel.getFullName());
-        holder.clinicName.setText(doctorModel.getClinicName());
-        holder.departmentName.setText(doctorModel.getDepartmentName());
+        holder.fullName.setText(chatListDoctor.getFullName());
+        holder.clinicName.setText(chatListDoctor.getClinicName());
+        holder.departmentName.setText(chatListDoctor.getDepartmentName());
 
-        if(!doctorModel.getProfilePic().isEmpty()){
-            Picasso.get().load(doctorModel.getProfilePic()).into(holder.profilePic);
+        if(!chatListDoctor.getProfilePic().isEmpty()){
+            Picasso.get().load(chatListDoctor.getProfilePic()).into(holder.profilePic);
         }
 
         final String[] chatId = new String[1];
@@ -85,8 +85,8 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.do
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                if (doctorModel.isChatted()){
-                    chatId[0] = snapshot.child("user").child(currentUserUid).child("friendList").child(doctorModel.getUid()).child("chatID").getValue(String.class);
+                if (chatListDoctor.isChatted()){
+                    chatId[0] = snapshot.child("user").child(currentUserUid).child("friendList").child(chatListDoctor.getUid()).child("chatID").getValue(String.class);
                 }
             }
 
@@ -101,21 +101,21 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.do
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!doctorModel.isChatted()){
+                if (!chatListDoctor.isChatted()){
                     chatId[0] = databaseReference.child("chat").push().getKey();
-                    databaseReference.child("user").child(currentUserUid).child("friendList").child(doctorModel.getUid()).child("chatted").setValue(true);
-                    databaseReference.child("user").child(currentUserUid).child("friendList").child(doctorModel.getUid()).child("chatID").setValue(chatId[0]);
-                    databaseReference.child("user").child(doctorModel.getUid()).child("friendList").child(currentUserUid).child("chatted").setValue(true);
-                    doctorModel.setChatted(true);
-                    databaseReference.child("user").child(doctorModel.getUid()).child("friendList").child(currentUserUid).child("chatID").setValue(chatId[0]);
+                    databaseReference.child("user").child(currentUserUid).child("friendList").child(chatListDoctor.getUid()).child("chatted").setValue(true);
+                    databaseReference.child("user").child(currentUserUid).child("friendList").child(chatListDoctor.getUid()).child("chatID").setValue(chatId[0]);
+                    databaseReference.child("user").child(chatListDoctor.getUid()).child("friendList").child(currentUserUid).child("chatted").setValue(true);
+                    chatListDoctor.setChatted(true);
+                    databaseReference.child("user").child(chatListDoctor.getUid()).child("friendList").child(currentUserUid).child("chatID").setValue(chatId[0]);
                     databaseReference.child("chat").child(chatId[0]).child("user_1").setValue(currentUserUid);
-                    databaseReference.child("chat").child(chatId[0]).child("user_2").setValue(doctorModel.getUid());
+                    databaseReference.child("chat").child(chatId[0]).child("user_2").setValue(chatListDoctor.getUid());
                 }
 
                 Intent intent = new Intent(context, ChatActivity.class);
-                intent.putExtra("username", doctorModel.getUsername());
-                intent.putExtra("userImage", doctorModel.getProfilePic());
-                intent.putExtra("userID", doctorModel.getUid());
+                intent.putExtra("username", chatListDoctor.getUsername());
+                intent.putExtra("userImage", chatListDoctor.getProfilePic());
+                intent.putExtra("userID", chatListDoctor.getUid());
                 intent.putExtra("chatID", chatId[0]);
                 context.startActivity(intent);
             }
@@ -125,7 +125,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.do
 
     @Override
     public int getItemCount() {
-        return doctorModels.size();
+        return chatListDoctors.size();
     }
 
 
