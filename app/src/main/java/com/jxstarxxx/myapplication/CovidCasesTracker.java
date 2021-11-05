@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jxstarxxx.myapplication.DTO.CaseTrackerDTO;
-import com.jxstarxxx.myapplication.myUtils.ApiUtils;
+import com.jxstarxxx.myapplication.MyUtils.ApiUtils;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;

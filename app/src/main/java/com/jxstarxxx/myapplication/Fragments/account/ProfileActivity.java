@@ -1,7 +1,6 @@
-package com.jxstarxxx.myapplication.ui.account;
+package com.jxstarxxx.myapplication.Fragments.account;
 
 import android.Manifest;
-import android.accounts.Account;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,7 +12,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Editable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -44,11 +42,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.jxstarxxx.myapplication.DashboardActivity;
 import com.jxstarxxx.myapplication.LoginActivity;
 import com.jxstarxxx.myapplication.R;
-import com.jxstarxxx.myapplication.RegisterActivity;
-import com.jxstarxxx.myapplication.User;
+import com.jxstarxxx.myapplication.DTO.User;
 
 import java.io.ByteArrayOutputStream;
 

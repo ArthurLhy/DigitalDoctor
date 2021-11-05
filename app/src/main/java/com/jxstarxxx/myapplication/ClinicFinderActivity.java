@@ -49,7 +49,7 @@ import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.jxstarxxx.myapplication.DTO.HospitalsDTO;
-import com.jxstarxxx.myapplication.myUtils.MapDataParser;
+import com.jxstarxxx.myapplication.MyUtils.MapDataParser;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 import com.skyfishjy.library.RippleBackground;

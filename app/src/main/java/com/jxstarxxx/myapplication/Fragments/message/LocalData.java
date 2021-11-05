@@ -1,7 +1,5 @@
-package com.jxstarxxx.myapplication.ui.message;
+package com.jxstarxxx.myapplication.Fragments.message;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 
 import java.io.BufferedReader;

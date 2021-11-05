@@ -1,6 +1,6 @@
 package com.jxstarxxx.myapplication.DTO;
 
-public class DoctorModel {
+public class ChatListDoctor {
     private String fullName;
     private String clinicName;
     private String departmentName;
@@ -9,7 +9,7 @@ public class DoctorModel {
     private boolean chatted;
     private String username;
 
-    public DoctorModel(String fullName, String clinicName, String departmentName, String profilePic, String uid, boolean chatted, String username) {
+    public ChatListDoctor(String fullName, String clinicName, String departmentName, String profilePic, String uid, boolean chatted, String username) {
         this.fullName = fullName;
         this.clinicName = clinicName;
         this.departmentName = departmentName;

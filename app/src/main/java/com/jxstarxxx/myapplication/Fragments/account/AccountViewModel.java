@@ -1,16 +1,16 @@
-package com.jxstarxxx.myapplication.ui.message;
+package com.jxstarxxx.myapplication.Fragments.account;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class MessageViewModel extends ViewModel {
+public class AccountViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public MessageViewModel() {
+    public AccountViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is notifications fragment");
     }
 
     public LiveData<String> getText() {

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/back_blue"
-    tools:context=".ui.message.MessageFragment">
+    tools:context=".Fragments.message.MessageFragment">
 
     <View
         android:id="@+id/messageColorBoard"

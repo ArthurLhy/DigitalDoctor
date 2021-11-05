@@ -24,7 +24,7 @@
             android:exported="true"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
-            android:name=".ui.account.SetUsernameActivity"
+            android:name=".Fragments.account.SetUsernameActivity"
             android:exported="true" />
         <activity
             android:name=".SplashActivity"
@@ -66,7 +66,7 @@
             android:exported="true"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
-            android:name=".ui.account.ProfileActivity"
+            android:name=".Fragments.account.ProfileActivity"
             android:exported="true"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity

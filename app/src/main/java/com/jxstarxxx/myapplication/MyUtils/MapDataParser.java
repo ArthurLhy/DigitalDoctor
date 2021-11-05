@@ -1,4 +1,4 @@
-package com.jxstarxxx.myapplication.myUtils;
+package com.jxstarxxx.myapplication.MyUtils;
 
 import com.jxstarxxx.myapplication.DTO.HospitalsDTO;
 
