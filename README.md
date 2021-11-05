@@ -20,6 +20,16 @@ Please install the tools required. Download the code and open it with Android St
 
 **Note:** You can run the app either on a physical device or a emulator. If you run on a emulator, please create a vitural device with API level 29 + using AVD manager. Alternatively, if you run on a physical device, please connect the device via USB and ensure that the device can use service provided by **Google Play**. The app will require some permissions such as GPS permission and Camera permission. To use the app, please confirm to grant permissions to the app. 
 
+### Testing Accounts
+For the purpose of testing, a user can be registered to use the normal user interface.
+To test the doctor side request and responce, please use:
+* **Email Id** optoqq@doctor.com
+* **Password** 12345678
+This doctor can be searched and added by:
+* **Clinic** Paramount Medical Clinic
+* **Department** Optometrist
+* **Name** Eddie Watson
+
 ## Overview of Digital Doctor
 ### Sensors Used
 * **Camera** for testing heart rate
