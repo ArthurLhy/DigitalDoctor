@@ -99,8 +99,10 @@ public class AddDoctorFragment extends Fragment {
             }
         });
 
+        //Go through the department list resource file to get a list of departments
         departmentList = getResources().getStringArray(R.array.departmentList);
 
+        //Initialise the spinners for clinic and department
         ArrayAdapter<String> clinicAdapter = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item_style_add_doctor, clinicList);
         ArrayAdapter<String> departmentAdapter = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item_style_add_doctor, departmentList);
 
@@ -134,7 +136,7 @@ public class AddDoctorFragment extends Fragment {
             }
         });
 
-        // Retrieve all the doctor
+        // Retrieve all the doctors
         databaseReference.child("user").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -175,7 +177,7 @@ public class AddDoctorFragment extends Fragment {
 
 
 
-
+        // Search for the doctors matching the requests and list the doctors
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,6 +213,7 @@ public class AddDoctorFragment extends Fragment {
         return root;
     }
 
+    // A method to get a list of doctors matching the search request
     private List<Doctor> retrieveDoctors(String clinicName, String departmentName, List<Doctor> doctorList) {
         List<Doctor> searchedDoctors = new ArrayList<>();
         for (Doctor doctor : doctorList){

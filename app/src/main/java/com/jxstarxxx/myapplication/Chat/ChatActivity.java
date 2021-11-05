@@ -190,6 +190,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        // Initialise the floating buttons
         floatingAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -198,12 +199,11 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        //Link the floating button to heart rate activity
         floatingAudioBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChatActivity.this, HeartRateActivity.class);
-//                intent.putExtra("receiverName", Name);
-//                intent.putExtra("receiverImage", userImage);
                 intent.putExtra("receiverID", receiverID);
                 intent.putExtra("chatId", chatID);
                 startActivity(intent);

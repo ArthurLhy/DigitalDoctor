@@ -73,6 +73,7 @@ public class AddDoctorAdapter extends RecyclerView.Adapter<AddDoctorAdapter.Sear
             Picasso.get().load(addDoctor.getImgUrl()).into(holder.profile_pic);
         }
 
+        //Remove the button if the doctor is already added
         if(addDoctor.isAdded()){
             holder.addButton.setVisibility(View.GONE);
         }else {

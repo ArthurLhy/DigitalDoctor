@@ -69,6 +69,7 @@ public class DoctorlistFragment extends Fragment {
         progressDialog.setMessage("Loading Friend List ...");
         progressDialog.show();
 
+        // Iterate through the friend list in database and add to the list to generate card view
         databaseReference.child("user").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
