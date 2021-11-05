@@ -38,9 +38,9 @@ Please install the tools required. Download the code and open it with Android St
 
 <img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/userCli.jpg" width="200">  &nbsp;  &nbsp;  &nbsp; <img src="https://github.com/ArthurLhy/DigitalDoctor/blob/main/ScreenShot/doctorCli.jpg" width="200">
 
-&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; **Client for User** &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp; **Client for Doctors**
+&nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; **Client for User** &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp; **Client for Doctors**
 
-**Note:** You can use the client for doctor by login with a doctor account
+**Note:** You can use the client for doctor by login with a doctor account (e.g username: docmm@doctor.com, password: 12345678)
 ***
 * **Modules**
 
