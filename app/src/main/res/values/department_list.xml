@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="departmentList">
+        <item>General Practitioner</item>
+        <item>Dentist</item>
+        <item>Physio</item>
+        <item>Optometrist</item>
+    </string-array>
+</resources>

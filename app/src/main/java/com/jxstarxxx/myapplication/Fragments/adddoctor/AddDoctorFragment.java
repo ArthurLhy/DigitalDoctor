@@ -82,6 +82,7 @@ public class AddDoctorFragment extends Fragment {
         progressDialog.setMessage("Loading Doctor Information ...");
         progressDialog.show();
 
+        //Go through the clinics in database to get a list of clinic names
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -98,7 +99,7 @@ public class AddDoctorFragment extends Fragment {
             }
         });
 
-        departmentList = new String[] {"General Practitioner", "Dentist", "Physio", "Optometrist"};
+        departmentList = getResources().getStringArray(R.array.departmentList);
 
         ArrayAdapter<String> clinicAdapter = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item_style_add_doctor, clinicList);
         ArrayAdapter<String> departmentAdapter = new ArrayAdapter<String>(getActivity(), R.layout.dropdown_item_style_add_doctor, departmentList);
