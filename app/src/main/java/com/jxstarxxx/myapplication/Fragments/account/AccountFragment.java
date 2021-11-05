@@ -1,51 +1,35 @@
-package com.jxstarxxx.myapplication.ui.account;
-
-import static android.app.Activity.RESULT_OK;
+package com.jxstarxxx.myapplication.Fragments.account;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.jxstarxxx.myapplication.AboutUsActivity;
 import com.jxstarxxx.myapplication.LoginActivity;
 import com.jxstarxxx.myapplication.R;
-import com.jxstarxxx.myapplication.RegisterActivity;
-import com.jxstarxxx.myapplication.User;
 import com.jxstarxxx.myapplication.databinding.FragmentAccountBinding;
 
-import java.io.ByteArrayOutputStream;
 
 public class AccountFragment extends Fragment {
 
