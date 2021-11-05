@@ -22,7 +22,8 @@ Please install the tools required. Download the code and open it with Android St
 
 ### Testing Accounts
 For the purpose of testing, a user can be registered to use the normal user interface.
-To test the doctor side request and responce, please use:
+
+To test the doctor side request and response, please use:
 * **Email Id:** optoqq@doctor.com
 * **Password:** 12345678
 
