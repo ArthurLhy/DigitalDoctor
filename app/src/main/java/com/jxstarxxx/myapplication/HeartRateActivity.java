@@ -172,6 +172,7 @@ public class HeartRateActivity extends AppCompatActivity {
         bpm= 60000/med;
         showResult();
 
+        //Generate a message to send the heart rate to the doctor and go back to chat
         if (chatId != null){
             final String heartRateTimeStamp = String.valueOf(System.currentTimeMillis());
 

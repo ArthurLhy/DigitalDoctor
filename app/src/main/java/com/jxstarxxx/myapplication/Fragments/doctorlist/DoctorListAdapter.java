@@ -82,6 +82,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.do
 
         final String[] chatId = new String[1];
 
+        // Get the chat id from the database if a chat already exist for the certain doctor
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -97,7 +98,7 @@ public class DoctorListAdapter extends RecyclerView.Adapter<DoctorListAdapter.do
         });
 
 
-
+        // Make the card clickable to link to the chat activity with the doctor
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
