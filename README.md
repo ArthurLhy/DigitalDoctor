@@ -52,7 +52,6 @@ This doctor can be searched and added by:
 
 &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; **Client for User** &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp; **Client for Doctors**
 
-**Note:** You can use the client for doctor by login with a doctor account (e.g username: docmm@doctor.com, password: 12345678)
 ***
 * **Modules**
 
