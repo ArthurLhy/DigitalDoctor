@@ -23,12 +23,13 @@ Please install the tools required. Download the code and open it with Android St
 ### Testing Accounts
 For the purpose of testing, a user can be registered to use the normal user interface.
 To test the doctor side request and responce, please use:
-* **Email Id** optoqq@doctor.com
-* **Password** 12345678
+* **Email Id:** optoqq@doctor.com
+* **Password:** 12345678
+
 This doctor can be searched and added by:
-* **Clinic** Paramount Medical Clinic
-* **Department** Optometrist
-* **Name** Eddie Watson
+* **Clinic:** Paramount Medical Clinic
+* **Department:** Optometrist
+* **Name:** Eddie Watson
 
 ## Overview of Digital Doctor
 ### Sensors Used
